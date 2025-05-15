@@ -8,6 +8,7 @@ function InstallPrompt() {
  
   useEffect(() => {
     setIsIOS(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream
     )
  
@@ -23,7 +24,7 @@ function InstallPrompt() {
       {isIOS && (
         <p>
           To install this app on your iOS device, tap the <strong>share button</strong>
-          &nbsp;and then <strong>"Add to Home Screen"</strong>.
+          &nbsp;and then <strong>&quot;Add to Home Screen&quot;</strong>.
         </p>
       )}
     </div>
