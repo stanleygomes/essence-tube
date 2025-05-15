@@ -1,0 +1,38 @@
+name: Deploy to Firebase Hosting on Release
+
+on:
+  release:
+    types: [created]
+    tags:
+      - 'v*.*.*'
+      - '*.*.*'
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Next.js app (static export)
+      run: npm run build
+
+    - name: Export static files
+      run: npm run export
+
+    - name: Deploy to Firebase Hosting
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: "${{ secrets.GITHUB_TOKEN }}"
+        firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+        channelId: live
+        projectId: "essence-tube-app"
