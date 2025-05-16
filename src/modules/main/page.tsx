@@ -1,6 +1,6 @@
 'use client';
 
-import { Tabbar, TabbarLink, Icon, List, ListItem, Toggle, Block } from 'konsta/react';
+import { Tabbar, TabbarLink, Icon, Block } from 'konsta/react';
 import { useState } from 'react';
 
 import InstallPrompt from '@shared/components/install-prompt/InstallPrompt';
