@@ -1,5 +1,5 @@
 import Image from "next/image";
-import InstallPrompt from "./src/InstallPrompt";
+import InstallPrompt from "../InstallPrompt";
 
 export default function Home() {
   return (
