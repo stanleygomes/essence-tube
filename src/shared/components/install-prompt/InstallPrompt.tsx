@@ -20,7 +20,7 @@ function InstallPrompt() {
   }
 
   return (
-    <div>
+    <div className="p-6">
       {isIOS && (
         <p>
           To install this app on your iOS device, tap the <strong>share button</strong>

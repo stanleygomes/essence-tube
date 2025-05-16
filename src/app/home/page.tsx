@@ -1,3 +1,7 @@
-import HomePage from '@modules/home/page';
+import Main from "@modules/main/page";
 
-export default HomePage;
+export default function HomePage() {
+  return (
+    <Main activeTabDefault="tab-home" />
+  );
+}
