@@ -4,28 +4,19 @@ import Image from "next/image";
 
 // Importe a fonte Inter do Google Fonts (Next.js App Router)
 import { Inter } from "next/font/google";
+import ImageByTheme from "@shared/components/image-by-theme/ImageByTheme";
 const inter = Inter({ subsets: ["latin"], weight: ["700"] });
 
 export default function Login() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-black">
-      {/* Logo para modo claro */}
-      <Image
-        src="/img/logo-light.png"
-        alt="Logo EssenceTube"
+      <ImageByTheme
+        srcDark="/img/logo-dark.png"
+        srcLight="/img/logo-light.png"
         width={120}
         height={120}
-        className="mb-6 block dark:hidden"
-        priority
-      />
-      {/* Logo para modo escuro */}
-      <Image
-        src="/img/logo-dark.png"
-        alt="Logo EssenceTube (dark)"
-        width={120}
-        height={120}
-        className="mb-6 hidden dark:block"
-        priority
+        classNameLight="mb-6 block dark:hidden"
+        classNameDark="mb-6 hidden dark:block"
       />
       <span
         className={`mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 ${inter.className}`}
