@@ -9,7 +9,7 @@ export default function Privacy() {
         title='Política de privacidade'
         showBackButton={true}
       />
-      <div className="p-6 max-w-2xl mx-auto safe-header">
+      <div className="p-6 max-w-2xl mx-auto safe-page-content">
         <p className="mb-4">
           Esta aplicação utiliza a API do YouTube para fornecer funcionalidades
           personalizadas aos usuários. Coletamos apenas os dados fornecidos pela API

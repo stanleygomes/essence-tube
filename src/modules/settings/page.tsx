@@ -21,11 +21,10 @@ export default function Settings() {
         title="Settings"
         showBackButton={true}
       />
-      <div className="safe-header">
+      <div className="safe-page-content">
         <Page className="min-h-screen flex flex-col bg-white dark:bg-black">
           <div className="max-w-md w-full mx-auto flex-1 flex flex-col gap-8 py-8 px-8">
             <section>
-              <BlockTitle className="mb-2 text-lg">Links úteis</BlockTitle>
               <List strong inset className="rounded-xl shadow-sm">
                 <ListItem
                   link
