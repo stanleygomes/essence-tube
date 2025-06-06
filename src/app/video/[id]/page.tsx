@@ -2,13 +2,16 @@
 
 import { useParams } from "next/navigation";
 import Video from "@modules/video/page";
+import RequireAuth from "@shared/components/require-auth/RequireAuth";
 
 export default function VideoPage() {
   const { id } = useParams();
 
   return (
-    <Video
-      videoId={id?.toString()}
-    />
+    <RequireAuth>
+      <Video
+        videoId={id?.toString()}
+      />
+    </RequireAuth>
   );
 }
