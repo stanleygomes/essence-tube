@@ -3,25 +3,33 @@
 import { Tabbar, TabbarLink, Icon, Block } from 'konsta/react';
 import { useState } from 'react';
 
-import InstallPrompt from '@shared/components/install-prompt/InstallPrompt';
-
 import { RiHome3Line } from "react-icons/ri";
 import { HiOutlineNewspaper } from "react-icons/hi2";
 
 import Home from '@modules/home/page';
 import Feed from '@modules/feed/page';
+import Header from '@shared/components/header/Header';
 
-export default function Main({ activeTabDefault }: { activeTabDefault: string }) {
+export interface IMain {
+  activeTabDefault: string;
+}
+
+export default function Main({
+  activeTabDefault
+}: IMain) {
   const [activeTab, setActiveTab] = useState(activeTabDefault);
 
   return (
     <>
-      <InstallPrompt />
+      <Header
+        title='Home'
+        photoUrl="https://lh3.googleusercontent.com/ogw/AF2bZyg_DHRXSZz975sqymrYvwo1e41gardmy-QpJ2mvG6M6YDnM=s32-c-mo"
+      />
 
       <Tabbar
         labels
         icons
-        className="left-0 bottom-0 fixed"
+        className="left-0 bottom-0 fixed w-full z-50 bg-white dark:bg-black px-4 py-2 shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.15)] dark:shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.4)]"
       >
         <TabbarLink
           active={activeTab === 'tab-home'}
