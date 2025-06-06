@@ -8,7 +8,6 @@ import { HiOutlineNewspaper } from "react-icons/hi2";
 
 import Home from '@modules/home/page';
 import Feed from '@modules/feed/page';
-import Header from '@shared/components/header/Header';
 
 export interface IMain {
   activeTabDefault: string;
@@ -21,11 +20,6 @@ export default function Main({
 
   return (
     <>
-      <Header
-        title='Home'
-        photoUrl="https://lh3.googleusercontent.com/ogw/AF2bZyg_DHRXSZz975sqymrYvwo1e41gardmy-QpJ2mvG6M6YDnM=s32-c-mo"
-      />
-
       <Tabbar
         labels
         icons
