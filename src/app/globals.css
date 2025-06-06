@@ -28,3 +28,7 @@ body {
 .pt-safe {
   padding-top: env(safe-area-inset-top);
 }
+
+.safe-header {
+  padding-top: calc(100px + env(safe-area-inset-top));
+}

@@ -7,8 +7,9 @@ export default function Terms() {
     <>
       <Header
         title='Termos de Serviço'
+        showBackButton={true}
       />
-      <div className="p-6 max-w-2xl mx-auto" style={{ paddingTop: 'calc(100px + env(safe-area-inset-top))' }}>
+      <div className="p-6 max-w-2xl mx-auto safe-header">
         <p className="mb-4">
           Ao utilizar esta aplicação, você concorda com os termos descritos abaixo.
           Esta aplicação utiliza a API do YouTube para fornecer funcionalidades
