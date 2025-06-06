@@ -9,13 +9,13 @@ import ImageByTheme from '../image-by-theme/ImageByTheme';
 const inter = Inter({ subsets: ["latin"], weight: ["700"] });
 
 export interface IHeader {
+  showLogo?: boolean,
   title: string,
-  photoUrl: string,
 }
 
 export default function Header({
+  showLogo = false,
   title,
-  photoUrl,
 }: IHeader) {
   return (
     <>
@@ -24,21 +24,23 @@ export default function Header({
       <div className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-black px-4 py-2">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center justify-center gap-2">
-            <ImageByTheme
-              srcDark="/img/logo-dark.png"
-              srcLight="/img/logo-light.png"
-              width={50}
-              height={50}
-              classNameLight="block dark:hidden"
-              classNameDark="hidden dark:block"
-            />
+            {showLogo && (
+              <ImageByTheme
+                srcDark="/img/logo-dark.png"
+                srcLight="/img/logo-light.png"
+                width={50}
+                height={50}
+                classNameLight="block dark:hidden"
+                classNameDark="hidden dark:block"
+              />
+            )}
             <span className={`text-xl font-bold text-gray-900 dark:text-gray-100 ${inter.className}`}>
               {title}
             </span>
           </div>
           <Link href="/settings">
             <Image
-              src={photoUrl}
+              src="https://lh3.googleusercontent.com/ogw/AF2bZyg_DHRXSZz975sqymrYvwo1e41gardmy-QpJ2mvG6M6YDnM=s32-c-mo"
               alt="user photo"
               width={45}
               height={45}
