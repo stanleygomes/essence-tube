@@ -1,7 +1,7 @@
 'use client';
 
 import Header from "@shared/components/header/Header";
-import Navbar from "@shared/ui/Navbar/navbar";
+import VideoCard from "@shared/components/video-card/VideoCard";
 
 export default function Home() {
   return (
@@ -10,100 +10,17 @@ export default function Home() {
         title='Home'
         showLogo={true}
       />
-      <div className="p-6" style={{ paddingTop: 'calc(88px + env(safe-area-inset-top))' }}>
-        <Navbar title="Feed" />
+      <div className="py-6 px-2 safe-page-content">
+        {/* <a href="/login">login</a> */}
 
-        <br/>
-        <br/>
-        <a href="/login">login</a>
-        <br/>
-        <br/>
-
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Quod praesentium consequatur autem veritatis, magni alias
-          consectetur ut quo, voluptatum earum in repellat! Id, autem! Minus
-          suscipit, ad possimus non voluptatem aliquam praesentium earum
-          corrupti optio velit tenetur numquam?
-        </p>
-        <p>
-          Illo id ipsa natus quidem dignissimos odio dolore veniam,
-          accusamus vel assumenda nulla aliquam amet distinctio! Debitis
-          deserunt, et, cum voluptate similique culpa assumenda inventore,
-          facilis eveniet iure optio velit.
-        </p>
-        <p>
-          Maiores minus laborum placeat harum impedit, saepe veniam iusto
-          voluptates delectus omnis consectetur tenetur ex ipsa error
-          debitis aspernatur amet et alias! Sit odit cum voluptas quae? Est,
-          omnis eos?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          accusantium necessitatibus, nihil quas praesentium at quibusdam
-          cupiditate possimus et repudiandae dolorum delectus quo, similique
-          voluptatem magni explicabo adipisci magnam ratione!
-        </p>
+        {[1,2,3,4,5,6,7,8,9].map(i => (
+          <VideoCard
+            id="GU7mh8sYhCI"
+            title="Título do vídeo"
+            description="Descrição curta do vídeo do YouTube."
+            thumbnail="https://i.ytimg.com/vi/GU7mh8sYhCI/hqdefault.jpg"
+          />
+        ))}
       </div>
     </>
   );

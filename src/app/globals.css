@@ -29,6 +29,7 @@ body {
   padding-top: env(safe-area-inset-top);
 }
 
-.safe-header {
+.safe-page-content {
   padding-top: calc(100px + env(safe-area-inset-top));
+  padding-bottom: calc(100px + env(safe-area-inset-top));
 }
