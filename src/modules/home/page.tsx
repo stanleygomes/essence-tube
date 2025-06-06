@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Header
         title='Home'
-        photoUrl="https://lh3.googleusercontent.com/ogw/AF2bZyg_DHRXSZz975sqymrYvwo1e41gardmy-QpJ2mvG6M6YDnM=s32-c-mo"
+        showLogo={true}
       />
       <div className="p-6" style={{ paddingTop: 'calc(88px + env(safe-area-inset-top))' }}>
         <Navbar title="Feed" />

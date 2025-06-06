@@ -1,44 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import {
   Page,
   BlockTitle,
   List,
   ListItem,
-  Block,
   Button,
-  Checkbox,
-  ListInput,
 } from "konsta/react";
-import { useTheme } from "next-themes";
-import Link from "next/link";
 import Header from "@shared/components/header/Header";
 
 export default function Settings() {
-  const { theme, setTheme } = useTheme();
-  const [selectedTheme, setSelectedTheme] = useState<"light" | "dark">(
-    theme === "dark" ? "dark" : "light"
-  );
-
-  useEffect(() => {
-    setSelectedTheme(theme === "dark" ? "dark" : "light");
-  }, [theme]);
-
-  const handleThemeChange = (value: "light" | "dark") => {
-    setTheme(value);
-    setSelectedTheme(value);
-  };
 
   const handleLogout = () => {
     window.location.href = "/api/auth/logout";
-  };
-
-  const [group, setGroup] = useState(['Books']);
-  const toggleGroupValue = (value: string) => {
-    if (group.includes(value)) group.splice(group.indexOf(value), 1);
-    else group.push(value);
-    setGroup([...group]);
   };
 
   return (
