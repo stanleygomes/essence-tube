@@ -88,7 +88,7 @@ export default function Home() {
             <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin mb-4"></div>
             <div className="text-base text-gray-700 dark:text-gray-200">Carregando playlists...</div>
           </div>
-        ) : (
+        ) : playlists.length > 0 ? (
           playlists.map(playlist => (
             <PlaylistCard
               key={playlist.id}
@@ -99,6 +99,15 @@ export default function Home() {
               onClick={handleSelectPlaylist}
             />
           ))
+        ) : (
+          <div className="flex flex-col items-center justify-center min-h-[40vh]">
+            {videos.length === 0 && playlists.length > 0 && (
+              <div className="text-base text-gray-700 dark:text-gray-200">A lista de vídeos está vazia.</div>
+            )}
+            {playlists.length === 0 && (
+              <div className="text-base text-gray-700 dark:text-gray-200">Nenhuma playlist encontrada.</div>
+            )}
+          </div>
         )}
       </div>
     </>
