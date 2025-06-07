@@ -3,11 +3,15 @@ interface PlaylistCardProps {
   title: string;
   description: string;
   thumbnail: string;
+  onClick?: (id: string) => void;
 }
 
-export default function PlaylistCard({ id, title, description, thumbnail }: PlaylistCardProps) {
+export default function PlaylistCard({ id, title, description, thumbnail, onClick }: PlaylistCardProps) {
   return (
-    <div className="flex gap-4 items-start bg-white dark:bg-neutral-900 rounded-xl shadow hover:shadow-lg transition p-4 mb-4 cursor-pointer">
+    <div
+      className="flex gap-4 items-start bg-white dark:bg-neutral-900 rounded-xl shadow hover:shadow-lg transition p-4 mb-4 cursor-pointer"
+      onClick={() => onClick?.(id)}
+    >
       <img
         src={thumbnail}
         alt={title}
