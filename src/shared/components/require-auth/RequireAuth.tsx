@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getAuth } from "../../../services/authService";
 
 export default function RequireAuth({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function RequireAuth({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const auth = localStorage.getItem("auth");
+      const auth = getAuth();
       if (!auth) {
         router.replace("/login");
       } else {

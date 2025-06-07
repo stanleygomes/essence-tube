@@ -2,17 +2,18 @@
 
 import {
   Page,
-  BlockTitle,
   List,
   ListItem,
   Button,
 } from "konsta/react";
 import Header from "@shared/components/header/Header";
+import { removeAuth } from "../../services/authService";
 
 export default function Settings() {
 
   const handleLogout = () => {
-    window.location.href = "/api/auth/logout";
+    removeAuth();
+    window.location.href = "/login";
   };
 
   return (
