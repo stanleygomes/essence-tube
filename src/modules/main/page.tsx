@@ -28,63 +28,25 @@ export default function Main({
         <TabbarLink
           active={activeTab === 'tab-home'}
           onClick={() => setActiveTab('tab-home')}
-          className={activeTab === 'tab-home'
-            ? "text-red-600 dark:text-red-400"
-            : "text-gray-500 dark:text-gray-400"
+          className={
+            (activeTab === 'tab-home'
+              ? "text-red-600 dark:text-red-400"
+              : "text-gray-500 dark:text-gray-400"
+            ) + " justify-center"
           }
-          icon={
-            <Icon
-              ios={
-                <RiHome3Line
-                  className={`w-7 h-7 ${
-                    activeTab === 'tab-home'
-                      ? 'text-red-600 dark:text-red-400'
-                      : 'text-gray-500 dark:text-gray-400'
-                  }`}
-                />
-              }
-              material={
-                <RiHome3Line
-                  className={`w-6 h-6 ${
-                    activeTab === 'tab-home'
-                      ? 'text-red-600 dark:text-red-400'
-                      : 'text-gray-500 dark:text-gray-400'
-                  }`}
-                />
-              }
-            />
-          }
+          icon={<RiHome3Line className="w-7 h-7" />}
           label="Home"
         />
         <TabbarLink
           active={activeTab === 'tab-feed'}
           onClick={() => setActiveTab('tab-feed')}
-          className={activeTab === 'tab-feed'
-            ? "text-red-600 dark:text-red-400"
-            : "text-gray-500 dark:text-gray-400"
+          className={
+            (activeTab === 'tab-feed'
+              ? "text-red-600 dark:text-red-400"
+              : "text-gray-500 dark:text-gray-400"
+            ) + " justify-center"
           }
-          icon={
-            <Icon
-              ios={
-                <HiOutlineNewspaper
-                  className={`w-7 h-7 ${
-                    activeTab === 'tab-feed'
-                      ? 'text-red-600 dark:text-red-400'
-                      : 'text-gray-500 dark:text-gray-400'
-                  }`}
-                />
-              }
-              material={
-                <HiOutlineNewspaper
-                  className={`w-6 h-6 ${
-                    activeTab === 'tab-feed'
-                      ? 'text-red-600 dark:text-red-400'
-                      : 'text-gray-500 dark:text-gray-400'
-                  }`}
-                />
-              }
-            />
-          }
+          icon={<HiOutlineNewspaper className="w-7 h-7" />}
           label="Feed"
         />
       </Tabbar>

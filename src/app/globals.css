@@ -33,3 +33,11 @@ body {
   padding-top: calc(100px + env(safe-area-inset-top));
   padding-bottom: calc(100px + env(safe-area-inset-top));
 }
+
+.k-tabbar-link {
+  justify-content: center !important;
+}
+
+.k-tabbar-link-icon .pointer-events-none {
+  display: none !important;
+}
