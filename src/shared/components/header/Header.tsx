@@ -2,7 +2,7 @@
 
 // import InstallPrompt from '@shared/components/install-prompt/InstallPrompt';
 import Link from "next/link";
-import { IoChevronBack, IoClose } from "react-icons/io5";
+import { IoChevronBack, IoClose, IoPersonCircleOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,6 +15,7 @@ export interface IHeader {
   showLogo?: boolean,
   title: string,
   showBackButton?: boolean,
+  action?: React.ReactNode,
 }
 
 function BackOrCloseButton({
@@ -52,6 +53,7 @@ export default function Header({
   showLogo = false,
   title,
   showBackButton = false,
+  action,
 }: IHeader) {
   const [canGoBack, setCanGoBack] = useState(false);
 
@@ -83,15 +85,15 @@ export default function Header({
               {title}
             </span>
           </div>
-          <Link href="/settings">
-            <Image
-              src="https://lh3.googleusercontent.com/ogw/AF2bZyg_DHRXSZz975sqymrYvwo1e41gardmy-QpJ2mvG6M6YDnM=s32-c-mo"
-              alt="user photo"
-              width={45}
-              height={45}
-              className="rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer"
-            />
-          </Link>
+          <div className="flex items-center gap-2">
+            {action}
+            <Link href="/settings">
+              <IoPersonCircleOutline
+                className="w-11 h-11 text-gray-400 dark:text-gray-600 cursor-pointer"
+                aria-label="Perfil do usuário"
+              />
+            </Link>
+          </div>
         </div>
       </div>
     </>

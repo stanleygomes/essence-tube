@@ -1,7 +1,7 @@
 import { config } from "@config/config";
 import { getAuth } from "@services/authService";
 
-export async function getWatchLaterVideos() {
+export async function getPlaylists() {
   const { baseUrl } = config.api;
 
   if (typeof window === "undefined") return [];
@@ -11,14 +11,14 @@ export async function getWatchLaterVideos() {
 
   if (!uuid) return [];
 
-  const res = await fetch(`${baseUrl}/videos/watchLater`, {
+  const res = await fetch(`${baseUrl}/playlists`, {
     headers: {
       uuid,
     },
   });
 
   if (!res.ok) {
-    throw new Error("Erro ao buscar vídeos");
+    throw new Error("Erro ao buscar playlists");
   }
 
   return res.json();
