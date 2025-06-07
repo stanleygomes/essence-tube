@@ -24,6 +24,8 @@
       "@modules/*": ["src/modules/*"],
       "@lib/*": ["src/lib/*"],
       "@shared/*": ["src/shared/*"],
+      "@services/*": ["src/services/*"],
+      "@config/*": ["src/config/*"],
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"],
     }

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { setAuth } from "../../services/authService";
+import { setAuth } from "@services/authService";
 
 export interface IAuthRedirect {
   sessionId?: string,

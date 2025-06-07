@@ -1,9 +1,22 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Header from "@shared/components/header/Header";
+import { getWatchLaterVideos } from "@services/videoService";
 import VideoCard from "@shared/components/video-card/VideoCard";
 
 export default function Home() {
+  const [videos, setVideos] = useState([]);
+
+  console.log("videos", videos);
+  
+
+  useEffect(() => {
+    getWatchLaterVideos()
+      .then(setVideos)
+      .catch(() => setVideos([]));
+  }, []);
+
   return (
     <>
       <Header
@@ -13,14 +26,15 @@ export default function Home() {
       <div className="py-6 px-2 safe-page-content">
         {/* <a href="/login">login</a> */}
 
-        {[1,2,3,4,5,6,7,8,9].map(i => (
+        {/* {videos.map(video => (
           <VideoCard
-            id="GU7mh8sYhCI"
-            title="Título do vídeo"
-            description="Descrição curta do vídeo do YouTube."
-            thumbnail="https://i.ytimg.com/vi/GU7mh8sYhCI/hqdefault.jpg"
+            key={video.id}
+            id={video.id}
+            title={video.title}
+            description={video.description}
+            thumbnail={video.thumbnail}
           />
-        ))}
+        ))} */}
       </div>
     </>
   );

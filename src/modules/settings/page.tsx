@@ -7,7 +7,7 @@ import {
   Button,
 } from "konsta/react";
 import Header from "@shared/components/header/Header";
-import { removeAuth } from "../../services/authService";
+import { removeAuth } from "@services/authService";
 
 export default function Settings() {
 
