@@ -1,20 +1,26 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@shared/components/header/Header";
-import { AiOutlineLike } from "react-icons/ai";
+// import { AiOutlineLike } from "react-icons/ai";
 import { FiShare2 } from "react-icons/fi";
+import { MdDelete } from "react-icons/md";
 import { getVideo } from "@services/videoService";
+import { removePlaylistVideo } from "@services/playlistItemService";
 
 export interface IVideo {
   videoId?: string,
+  playlistId?: string,
 }
 
 export default function Video({
   videoId,
+  playlistId,
 }: IVideo) {
   const [videoData, setVideoData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!videoId) return;
@@ -36,6 +42,20 @@ export default function Video({
       }
     } else if (videoData) {
       window.open(`https://www.youtube.com/watch?v=${videoData.id}`, "_blank");
+    }
+  };
+
+  const handleRemoveFromPlaylist = async () => {
+    if (!playlistId) {
+      alert("Não foi possível identificar a playlist.");
+      return;
+    }
+    try {
+      await removePlaylistVideo(playlistId);
+      alert("Vídeo removido da playlist!");
+      router.push("/home");
+    } catch (err) {
+      alert("Erro ao remover vídeo da playlist.");
     }
   };
 
@@ -84,6 +104,13 @@ export default function Video({
               >
                 <FiShare2 size={18} />
                 Compartilhar
+              </button>
+              <button
+                className="flex items-center gap-2 px-4 py-2 rounded bg-red-100 hover:bg-red-200 dark:bg-red-800 dark:hover:bg-red-700 text-sm font-medium text-red-800 dark:text-red-100 transition"
+                onClick={handleRemoveFromPlaylist}
+              >
+                <MdDelete size={18} />
+                Remover da playlist
               </button>
             </div>
           </>

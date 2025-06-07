@@ -76,7 +76,8 @@ export default function Home() {
           videos.map(video => (
             <VideoCard
               key={video.id}
-              id={video.videoId}
+              videoId={video.videoId}
+              playlistId={video.id}
               title={video.title}
               description={video.description}
               thumbnail={video.thumbnails.high}

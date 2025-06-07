@@ -1,15 +1,16 @@
 import Link from "next/link";
 
 interface VideoCardProps {
-  id: string;
+  videoId: string;
+  playlistId: string,
   title: string;
   description: string;
   thumbnail: string;
 }
 
-export default function VideoCard({ id, title, description, thumbnail }: VideoCardProps) {
+export default function VideoCard({ playlistId, videoId, title, description, thumbnail }: VideoCardProps) {
   return (
-    <Link href={`/video/${id}`}>
+    <Link href={`/video/${playlistId}/${videoId}`}>
       <div className="flex gap-4 items-start bg-white dark:bg-neutral-900 rounded-xl shadow hover:shadow-lg transition p-4 mb-4 cursor-pointer">
         <img
           src={thumbnail}
