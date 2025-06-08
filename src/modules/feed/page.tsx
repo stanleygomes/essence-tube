@@ -74,9 +74,11 @@ export default function Feed() {
       />
       <div className="py-6 px-2 safe-page-content">
 
-        <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
-          Escolha um canal
-        </h2>
+        {!loading && creators.length > 0 && (
+          <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
+            Escolha um canal
+          </h2>
+        )}
 
         <div className="creators mb-4">
           {loading ? (
