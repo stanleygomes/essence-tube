@@ -7,7 +7,7 @@ import Header from "@shared/components/header/Header";
 import { FiShare2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { getVideo } from "@services/videoService";
-import { removePlaylistVideo } from "@services/playlistItemService";
+import { removePlaylistVideo } from "@services/playlistService";
 
 export interface IVideo {
   videoId?: string,

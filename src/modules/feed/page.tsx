@@ -5,6 +5,8 @@ import Header from "@shared/components/header/Header";
 import VideoCard from "@shared/components/video-card/VideoCard";
 import { getChannels, getChannelVideos } from "@services/subscriptionService";
 import Creator from "@shared/components/creator/Creators";
+import { getPlaylists, addVideoToPlaylist } from "@services/playlistService";
+import { getUserConfig } from "@services/userConfigService";
 
 export default function Feed() {
   const [creators, setCreators] = useState<any[]>([]);
@@ -14,22 +16,53 @@ export default function Feed() {
   const [channelVideos, setChannelVideos] = useState<any[]>([]);
   const [loadingVideos, setLoadingVideos] = useState(false);
 
+  const [addingVideoId, setAddingVideoId] = useState<string | null>(null);
+  const [addSuccess, setAddSuccess] = useState<string | null>(null);
+  const [addError, setAddError] = useState<string | null>(null);
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(null);
+
   useEffect(() => {
     setLoading(true);
     getChannels()
       .then(setCreators)
       .finally(() => setLoading(false));
+    setSelectedPlaylistId(getPlaylistId());
   }, []);
+
+  const getPlaylistId = (): string | null => {
+    const userConfig = getUserConfig();
+    return userConfig?.defaultPlaylist || null;
+  }
 
   const handleCreatorClick = async (creator: any) => {
     setSelectedCreator(creator);
     setLoadingVideos(true);
     setChannelVideos([]);
+    setAddSuccess(null);
+    setAddError(null);
     try {
       const videos = await getChannelVideos(creator.id);
       setChannelVideos(videos);
     } finally {
       setLoadingVideos(false);
+    }
+  };
+
+  const handleAddToPlaylist = async (videoId: string, playlistId: string) => {
+    setAddingVideoId(videoId);
+    setAddSuccess(null);
+    setAddError(null);
+    try {
+      await addVideoToPlaylist(playlistId, videoId);
+      setAddSuccess("Vídeo adicionado à playlist com sucesso!");
+    } catch (err: any) {
+      setAddError(err.message || "Erro ao adicionar vídeo à playlist!");
+    } finally {
+      setAddingVideoId(null);
+      setTimeout(() => {
+        setAddSuccess(null);
+        setAddError(null);
+      }, 3000);
     }
   };
 
@@ -83,15 +116,35 @@ export default function Feed() {
                 <div className="text-base text-gray-700 dark:text-gray-200">Carregando vídeos...</div>
               </div>
             ) : channelVideos.length > 0 ? (
-              channelVideos.map(video => (
-                <VideoCard
-                  key={video.id}
-                  videoId={video.id}
-                  title={video.title}
-                  description={video.description}
-                  thumbnail={video.thumbnails?.high}
-                />
-              ))
+              <>
+                {addSuccess && (
+                  <div className="mb-4 text-green-600 text-center font-semibold">{addSuccess}</div>
+                )}
+                {addError && (
+                  <div className="mb-4 text-red-600 text-center font-semibold">{addError}</div>
+                )}
+                {channelVideos.map(video => (
+                  <div key={video.id} className="relative">
+                    <VideoCard
+                      videoId={video.id}
+                      title={video.title}
+                      description={video.description}
+                      thumbnail={video.thumbnails?.high}
+                      onAddToPlaylist={
+                        selectedPlaylistId
+                          ? () => handleAddToPlaylist(video.id, selectedPlaylistId)
+                          : undefined
+                      }
+                    />
+                    {addingVideoId === video.id && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-neutral-900/80 rounded-xl">
+                        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                        <span className="ml-2 text-blue-700 dark:text-blue-300">Adicionando...</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </>
             ) : (
               <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
                 Nenhum vídeo encontrado para este canal.
