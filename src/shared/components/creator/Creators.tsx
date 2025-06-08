@@ -8,13 +8,15 @@ interface Creator {
 
 interface CreatorProps {
   creator: Creator;
+  onClick?: () => void;
 }
 
-export default function Creator({ creator }: CreatorProps) {
+export default function Creator({ creator, onClick }: CreatorProps) {
   return (
     <div
       key={creator.id}
-      className="flex flex-col items-center min-w-[72px]"
+      className="flex flex-col items-center min-w-[72px] cursor-pointer"
+      onClick={onClick}
     >
       <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
         <Image
