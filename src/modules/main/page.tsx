@@ -1,6 +1,6 @@
 'use client';
 
-import { Tabbar, TabbarLink, Icon, Block } from 'konsta/react';
+import { Tabbar, TabbarLink, Block } from 'konsta/react';
 import { useState } from 'react';
 
 import { RiHome3Line } from "react-icons/ri";

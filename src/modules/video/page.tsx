@@ -39,6 +39,7 @@ export default function Video({
           url: window.location.href,
         });
       } catch (err) {
+        console.error(err);
       }
     } else if (videoData) {
       window.open(`https://www.youtube.com/watch?v=${videoData.id}`, "_blank");
@@ -56,6 +57,7 @@ export default function Video({
       router.push("/home");
     } catch (err) {
       alert("Erro ao remover vídeo da playlist.");
+      console.error(err);
     }
   };
 

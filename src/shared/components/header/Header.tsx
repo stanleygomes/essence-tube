@@ -6,7 +6,6 @@ import { IoChevronBack, IoClose, IoPersonCircleOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import ImageByTheme from '../image-by-theme/ImageByTheme';
 const inter = Inter({ subsets: ["latin"], weight: ["700"] });

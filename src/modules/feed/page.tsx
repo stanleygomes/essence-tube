@@ -5,7 +5,7 @@ import Header from "@shared/components/header/Header";
 import VideoCard from "@shared/components/video-card/VideoCard";
 import { getChannels, getChannelVideos } from "@services/subscriptionService";
 import Creator from "@shared/components/creator/Creators";
-import { getPlaylists, addVideoToPlaylist } from "@services/playlistService";
+import { addVideoToPlaylist } from "@services/playlistService";
 import { getUserConfig } from "@services/userConfigService";
 
 export default function Feed() {

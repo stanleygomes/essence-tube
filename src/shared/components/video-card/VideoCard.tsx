@@ -33,7 +33,7 @@ export default function VideoCard({
         <button
           onClick={e => {
             e.stopPropagation();
-            onAddToPlaylist && onAddToPlaylist();
+            if (onAddToPlaylist) onAddToPlaylist();
           }}
           className="ml-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           title="Adicionar à playlist"
