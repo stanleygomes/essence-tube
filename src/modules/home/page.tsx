@@ -88,26 +88,30 @@ export default function Home() {
             <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin mb-4"></div>
             <div className="text-base text-gray-700 dark:text-gray-200">Carregando playlists...</div>
           </div>
-        ) : playlists.length > 0 ? (
-          playlists.map(playlist => (
-            <PlaylistCard
-              key={playlist.id}
-              id={playlist.id}
-              title={playlist.title}
-              description={playlist.description}
-              thumbnail={playlist.thumbnails.high}
-              onClick={handleSelectPlaylist}
-            />
-          ))
         ) : (
-          <div className="flex flex-col items-center justify-center min-h-[40vh]">
-            {videos.length === 0 && playlists.length > 0 && (
-              <div className="text-base text-gray-700 dark:text-gray-200">A lista de vídeos está vazia.</div>
+          <>
+            {!loadingPlaylists && playlists.length > 0 && (
+              <div className="mb-6">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                  Selecione uma playlist
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Os vídeos dessa playlist serão listados aqui
+                </p>
+              </div>
             )}
-            {playlists.length === 0 && (
-              <div className="text-base text-gray-700 dark:text-gray-200">Nenhuma playlist encontrada.</div>
-            )}
-          </div>
+
+            {playlists.map(playlist => (
+              <PlaylistCard
+                key={playlist.id}
+                id={playlist.id}
+                title={playlist.title}
+                description={playlist.description}
+                thumbnail={playlist.thumbnails.high}
+                onClick={handleSelectPlaylist}
+              />
+            ))}
+          </>
         )}
       </div>
     </>
