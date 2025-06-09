@@ -23,7 +23,7 @@ export default function Main({
       <Tabbar
         labels
         icons
-        className="left-0 bottom-0 fixed w-full z-50 bg-white dark:bg-black px-4 py-2 shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.15)] dark:shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.4)]"
+        className="left-0 bottom-0 fixed w-full z-50 px-4 py-2 shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.15)] dark:shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.4)] glass-effect bg-white/30 dark:bg-black/30"
       >
         <TabbarLink
           active={activeTab === 'tab-home'}

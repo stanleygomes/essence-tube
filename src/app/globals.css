@@ -41,3 +41,8 @@ body {
 .k-tabbar-link-icon .pointer-events-none {
   display: none !important;
 }
+
+.glass-effect {
+  -webkit-backdrop-filter: saturate(145%) blur(10px);
+  backdrop-filter: saturate(145%) blur(10px);
+}
