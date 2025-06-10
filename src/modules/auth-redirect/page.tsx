@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { setAuth } from "@services/authService";
+import Loading from "@shared/ui/loading/loading";
 
 export interface IAuthRedirect {
   sessionId?: string,
@@ -36,11 +37,8 @@ export default function AuthRedirect({ sessionId }: IAuthRedirect) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black">
-      <div className="w-12 h-12 mb-4 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-      <div className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-        Autenticando... Aguarde um momento.
-      </div>
-    </div>
+    <Loading
+      title="Autenticando... Aguarde um momento."
+    />
   );
 }

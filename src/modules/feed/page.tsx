@@ -7,6 +7,7 @@ import { getChannels, getChannelVideos } from "@services/subscriptionService";
 import Creator from "@shared/components/creator/Creators";
 import { addVideoToPlaylist } from "@services/playlistService";
 import { getUserConfig } from "@services/userConfigService";
+import Loading from "@shared/ui/loading/loading";
 
 export default function Feed() {
   const [creators, setCreators] = useState<any[]>([]);
@@ -82,10 +83,9 @@ export default function Feed() {
 
         <div className="creators mb-4">
           {loading ? (
-            <div className="flex flex-col items-center justify-center min-h-[10vh]">
-              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-2"></div>
-              <div className="text-base text-gray-700 dark:text-gray-200">Carregando canais...</div>
-            </div>
+            <Loading
+              title="Carregando canais..."
+            />
           ) : creators.length > 0 ? (
             <div className="flex gap-4 overflow-x-auto py-2 px-1">
               {creators.map((creator) => (
@@ -113,10 +113,9 @@ export default function Feed() {
               Últimos vídeos de {selectedCreator.title}
             </h2>
             {loadingVideos ? (
-              <div className="flex flex-col items-center justify-center min-h-[20vh]">
-                <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                <div className="text-base text-gray-700 dark:text-gray-200">Carregando vídeos...</div>
-              </div>
+              <Loading
+                title="Carregando vídeos..."
+              />
             ) : channelVideos.length > 0 ? (
               <>
                 {addSuccess && (
@@ -139,10 +138,9 @@ export default function Feed() {
                       }
                     />
                     {addingVideoId === video.id && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-neutral-900/80 rounded-xl">
-                        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                        <span className="ml-2 text-blue-700 dark:text-blue-300">Adicionando...</span>
-                      </div>
+                      <Loading
+                        title="Adicionando..."
+                      />
                     )}
                   </div>
                 ))}

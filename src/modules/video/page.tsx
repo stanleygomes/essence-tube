@@ -8,6 +8,7 @@ import { FiShare2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { getVideo } from "@services/videoService";
 import { removePlaylistVideo } from "@services/playlistService";
+import Loading from "@shared/ui/loading/loading";
 
 export interface IVideo {
   videoId?: string,
@@ -78,10 +79,9 @@ export default function Video({
       <Header title='' showBackButton={true} />
       <div className="p-6 max-w-2xl mx-auto safe-page-content">
         {loading ? (
-          <div className="flex flex-col items-center justify-center min-h-[40vh]">
-            <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <div className="text-base text-gray-700 dark:text-gray-200">Buscando dados do vídeo</div>
-          </div>
+          <Loading
+            title="Carregando video..."
+          />
         ) : videoData ? (
           <>
             <div className="aspect-video w-full rounded-lg overflow-hidden shadow mb-4 bg-gray-100 dark:bg-gray-800 relative">

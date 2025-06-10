@@ -8,6 +8,7 @@ import { MdPlaylistPlay } from "react-icons/md";
 import { IPlaylistItem } from "src/models/IPlaylistItem";
 import { getUserConfig, setItemValue } from "@services/userConfigService";
 import PlaylistCard from "@shared/components/playlist-card/PlaylistCard";
+import Loading from "@shared/ui/loading/loading";
 
 export default function Home() {
   const [playlists, setPlaylists] = useState<IPlaylistItem[]>([]);
@@ -68,10 +69,9 @@ export default function Home() {
       />
       <div className="py-6 px-2 safe-page-content">
         {loadingVideos ? (
-          <div className="flex flex-col items-center justify-center min-h-[40vh]">
-            <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <div className="text-base text-gray-700 dark:text-gray-200">Buscando videos</div>
-          </div>
+          <Loading
+            title="Carregando videos..."
+          />
         ) : videos.length > 0 ? (
           videos.map(video => (
             <VideoCard
@@ -84,10 +84,9 @@ export default function Home() {
             />
           ))
         ) : loadingPlaylists ? (
-          <div className="flex flex-col items-center justify-center min-h-[40vh]">
-            <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <div className="text-base text-gray-700 dark:text-gray-200">Carregando playlists...</div>
-          </div>
+          <Loading
+            title="Carregando playlists..."
+          />
         ) : (
           <>
             {!loadingPlaylists && playlists.length > 0 && (
