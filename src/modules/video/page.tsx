@@ -21,6 +21,7 @@ export default function Video({
 }: IVideo) {
   const [videoData, setVideoData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [descExpanded, setDescExpanded] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -94,7 +95,25 @@ export default function Video({
               ></iframe>
             </div>
             <h1 className="text-2xl font-semibold mb-2 mt-2">{videoData.title}</h1>
-            <p className="text-gray-600 mb-4">{videoData.description}</p>
+            <div className="mb-4">
+              <p
+                className={
+                  "text-gray-600 transition-all " +
+                  (descExpanded ? "" : "line-clamp-3")
+                }
+                style={{ wordBreak: "break-word" }}
+              >
+                {videoData.description}
+              </p>
+              {videoData.description && videoData.description.length > 120 && (
+                <button
+                  className="text-blue-600 dark:text-blue-400 text-sm mt-1 hover:underline"
+                  onClick={() => setDescExpanded((v) => !v)}
+                >
+                  {descExpanded ? "Mostrar menos" : "Leia mais"}
+                </button>
+              )}
+            </div>
             <div className="flex items-center gap-4 mb-6">
               {/* <button className="flex items-center gap-2 px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-sm font-medium text-gray-800 dark:text-gray-100 transition">
                 <AiOutlineLike size={18} />
