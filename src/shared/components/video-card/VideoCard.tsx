@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LoadingIcon from "@shared/components/ui/LoadingIcon";
+import Button from "@shared/components/ui/Button";
 
 interface VideoCardProps {
   videoId: string;
@@ -7,6 +9,10 @@ interface VideoCardProps {
   description: string;
   thumbnail: string;
   onAddToPlaylist?: () => void;
+  loadingAddButton?: boolean;
+  loadingAddButtonText?: string;
+  addButtonText?: string;
+  buttonVariant?: "red" | "green" | "blue";
 }
 
 export default function VideoCard({
@@ -16,6 +22,10 @@ export default function VideoCard({
   description,
   thumbnail,
   onAddToPlaylist,
+  loadingAddButton = false,
+  loadingAddButtonText,
+  addButtonText = "Add",
+  buttonVariant = "red",
 }: VideoCardProps) {
   const CardContent = (
     <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-md hover:shadow-lg transition my-6 overflow-hidden">
@@ -36,24 +46,28 @@ export default function VideoCard({
         <div className="ml-4 flex-shrink-0">
           {playlistId ? (
             <Link href={`/video/${playlistId}/${videoId}`}>
-              <button
-                className="px-5 py-2 rounded-full bg-gray-100 text-blue-600 dark:bg-blue-600 dark:text-white font-semibold text-sm hover:bg-gray-200 dark:hover:bg-blue-700 transition"
+              <Button
+                type="button"
+                variant="red"
                 title="Ver vídeo"
+                className="!px-5 !py-2"
               >
                 View
-              </button>
+              </Button>
             </Link>
           ) : (
-            <button
+            <Button
               onClick={e => {
                 e.stopPropagation();
-                if (onAddToPlaylist) onAddToPlaylist();
+                if (!loadingAddButton && onAddToPlaylist) onAddToPlaylist();
               }}
-              className="px-5 py-2 rounded-full bg-gray-100 text-blue-600 dark:bg-blue-600 dark:text-white font-semibold text-sm hover:bg-gray-200 dark:hover:bg-blue-700 transition"
+              loading={loadingAddButton}
+              loadingText={loadingAddButtonText}
+              variant={buttonVariant}
               title="Adicionar à playlist"
             >
-              Add
-            </button>
+              {addButtonText}
+            </Button>
           )}
         </div>
       </div>

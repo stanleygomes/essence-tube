@@ -21,6 +21,8 @@ export default function Feed() {
   const [addSuccess, setAddSuccess] = useState<string | null>(null);
   const [addError, setAddError] = useState<string | null>(null);
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(null);
+  const [videoIdSuccess, setVideoIdSuccess] = useState<string | null>(null);
+  const [videoIdError, setVideoIdError] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -53,16 +55,22 @@ export default function Feed() {
     setAddingVideoId(videoId);
     setAddSuccess(null);
     setAddError(null);
+    setVideoIdSuccess(null);
+    setVideoIdError(null);
     try {
       await addVideoToPlaylist(playlistId, videoId);
       setAddSuccess("Vídeo adicionado à playlist com sucesso!");
+      setVideoIdSuccess(videoId);
     } catch (err: any) {
       setAddError(err.message || "Erro ao adicionar vídeo à playlist!");
+      setVideoIdError(videoId);
     } finally {
       setAddingVideoId(null);
       setTimeout(() => {
         setAddSuccess(null);
         setAddError(null);
+        setVideoIdSuccess(null);
+        setVideoIdError(null);
       }, 3000);
     }
   };
@@ -118,32 +126,49 @@ export default function Feed() {
               />
             ) : channelVideos.length > 0 ? (
               <>
-                {addSuccess && (
-                  <div className="mb-4 text-green-600 text-center font-semibold">{addSuccess}</div>
-                )}
-                {addError && (
-                  <div className="mb-4 text-red-600 text-center font-semibold">{addError}</div>
-                )}
-                {channelVideos.map(video => (
-                  <div key={video.id} className="relative">
-                    <VideoCard
-                      videoId={video.id}
-                      title={video.title}
-                      description={video.description}
-                      thumbnail={video.thumbnails?.high}
-                      onAddToPlaylist={
-                        selectedPlaylistId
-                          ? () => handleAddToPlaylist(video.id, selectedPlaylistId)
-                          : undefined
-                      }
-                    />
-                    {addingVideoId === video.id && (
-                      <Loading
-                        title="Adicionando..."
+                {channelVideos.map(video => {
+                  let addButtonText = "Add";
+                  let buttonVariant: "red" | "green" = "red";
+                  if (addSuccess && addingVideoId === null && video.id === videoIdSuccess) {
+                    addButtonText = "Adicionado";
+                    buttonVariant = "green";
+                  } else if (addError && addingVideoId === null && video.id === videoIdError) {
+                    addButtonText = "Erro";
+                    buttonVariant = "red";
+                  }
+
+                  return (
+                    <div key={video.id} className="relative">
+                      <VideoCard
+                        videoId={video.id}
+                        title={video.title}
+                        description={video.description}
+                        thumbnail={video.thumbnails?.high}
+                        onAddToPlaylist={
+                          selectedPlaylistId
+                            ? () => handleAddToPlaylist(video.id, selectedPlaylistId)
+                            : undefined
+                        }
+                        loadingAddButton={addingVideoId === video.id}
+                        loadingAddButtonText="Adicionando..."
+                        addButtonText={
+                          addingVideoId === video.id
+                            ? ""
+                            : addSuccess && video.id === videoIdSuccess
+                            ? "Adicionado"
+                            : addError && video.id === videoIdError
+                            ? "Erro"
+                            : "Add"
+                        }
+                        buttonVariant={
+                          addSuccess && video.id === videoIdSuccess
+                            ? "green"
+                            : "red"
+                        }
                       />
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  );
+                })}
               </>
             ) : (
               <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
