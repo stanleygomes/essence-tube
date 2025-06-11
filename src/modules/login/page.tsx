@@ -33,6 +33,15 @@ export default function Login() {
           Login com Google
         </button>
       </a>
+      <div className="mt-8 flex gap-4 text-sm text-gray-500 dark:text-gray-400">
+        <a href="/terms" className="hover:underline">
+          Termos de serviço
+        </a>
+        <span>|</span>
+        <a href="/privacy" className="hover:underline">
+          Privacidade
+        </a>
+      </div>
     </div>
   );
 }
