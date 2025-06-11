@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAuth } from "@services/authService";
+import Loading from "@shared/ui/loading/loading";
 
 export default function RequireAuth({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function RequireAuth({ children }: { children: React.ReactNode })
   if (!checked) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+        <Loading title="Autenticando..." />
       </div>
     );
   }
