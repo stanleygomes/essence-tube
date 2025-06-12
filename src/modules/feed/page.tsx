@@ -127,13 +127,6 @@ export default function Feed() {
             ) : channelVideos.length > 0 ? (
               <>
                 {channelVideos.map(video => {
-                  let buttonVariant: "red" | "green" = "red";
-                  if (addSuccess && addingVideoId === null && video.id === videoIdSuccess) {
-                    buttonVariant = "green";
-                  } else if (addError && addingVideoId === null && video.id === videoIdError) {
-                    buttonVariant = "red";
-                  }
-
                   return (
                     <div key={video.id} className="relative">
                       <VideoCard
