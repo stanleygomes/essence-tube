@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LoadingIcon from "@shared/components/ui/LoadingIcon";
 import Button from "@shared/components/ui/Button";
 
 interface VideoCardProps {
