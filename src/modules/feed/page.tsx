@@ -127,13 +127,10 @@ export default function Feed() {
             ) : channelVideos.length > 0 ? (
               <>
                 {channelVideos.map(video => {
-                  let addButtonText = "Add";
                   let buttonVariant: "red" | "green" = "red";
                   if (addSuccess && addingVideoId === null && video.id === videoIdSuccess) {
-                    addButtonText = "Adicionado";
                     buttonVariant = "green";
                   } else if (addError && addingVideoId === null && video.id === videoIdError) {
-                    addButtonText = "Erro";
                     buttonVariant = "red";
                   }
 
