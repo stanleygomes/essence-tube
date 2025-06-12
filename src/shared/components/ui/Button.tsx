@@ -1,6 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 
+import LoadingIcon from '@shared/ui/loading-icon/LoadingIcon';
+
 type Variant = "blue" | "red" | "green";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,8 +12,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: React.ReactNode;
 }
-
-import LoadingIcon from "./LoadingIcon";
 
 const variantClasses: Record<Variant, string> = {
   blue: "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700",

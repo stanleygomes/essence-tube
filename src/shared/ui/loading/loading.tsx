@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingIcon from '@shared/components/ui/LoadingIcon';
+import LoadingIcon from '@shared/ui/loading-icon/LoadingIcon';
 
 interface LoadingProps {
   title: string;
