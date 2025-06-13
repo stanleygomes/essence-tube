@@ -9,6 +9,7 @@ import { getUserConfig, setItemValue } from "@services/userConfigService";
 import Loading from "@shared/ui/loading/Loading";
 import VideoCard from "@shared/components/video-card/VideoCard";
 import PlaylistCard from "@shared/components/playlist-card/PlaylistCard";
+import PullToRefresh from "@shared/ui/pull-to-refresh/PullToRefresh";
 
 export default function Home() {
   const [playlists, setPlaylists] = useState<IPlaylistItem[]>([]);
@@ -68,19 +69,21 @@ export default function Home() {
         }
       />
       <div className="px-6 safe-page-content">
-        {loadingVideos ? (
-          <Loading
-            title="Carregando videos..."
-          />
-        ) : videos.length > 0 ? (
-          <VideoList videos={videos} />
-        ) : loadingPlaylists ? (
-          <Loading
-            title="Carregando playlists..."
-          />
-        ) : (
-          <PlaylistList playlists={playlists} onSelect={handleSelectPlaylist} />
-        )}
+        <PullToRefresh onRefresh={fetchVideosFromDefaultPlaylist}>
+          {loadingVideos ? (
+            <Loading
+              title="Carregando videos..."
+            />
+          ) : videos.length > 0 ? (
+            <VideoList videos={videos} />
+          ) : loadingPlaylists ? (
+            <Loading
+              title="Carregando playlists..."
+            />
+          ) : (
+            <PlaylistList playlists={playlists} onSelect={handleSelectPlaylist} />
+          )}
+        </PullToRefresh>
       </div>
     </>
   );
@@ -124,7 +127,7 @@ function PlaylistList({ playlists, onSelect }: PlaylistListProps) {
   if (!playlists.length) return null;
   return (
     <>
-      <div className="mb-6">
+      <div className="my-6">
         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
           Selecione uma playlist
         </h2>

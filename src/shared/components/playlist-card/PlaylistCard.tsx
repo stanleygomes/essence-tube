@@ -17,6 +17,8 @@ export default function PlaylistCard({ id, title, description, thumbnail, onClic
       <Image
         src={thumbnail}
         alt={title}
+        width={80}
+        height={80}
         className="w-32 h-20 object-cover rounded-lg flex-shrink-0"
       />
       <div className="flex flex-col flex-1">
