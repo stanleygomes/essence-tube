@@ -130,11 +130,10 @@ export default function Feed() {
                   return (
                     <div key={video.id} className="relative">
                       <VideoCard
-                        videoId={video.id}
                         title={video.title}
-                        description={video.description}
+                        subtitle={video.description}
                         thumbnail={video.thumbnails?.high}
-                        onAddToPlaylist={
+                        buttonClick={
                           selectedPlaylistId
                             ? () => handleAddToPlaylist(video.id, selectedPlaylistId)
                             : undefined
