@@ -1,16 +1,9 @@
 "use client";
 
-import {
-  Page,
-  List,
-  ListItem,
-  Button,
-} from "konsta/react";
 import Header from "@shared/components/header/Header";
 import { removeAuth } from "@services/authService";
 
 export default function Settings() {
-
   const handleLogout = () => {
     removeAuth();
     window.location.href = "/login";
@@ -22,36 +15,38 @@ export default function Settings() {
         title="Settings"
         showBackButton={true}
       />
-      <div>
-        <Page className="min-h-screen flex flex-col bg-white dark:bg-black safe-page-content">
-          <div className="max-w-md w-full mx-auto flex-1 flex flex-col gap-8 py-8 px-8">
-            <section>
-              <List strong inset className="rounded-xl shadow-sm">
-                <ListItem
-                  link
-                  title="Termos de Serviço"
+      <div className="min-h-screen flex flex-col bg-white dark:bg-black safe-page-content">
+        <div className="max-w-md w-full mx-auto flex-1 flex flex-col gap-8 py-8 px-4">
+          <section>
+            <ul className="rounded-xl shadow-sm divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-neutral-900">
+              <li>
+                <a
                   href="/terms"
-                  className="py-4 px-4"
-                />
-                <ListItem
-                  link
-                  title="Política de Privacidade"
+                  className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-t-xl transition"
+                >
+                  <span className="text-base text-gray-900 dark:text-gray-100">Termos de Serviço</span>
+                </a>
+              </li>
+              <li>
+                <a
                   href="/privacy"
-                  className="py-4 px-4"
-                />
-              </List>
-            </section>
+                  className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-b-xl transition"
+                >
+                  <span className="text-base text-gray-900 dark:text-gray-100">Política de Privacidade</span>
+                </a>
+              </li>
+            </ul>
+          </section>
 
-            <section className="mt-8">
-              <Button
-                onClick={handleLogout}
-                className="w-full bg-red-600 text-white text-base py-3 rounded-lg"
-              >
-                Logout
-              </Button>
-            </section>
-          </div>
-        </Page>
+          <section className="mt-8">
+            <button
+              onClick={handleLogout}
+              className="w-full bg-red-600 text-white text-base py-3 rounded-lg font-semibold shadow hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          </section>
+        </div>
       </div>
     </>
   );
