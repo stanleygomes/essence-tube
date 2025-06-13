@@ -31,8 +31,8 @@ body {
 }
 
 #app-container {
-  /* padding-top: env(safe-area-inset-top, 20px);
-  padding-bottom: env(safe-area-inset-bottom, 20px); */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
   min-height: 100vh;
   box-sizing: border-box;
 }
