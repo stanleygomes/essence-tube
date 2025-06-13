@@ -8,7 +8,7 @@ import { FiShare2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { getVideo } from "@services/videoService";
 import { removePlaylistVideo } from "@services/playlistService";
-import Loading from "@shared/ui/loading/loading";
+import Loading from "@shared/ui/loading/Loading";
 
 export interface IVideo {
   videoId?: string,

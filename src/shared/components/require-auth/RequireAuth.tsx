@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAuth } from "@services/authService";
-import Loading from "@shared/ui/loading/loading";
+import Loading from "@shared/ui/loading/Loading";
 
 export default function RequireAuth({ children }: { children: React.ReactNode }) {
   const router = useRouter();

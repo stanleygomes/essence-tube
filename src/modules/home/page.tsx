@@ -8,7 +8,7 @@ import { MdPlaylistPlay } from "react-icons/md";
 import { IPlaylistItem } from "src/models/IPlaylistItem";
 import { getUserConfig, setItemValue } from "@services/userConfigService";
 import PlaylistCard from "@shared/components/playlist-card/PlaylistCard";
-import Loading from "@shared/ui/loading/loading";
+import Loading from "@shared/ui/loading/Loading";
 
 export default function Home() {
   const [playlists, setPlaylists] = useState<IPlaylistItem[]>([]);

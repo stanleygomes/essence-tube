@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { setAuth } from "@services/authService";
-import Loading from "@shared/ui/loading/loading";
+import Loading from "@shared/ui/loading/Loading";
 
 export interface IAuthRedirect {
   sessionId?: string,

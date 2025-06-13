@@ -7,7 +7,7 @@ import { getChannels, getChannelVideos } from "@services/subscriptionService";
 import Creator from "@shared/components/creator/Creators";
 import { addVideoToPlaylist } from "@services/playlistService";
 import { getUserConfig } from "@services/userConfigService";
-import Loading from "@shared/ui/loading/loading";
+import Loading from "@shared/ui/loading/Loading";
 
 export default function Feed() {
   const [creators, setCreators] = useState<any[]>([]);
