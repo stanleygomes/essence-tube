@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface PlaylistCardProps {
   id: string;
   title: string;
@@ -12,7 +14,7 @@ export default function PlaylistCard({ id, title, description, thumbnail, onClic
       className="flex gap-4 items-start bg-white dark:bg-neutral-900 rounded-xl shadow hover:shadow-lg transition p-4 mb-4 cursor-pointer"
       onClick={() => onClick?.(id)}
     >
-      <img
+      <Image
         src={thumbnail}
         alt={title}
         className="w-32 h-20 object-cover rounded-lg flex-shrink-0"

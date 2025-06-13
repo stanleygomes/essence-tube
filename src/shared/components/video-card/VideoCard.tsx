@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "@shared/components/ui/Button";
+import Image from "next/image";
 
 interface VideoCardProps {
   videoId: string;
@@ -28,7 +29,7 @@ export default function VideoCard({
 }: VideoCardProps) {
   const CardContent = (
     <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-md hover:shadow-lg transition my-6 overflow-hidden">
-      <img
+      <Image
         src={thumbnail}
         alt={title}
         className="w-full h-50 object-cover"

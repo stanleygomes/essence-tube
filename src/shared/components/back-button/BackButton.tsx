@@ -1,6 +1,6 @@
 'use client';
 
-import { IoChevronBack, IoClose, IoPersonCircleOutline } from "react-icons/io5";
+import { IoChevronBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 
 export interface IBackButton {
