@@ -1,38 +1,38 @@
 import Link from "next/link";
-import Button from "@shared/components/ui/Button";
+import Button, { ButtonVariant } from "@shared/components/ui/Button";
 import Image from "next/image";
 
 interface VideoCardProps {
-  videoId: string;
-  playlistId?: string;
   title: string;
-  description: string;
+  subtitle: string;
   thumbnail: string;
-  onAddToPlaylist?: () => void;
+  link?: string;
+  buttonClick?: () => void;
   loadingAddButton?: boolean;
   loadingAddButtonText?: string;
   addButtonText?: string;
-  buttonVariant?: "red" | "green" | "blue";
+  buttonVariant?: ButtonVariant;
 }
 
 export default function VideoCard({
-  playlistId,
-  videoId,
   title,
-  description,
+  subtitle,
   thumbnail,
-  onAddToPlaylist,
+  link,
+  buttonClick,
   loadingAddButton = false,
   loadingAddButtonText,
   addButtonText = "Add",
   buttonVariant = "red",
 }: VideoCardProps) {
-  const CardContent = (
-    <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-md hover:shadow-lg transition my-6 overflow-hidden">
+  const content = (
+    <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-md hover:shadow-lg transition my-6 overflow-hidden active:scale-95 transition cursor-pointer">
       <Image
         src={thumbnail}
         alt={title}
-        className="w-full h-50 object-cover"
+        width={320}
+        height={180}
+        className="w-full aspect-video object-cover"
       />
       <div className="flex items-center px-4 py-3">
         <div className="flex-1 min-w-0">
@@ -40,39 +40,36 @@ export default function VideoCard({
             {title}
           </h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
-            {description}
+            {subtitle}
           </p>
         </div>
-        <div className="ml-4 flex-shrink-0">
-          {playlistId ? (
-            <Link href={`/video/${playlistId}/${videoId}`}>
-              <Button
-                type="button"
-                variant="red"
-                title="Ver vídeo"
-                className="!px-5 !py-2"
-              >
-                View
-              </Button>
-            </Link>
-          ) : (
+        {buttonClick && (
+          <div className="ml-4 flex-shrink-0">
             <Button
               onClick={e => {
                 e.stopPropagation();
-                if (!loadingAddButton && onAddToPlaylist) onAddToPlaylist();
+                if (!loadingAddButton) buttonClick();
               }}
               loading={loadingAddButton}
               loadingText={loadingAddButtonText}
               variant={buttonVariant}
-              title="Adicionar à playlist"
+              title="Ação"
             >
               {addButtonText}
             </Button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
 
-  return CardContent;
+  if (link) {
+    return (
+      <Link href={link} className="block">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }

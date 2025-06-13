@@ -3,17 +3,17 @@ import clsx from "clsx";
 
 import LoadingIcon from '@shared/ui/loading-icon/LoadingIcon';
 
-type Variant = "blue" | "red" | "green";
+export type ButtonVariant = "blue" | "red" | "green";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   loadingText?: string;
-  variant?: Variant;
+  variant?: ButtonVariant;
   className?: string;
   children?: React.ReactNode;
 }
 
-const variantClasses: Record<Variant, string> = {
+const variantClasses: Record<ButtonVariant, string> = {
   blue: "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700",
   red: "bg-red-600 text-white hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700",
   green: "bg-green-600 text-white hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700",
