@@ -66,7 +66,7 @@ export default function Video({
   if (!videoId) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <Header title='' showBackButton={true} />
+        <Header title='' showBackButton={true} backButtonText="Playlist" />
         <div className="p-6 max-w-md mx-auto text-center">
           <h1 className="text-2xl font-semibold mb-2 text-red-600">Vídeo não encontrado</h1>
           <p className="text-gray-600">Não foi possível identificar o vídeo solicitado. Verifique o link ou tente novamente.</p>
@@ -77,7 +77,7 @@ export default function Video({
 
   return (
     <>
-      <Header title='' showBackButton={true} />
+      <Header title='' showBackButton={true} backButtonText="Playlist" />
       <div className="p-6 max-w-2xl mx-auto safe-page-content">
         {loading ? (
           <Loading

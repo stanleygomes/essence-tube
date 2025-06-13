@@ -57,13 +57,13 @@ export default function Home() {
       <Header
         title='Home'
         showLogo={true}
-        action={
+        actionButton={
           <button
             onClick={handleListPlaylists}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             aria-label="Listar playlists"
           >
-            <MdPlaylistPlay className="w-7 h-7 text-gray-900 dark:text-gray-100" />
+            <MdPlaylistPlay className="w-9 h-9 text-gray-900 dark:text-gray-100" />
           </button>
         }
       />
