@@ -102,7 +102,6 @@ export default function Login() {
       <div className="block-login flex flex-col items-center mb-8 max-w-md mx-auto w-full">
         <a
           href={`${baseUrl}/login`}
-          target="_blank"
           className="w-full"
         >
           <button
