@@ -37,7 +37,7 @@ export default function Header({
     <>
       {/* <InstallPrompt /> */}
 
-      <div className="fixed top-0 left-0 w-full z-50 px-6 py-2 bg-white dark:bg-black header-top-safe-area">
+      <div className="fixed top-0 left-0 w-full z-50 px-6 py-2 bg-white/80 dark:bg-black/80 backdrop-blur glass-effect header-top-safe-area shadow-[0_-4px_16px_-4px_rgba(0,0,0,0.10)]">
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-2">
             {canGoBack && (

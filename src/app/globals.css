@@ -32,10 +32,6 @@ body {
   box-sizing: border-box;
 }
 
-.body-bottom-safe-area {
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
 .pt-safe {
   padding-top: env(safe-area-inset-top);
 }
@@ -51,7 +47,7 @@ body {
 }
 
 .header-top-safe-area {
-  padding-top: calc(0 + env(safe-area-inset-bottom));
+  padding-top: calc(0px + env(safe-area-inset-top));
 }
 
 .tabbar-bottom-safe-area {

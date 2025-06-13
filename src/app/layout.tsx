@@ -47,7 +47,6 @@ export default function RootLayout({
 
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181b" />
-        {/* <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /> */}
 
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +55,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div id="app-safe-spacer" />
         <div id="app-container">
           {children}
         </div>
