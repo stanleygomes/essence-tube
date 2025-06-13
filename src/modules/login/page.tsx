@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import ImageByTheme from "@shared/components/image-by-theme/ImageByTheme";
+import ImageByTheme from "@shared/ui/image-by-theme/ImageByTheme";
 import { config } from '@config/config'
 
 const IconNoAlgo = (
