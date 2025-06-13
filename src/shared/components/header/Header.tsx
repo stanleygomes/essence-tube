@@ -53,8 +53,8 @@ export default function Header({
                 <ImageByTheme
                   srcDark="/img/logo-dark.png"
                   srcLight="/img/logo-light.png"
-                  width={30}
-                  height={30}
+                  width={25}
+                  height={25}
                   classNameLight="block dark:hidden"
                   classNameDark="hidden dark:block"
                 />
