@@ -9,7 +9,7 @@ interface TabItemProps {
 
 const TabItem: React.FC<TabItemProps> = ({ active, onClick, icon, label }) => (
   <button
-    className={`flex flex-col items-center flex-1 transition-colors ${
+    className={`flex flex-col items-center flex-1 transition-colors active:scale-95 transition cursor-pointer ${
       active
         ? "text-red-600 dark:text-red-400"
         : "text-gray-500 dark:text-gray-400"
