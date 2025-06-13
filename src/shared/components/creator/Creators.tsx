@@ -15,15 +15,15 @@ export default function Creator({ creator, onClick }: CreatorProps) {
   return (
     <div
       key={creator.id}
-      className="flex flex-col items-center min-w-[72px] cursor-pointer"
+      className="flex flex-col items-center min-w-[72px] cursor-pointer active:scale-95 transition"
       onClick={onClick}
     >
-      <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+      <div className="w-18 h-18 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
         <Image
           src={creator.avatar}
           alt={creator.name}
-          width={56}
-          height={56}
+          width={72}
+          height={72}
           className="object-cover w-full h-full"
         />
       </div>
