@@ -28,17 +28,9 @@ body {
 
 #app-container {
   /* padding-top: env(safe-area-inset-top); */
+  padding-top: 60px;
   min-height: 100vh;
   box-sizing: border-box;
-}
-
-.pt-safe {
-  padding-top: env(safe-area-inset-top);
-}
-
-.safe-page-content {
-  padding-top: calc(60px + env(safe-area-inset-top));
-  padding-bottom: calc(60px + env(safe-area-inset-top));
 }
 
 .glass-effect {
