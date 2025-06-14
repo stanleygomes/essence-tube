@@ -68,7 +68,7 @@ export default function Home() {
           </button>
         }
       />
-      <div className="px-6 safe-page-content">
+      <div className="px-6">
         <PullToRefresh onRefresh={fetchVideosFromDefaultPlaylist}>
           {loadingVideos ? (
             <Loading

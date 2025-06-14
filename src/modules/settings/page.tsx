@@ -15,7 +15,7 @@ export default function Settings() {
         title="Settings"
         showBackButton={true}
       />
-      <div className="min-h-screen flex flex-col bg-white dark:bg-black safe-page-content">
+      <div className="min-h-screen flex flex-col bg-white dark:bg-black">
         <div className="max-w-md w-full mx-auto flex-1 flex flex-col gap-8 py-8 px-4">
           <section>
             <ul className="rounded-xl shadow-sm divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-neutral-900">

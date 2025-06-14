@@ -55,7 +55,7 @@ export default function PullToRefresh({ onRefresh, children }: PullToRefreshProp
         style={{ height: pulling || refreshing ? pullHeight : 0 }}
       >
         {refreshing
-          ? "Atualizando..."
+          ? <></>
           : pulling && pullHeight > 40
           ? "Solte para atualizar"
           : pulling

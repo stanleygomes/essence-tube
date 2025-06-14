@@ -81,7 +81,7 @@ export default function Feed() {
         title='Feed'
         showLogo={true}
       />
-      <div className="py-6 safe-page-content">
+      <div className="py-6">
         {!loading && creators.length > 0 && (
           <div className="px-6">
             <h2 className="text-lg font-semibold mt-4 mb-2 text-gray-800 dark:text-gray-100">

@@ -78,7 +78,7 @@ export default function Video({
   return (
     <>
       <Header title='' showBackButton={true} backButtonText="Playlist" />
-      <div className="p-6 max-w-2xl mx-auto safe-page-content">
+      <div className="p-6 max-w-2xl mx-auto">
         {loading ? (
           <Loading
             title="Carregando video..."
