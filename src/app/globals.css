@@ -44,6 +44,5 @@ body {
 
 .tabbar-bottom-safe-area {
   padding-top: 20px;
-  padding-bottom: 20px;
-  /* padding-bottom: calc(0px + env(safe-area-inset-bottom, 1)); */
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 1));
 }
