@@ -8,6 +8,7 @@ import { addVideoToPlaylist } from "@services/playlistService";
 import { getUserConfig } from "@services/userConfigService";
 import VideoCard from "@shared/components/video-card/VideoCard";
 import Loading from "@shared/ui/loading/Loading";
+import HorizontalScroll from "@shared/ui/horizontal-scroll/HorizontalScroll";
 
 export default function Feed() {
   const [creators, setCreators] = useState<any[]>([]);
@@ -135,7 +136,7 @@ function CreatorsList({ creators, loading, onCreatorClick }: CreatorsListProps) 
     );
   }
   return (
-    <div className="flex gap-4 overflow-x-auto py-2 px-1">
+    <HorizontalScroll className="gap-4 py-2 px-1">
       {creators.map((creator) => (
         <Creator
           key={creator.id}
@@ -147,7 +148,7 @@ function CreatorsList({ creators, loading, onCreatorClick }: CreatorsListProps) 
           onClick={() => onCreatorClick(creator)}
         />
       ))}
-    </div>
+    </HorizontalScroll>
   );
 }
 
