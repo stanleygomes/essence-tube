@@ -24,7 +24,7 @@ export default function Settings() {
                   href="/terms"
                   className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-t-xl transition"
                 >
-                  <span className="text-base text-gray-900 dark:text-gray-100">Termos de Serviço</span>
+                  <span className="text-base text-gray-900 dark:text-gray-100">Terms of Service</span>
                 </a>
               </li>
               <li>
@@ -32,7 +32,7 @@ export default function Settings() {
                   href="/privacy"
                   className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-b-xl transition"
                 >
-                  <span className="text-base text-gray-900 dark:text-gray-100">Política de Privacidade</span>
+                  <span className="text-base text-gray-900 dark:text-gray-100">Privacy Policy</span>
                 </a>
               </li>
             </ul>

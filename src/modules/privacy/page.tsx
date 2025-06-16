@@ -6,28 +6,21 @@ export default function Privacy() {
   return (
     <>
       <Header
-        title='Política de privacidade'
+        title='Privacy Policy'
         showBackButton={true}
       />
       <div className="p-6 max-w-2xl mx-auto">
         <p className="mb-4">
-          Esta aplicação utiliza a API do YouTube para fornecer funcionalidades
-          personalizadas aos usuários. Coletamos apenas os dados fornecidos pela API
-          do YouTube, necessários para oferecer a melhor experiência possível.
+          This application uses the YouTube API to provide personalized features to users. We only collect the data provided by the YouTube API that is necessary to offer the best possible experience.
         </p>
         <p className="mb-4">
-          Os dados acessados da sua conta do YouTube são utilizados exclusivamente
-          para exibir informações relevantes e permitir que você altere informações
-          da sua própria conta no YouTube, conforme sua solicitação.
+          The data accessed from your YouTube account is used exclusively to display relevant information and allow you to change information in your own YouTube account, as requested by you.
         </p>
         <p className="mb-4">
-          Não coletamos, armazenamos ou utilizamos quaisquer outros dados pessoais
-          além daqueles fornecidos pela API do YouTube. Nenhum membro da nossa
-          equipe terá acesso, irá consultar ou alterar dados dos usuários que
-          fizerem login e compartilharem suas informações conosco.
+          We do not collect, store, or use any other personal data beyond what is provided by the YouTube API. No member of our team will have access to, consult, or modify data of users who log in and share their information with us.
         </p>
         <p>
-          Se tiver dúvidas sobre esta política, entre em contato conosco.
+          If you have any questions about this policy, please contact us.
         </p>
       </div>
     </>

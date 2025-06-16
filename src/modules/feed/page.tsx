@@ -126,12 +126,12 @@ interface CreatorsListProps {
 
 function CreatorsList({ creators, loading, onCreatorClick }: CreatorsListProps) {
   if (loading) {
-    return <Loading title="Carregando canais..." />;
+    return <Loading title="Loading channels..." />;
   }
   if (!creators.length) {
     return (
       <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
-        Nenhum canal encontrado.
+        No channels found.
       </div>
     );
   }
@@ -182,10 +182,10 @@ function ChannelVideosList({
   return (
     <div className="mt-6">
       <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
-        Últimos vídeos de {selectedCreator.title}
+        Latest videos from {selectedCreator.title}
       </h2>
       {loading ? (
-        <Loading title="Carregando vídeos..." />
+        <Loading title="Loading videos..." />
       ) : videos.length > 0 ? (
         <>
           {videos.map(video => (
@@ -200,14 +200,14 @@ function ChannelVideosList({
                     : undefined
                 }
                 loadingAddButton={addingVideoId === video.id}
-                loadingAddButtonText="Adicionando..."
+                loadingAddButtonText="Adding..."
                 addButtonText={
                   addingVideoId === video.id
                     ? ""
                     : addSuccess && video.id === videoIdSuccess
-                    ? "Adicionado"
+                    ? "Added"
                     : addError && video.id === videoIdError
-                    ? "Erro"
+                    ? "Error"
                     : "Add"
                 }
                 buttonVariant={
@@ -221,7 +221,7 @@ function ChannelVideosList({
         </>
       ) : (
         <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
-          Nenhum vídeo encontrado para este canal.
+          No videos found for this channel.
         </div>
       )}
     </div>

@@ -62,7 +62,7 @@ export default function Home() {
           <button
             onClick={handleListPlaylists}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-            aria-label="Listar playlists"
+            aria-label="List playlists"
           >
             <MdPlaylistPlay className="w-9 h-9 text-gray-900 dark:text-gray-100" />
           </button>
@@ -72,13 +72,13 @@ export default function Home() {
         <PullToRefresh onRefresh={fetchVideosFromDefaultPlaylist}>
           {loadingVideos ? (
             <Loading
-              title="Carregando videos..."
+              title="Loading videos..."
             />
           ) : videos.length > 0 ? (
             <VideoList videos={videos} />
           ) : loadingPlaylists ? (
             <Loading
-              title="Carregando playlists..."
+              title="Loading playlists..."
             />
           ) : (
             <PlaylistList playlists={playlists} onSelect={handleSelectPlaylist} />
@@ -129,10 +129,10 @@ function PlaylistList({ playlists, onSelect }: PlaylistListProps) {
     <>
       <div className="my-6">
         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
-          Selecione uma playlist
+          Select a playlist
         </h2>
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Os vídeos dessa playlist serão listados aqui
+          The videos from this playlist will be listed here
         </p>
       </div>
       {playlists.map(playlist => (

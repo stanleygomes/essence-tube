@@ -6,32 +6,25 @@ export default function Terms() {
   return (
     <>
       <Header
-        title='Termos de Serviço'
+        title='Terms of Service'
         showBackButton={true}
       />
       <div className="p-6 max-w-2xl mx-auto">
         <p className="mb-4">
-          Ao utilizar esta aplicação, você concorda com os termos descritos abaixo.
-          Esta aplicação utiliza a API do YouTube para fornecer funcionalidades
-          personalizadas e depende dos dados fornecidos por essa API.
+          By using this application, you agree to the terms described below.
+          This application uses the YouTube API to provide personalized features and relies on the data provided by this API.
         </p>
         <p className="mb-4">
-          Você autoriza o acesso aos dados da sua conta do YouTube apenas para fins
-          de exibição e alteração de informações relacionadas à sua própria conta,
-          conforme solicitado por você. Não utilizamos seus dados para outros fins.
+          You authorize access to your YouTube account data only for the purpose of displaying and modifying information related to your own account, as requested by you. We do not use your data for any other purpose.
         </p>
         <p className="mb-4">
-          Não nos responsabilizamos por alterações feitas em sua conta do YouTube
-          por meio desta aplicação, pois todas as ações são realizadas mediante sua
-          autorização e solicitação.
+          We are not responsible for any changes made to your YouTube account through this application, as all actions are performed with your authorization and request.
         </p>
         <p className="mb-4">
-          Nenhum membro da nossa equipe terá acesso, irá consultar ou alterar dados
-          dos usuários que fizerem login e compartilharem suas informações conosco.
+          No member of our team will have access to, consult, or modify data of users who log in and share their information with us.
         </p>
         <p>
-          Reservamo-nos o direito de atualizar estes termos a qualquer momento.
-          Recomendamos que você revise esta página periodicamente.
+          We reserve the right to update these terms at any time. We recommend that you review this page periodically.
         </p>
       </div>
     </>

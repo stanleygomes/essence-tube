@@ -24,13 +24,13 @@ export default function AuthRedirect({ sessionId }: IAuthRedirect) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black">
         <div className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
-          Sessão inválida. Por favor, tente novamente.
+          Invalid session. Please try again.
         </div>
         <Link
           href="/login"
           className="px-4 py-2 rounded bg-red-600 text-white font-medium hover:bg-red-700 transition"
         >
-          Ir para login
+          Go to login
         </Link>
       </div>
     );
@@ -38,7 +38,7 @@ export default function AuthRedirect({ sessionId }: IAuthRedirect) {
 
   return (
     <Loading
-      title="Autenticando... Aguarde um momento."
+      title="Authenticating... Please wait a moment."
     />
   );
 }

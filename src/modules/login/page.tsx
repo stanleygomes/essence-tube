@@ -32,7 +32,6 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black px-4">
-      {/* Header/logo */}
       <div className="flex flex-col items-center justify-center pt-12 pb-6">
         <ImageByTheme
           srcDark="/img/logo-dark.png"
@@ -48,57 +47,54 @@ export default function Login() {
           EssenceTube
         </h1>
         <p className="mb-2 text-center text-gray-700 dark:text-gray-200 text-base max-w-sm">
-          O essencial do YouTube, sem distrações.
+          The essential YouTube, without distractions.
         </p>
       </div>
 
-      {/* Bloco: Sobre o app */}
       <div className="block-about-app bg-gray-50 dark:bg-neutral-900 rounded-xl p-5 mb-6 max-w-md mx-auto shadow-sm">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 text-center">Por que usar?</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 text-center">Why use it?</h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             {IconNoAlgo}
             <div>
-              <div className="font-semibold text-gray-800 dark:text-gray-200">Sem algoritmos</div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Você escolhe o que assistir, sem sugestões automáticas.</div>
+              <div className="font-semibold text-gray-800 dark:text-gray-200">No algorithms</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">You choose what to watch, no automatic suggestions.</div>
             </div>
           </div>
           <div className="flex items-center gap-3">
             {IconChannels}
             <div>
-              <div className="font-semibold text-gray-800 dark:text-gray-200">Seus canais, seus vídeos</div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Veja todos os canais que você está inscrito e seus vídeos facilmente.</div>
+              <div className="font-semibold text-gray-800 dark:text-gray-200">Your channels, your videos</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">See all the channels you are subscribed to and their videos easily.</div>
             </div>
           </div>
           <div className="flex items-center gap-3">
             {IconFeed}
             <div>
-              <div className="font-semibold text-gray-800 dark:text-gray-200">Feed personalizado</div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Monte seu feed só com vídeos que você quer assistir.</div>
+              <div className="font-semibold text-gray-800 dark:text-gray-200">Personalized feed</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Build your feed only with videos you want to watch.</div>
             </div>
           </div>
           <div className="flex items-center gap-3">
             {IconLock}
             <div>
-              <div className="font-semibold text-gray-800 dark:text-gray-200">Privacidade e controle</div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Plataforma protegida por login. Só você vê seus dados.</div>
+              <div className="font-semibold text-gray-800 dark:text-gray-200">Privacy and control</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Platform protected by login. Only you can see your data.</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bloco: Como funciona */}
       <div className="block-how-works bg-white dark:bg-neutral-800 rounded-xl p-5 mb-6 max-w-md mx-auto shadow-sm">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 text-center">Como funciona?</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 text-center">How does it work?</h2>
         <ul className="text-gray-700 dark:text-gray-300 text-sm space-y-2 list-disc list-inside">
-          <li>Faça login com sua conta Google</li>
-          <li>Veja todos os seus canais e vídeos</li>
-          <li>Adicione vídeos ao seu feed personalizado</li>
-          <li>Assista sem distrações, só o que você escolheu</li>
+          <li>Log in with your Google account</li>
+          <li>See all your channels and videos</li>
+          <li>Add videos to your personalized feed</li>
+          <li>Watch without distractions, only what you choose</li>
         </ul>
       </div>
 
-      {/* Botão de login */}
       <div className="block-login flex flex-col items-center mb-8 max-w-md mx-auto w-full">
         <a
           href={`${baseUrl}/login`}
@@ -108,22 +104,21 @@ export default function Login() {
             type="button"
             className="w-full py-3 bg-red-600 text-white rounded-lg shadow-lg font-semibold text-lg hover:bg-red-700 transition mb-2"
           >
-            Entrar com Google
+            Sign in with Google
           </button>
         </a>
         <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center max-w-xs">
-          Sua experiência é privada e segura. Só você tem acesso ao seu feed.
+          Your experience is private and secure. Only you have access to your feed.
         </div>
       </div>
 
-      {/* Rodapé */}
       <div className="flex justify-center gap-4 text-xs text-gray-500 dark:text-gray-400 pb-6">
         <a href="/terms" className="hover:underline">
-          Termos de serviço
+          Terms of Service
         </a>
         <span>|</span>
         <a href="/privacy" className="hover:underline">
-          Privacidade
+          Privacy
         </a>
       </div>
     </div>
