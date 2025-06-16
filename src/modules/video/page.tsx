@@ -64,6 +64,10 @@ export default function Video({
     }
   };
 
+  const handleOpenInBrowser = () => {
+    window.open(window.location.href, "_blank");
+  };
+
   if (!videoId) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
@@ -116,15 +120,15 @@ export default function Video({
               )}
             </div>
             <HorizontalScrollList className="gap-4 py-3">
-              <Button>
+              <Button onClick={handleShare}>
                 <FiShare2 size={18} />
                 <span className="whitespace-nowrap">Share</span>
               </Button>
-              <Button>
+              <Button onClick={handleOpenInBrowser}>
                 <FiExternalLink size={18} />
                 <span className="whitespace-nowrap">Open in browser</span>
               </Button>
-              <Button color="red">
+              <Button color="red" onClick={handleRemoveFromPlaylist}>
                 <MdDelete size={18} />
                 <span className="whitespace-nowrap">Remove from playlist</span>
               </Button>
