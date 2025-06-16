@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@shared/components/header/Header";
-// import { AiOutlineLike } from "react-icons/ai";
-import { FiShare2 } from "react-icons/fi";
+import { FiShare2, FiExternalLink } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { getVideo } from "@services/videoService";
 import { removePlaylistVideo } from "@services/playlistService";
 import Loading from "@shared/ui/loading/Loading";
+import HorizontalScrollList from "@shared/ui/horizontal-scroll/HorizontalScroll";
+import Button from "@shared/ui/button/Button";
 
 export interface IVideo {
   videoId?: string,
@@ -50,7 +51,7 @@ export default function Video({
 
   const handleRemoveFromPlaylist = async () => {
     if (!playlistId) {
-      alert("Não foi possível identificar a playlist.");
+      alert("Erro to identify the playlist.");
       return;
     }
     try {
@@ -58,7 +59,7 @@ export default function Video({
       alert("Vídeo removido da playlist!");
       router.push("/home");
     } catch (err) {
-      alert("Erro ao remover vídeo da playlist.");
+      alert("Error to remove video from playlist.");
       console.error(err);
     }
   };
@@ -68,8 +69,8 @@ export default function Video({
       <div className="flex flex-col items-center justify-center min-h-screen">
         <Header title='' showBackButton={true} backButtonText="Playlist" />
         <div className="p-6 max-w-md mx-auto text-center">
-          <h1 className="text-2xl font-semibold mb-2 text-red-600">Vídeo não encontrado</h1>
-          <p className="text-gray-600">Não foi possível identificar o vídeo solicitado. Verifique o link ou tente novamente.</p>
+          <h1 className="text-2xl font-semibold mb-2 text-red-600">Video not found</h1>
+          <p className="text-gray-600">Could not identify the requested video. Please check the link or try again.</p>
         </div>
       </div>
     );
@@ -81,7 +82,7 @@ export default function Video({
       <div className="p-6 max-w-2xl mx-auto">
         {loading ? (
           <Loading
-            title="Carregando video..."
+            title="Loading video..."
           />
         ) : videoData ? (
           <>
@@ -110,30 +111,24 @@ export default function Video({
                   className="text-blue-600 dark:text-blue-400 text-sm mt-1 hover:underline"
                   onClick={() => setDescExpanded((v) => !v)}
                 >
-                  {descExpanded ? "Mostrar menos" : "Leia mais"}
+                  {descExpanded ? "Show less" : "Read more"}
                 </button>
               )}
             </div>
-            <div className="flex items-center gap-4 mb-6">
-              {/* <button className="flex items-center gap-2 px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-sm font-medium text-gray-800 dark:text-gray-100 transition">
-                <AiOutlineLike size={18} />
-                Curtir
-              </button> */}
-              <button
-                className="flex items-center gap-2 px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-sm font-medium text-gray-800 dark:text-gray-100 transition"
-                onClick={handleShare}
-              >
+            <HorizontalScrollList className="gap-4 py-3">
+              <Button>
                 <FiShare2 size={18} />
-                Compartilhar
-              </button>
-              <button
-                className="flex items-center gap-2 px-4 py-2 rounded bg-red-100 hover:bg-red-200 dark:bg-red-800 dark:hover:bg-red-700 text-sm font-medium text-red-800 dark:text-red-100 transition"
-                onClick={handleRemoveFromPlaylist}
-              >
+                <span className="whitespace-nowrap">Share</span>
+              </Button>
+              <Button>
+                <FiExternalLink size={18} />
+                <span className="whitespace-nowrap">Open in browser</span>
+              </Button>
+              <Button color="red">
                 <MdDelete size={18} />
-                Remover da playlist
-              </button>
-            </div>
+                <span className="whitespace-nowrap">Remove from playlist</span>
+              </Button>
+            </HorizontalScrollList>
           </>
         ) : null}
       </div>
