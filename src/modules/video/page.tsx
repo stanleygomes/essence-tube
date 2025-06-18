@@ -64,9 +64,9 @@ export default function Video({
     }
   };
 
-  const handleOpenInBrowser = () => {
-    window.open(window.location.href, "_blank");
-  };
+  // const handleOpenInBrowser = () => {
+  //   window.open(window.location.href, "_blank");
+  // };
 
   if (!videoId) {
     return (
@@ -124,10 +124,10 @@ export default function Video({
                 <FiShare2 size={18} />
                 <span className="whitespace-nowrap">Share</span>
               </Button>
-              <Button onClick={handleOpenInBrowser}>
+              {/* <Button onClick={handleOpenInBrowser}>
                 <FiExternalLink size={18} />
                 <span className="whitespace-nowrap">Open in browser</span>
-              </Button>
+              </Button> */}
               <Button color="red" onClick={handleRemoveFromPlaylist}>
                 <MdDelete size={18} />
                 <span className="whitespace-nowrap">Remove from playlist</span>
