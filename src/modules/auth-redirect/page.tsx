@@ -3,24 +3,33 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { setAuth } from "@services/authService";
+import { setAuth } from "@services/authStorageService";
 import Loading from "@shared/ui/loading/Loading";
+import { jwtDecode } from "jwt-decode";
+import { IUser, setUser } from "@services/userStorageService";
 
 export interface IAuthRedirect {
-  sessionId?: string,
+  sessionToken?: string,
 }
 
-export default function AuthRedirect({ sessionId }: IAuthRedirect) {
+export default function AuthRedirect({ sessionToken }: IAuthRedirect) {
   const router = useRouter();
 
   useEffect(() => {
-    if (sessionId) {
-      setAuth({ uuid: sessionId });
+    if (sessionToken) {
+      const payload = jwtDecode<IUser>(sessionToken);
+
+      setAuth({
+        token: sessionToken,
+      });
+
+      setUser(payload);
+
       router.replace("/home");
     }
-  }, [sessionId, router]);
+  }, [sessionToken, router]);
 
-  if (!sessionId) {
+  if (!sessionToken) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black">
         <div className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">

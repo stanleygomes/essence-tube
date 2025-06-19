@@ -1,5 +1,5 @@
 export interface IAuth {
-  uuid: string;
+  token: string;
 }
 
 export function setAuth(auth: IAuth) {

@@ -6,10 +6,10 @@ import AuthRedirect from '@modules/auth-redirect/page';
 
 function AuthRedirectInner() {
   const searchParams = useSearchParams();
-  const uuid = searchParams.get('uuid');
+  const token = searchParams.get('token');
 
   return (
-    <AuthRedirect sessionId={uuid?.toString()} />
+    <AuthRedirect sessionToken={token?.toString()} />
   );
 }
 

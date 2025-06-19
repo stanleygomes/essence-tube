@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@shared/components/header/Header";
-import { removeAuth } from "@services/authService";
+import { removeAuth } from "@services/authStorageService";
 
 export default function Settings() {
   const handleLogout = () => {
