@@ -106,7 +106,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
           onClick={handleListPlaylists}
           aria-label="Listar playlists"
         >
-          Alternar playlist
+          Change playlist
         </ButtonLink>
       </div>
       <div
