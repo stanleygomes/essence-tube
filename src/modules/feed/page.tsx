@@ -9,6 +9,7 @@ import { getUserConfig } from "@services/userConfigService";
 import VideoCard from "@shared/components/video-card/VideoCard";
 import Loading from "@shared/ui/loading/Loading";
 import HorizontalScroll from "@shared/ui/horizontal-scroll/HorizontalScroll";
+import { humanizeDate } from "@shared/utils/date-utils";
 
 export default function Feed() {
   const [creators, setCreators] = useState<any[]>([]);
@@ -181,6 +182,14 @@ function ChannelVideosList({
 }: ChannelVideosListProps) {
   if (!selectedCreator) return null;
 
+  const buildVideoSubtitle = (video: any): string => {
+    if (video.videoPublishedAt) {
+      return 'Published ' + humanizeDate(new Date(video.videoPublishedAt));
+    }
+
+    return '';
+  }
+
   return (
     <div className="mt-6 max-w-5xl mx-auto">
       <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
@@ -201,7 +210,7 @@ function ChannelVideosList({
             <div key={video.id} className="relative">
               <VideoCard
                 title={video.title}
-                subtitle={video.description}
+                subtitle={buildVideoSubtitle(video)}
                 thumbnail={video.thumbnails?.high}
                 buttonClick={
                   selectedPlaylistId
