@@ -16,6 +16,7 @@ export interface IHeader {
   showBackButton?: boolean,
   backButtonText?: string,
   actionButton?: React.ReactNode,
+  showUserPhoto?: boolean,
 }
 
 export default function Header({
@@ -24,6 +25,7 @@ export default function Header({
   showBackButton = false,
   backButtonText,
   actionButton,
+  showUserPhoto = true,
 }: IHeader) {
   const [canGoBack, setCanGoBack] = useState(false);
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
@@ -74,25 +76,27 @@ export default function Header({
           </div>
           <div className="flex items-center gap-2">
             {actionButton}
-            <Link href="/settings">
-              {userPhoto ? (
-                <Image
-                  src={userPhoto}
-                  alt="Foto do usuário"
-                  width={40}
-                  height={40}
-                  className="rounded-full object-cover cursor-pointer active:scale-95 transition border-2 border-red-500"
-                />
-              ) : (
-                <Image
-                  src="/img/emoji-cool.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="cursor-pointer active:scale-95 transition"
-                />
-              )}
-            </Link>
+            {showUserPhoto && (
+              <Link href="/settings">
+                {userPhoto ? (
+                  <Image
+                    src={userPhoto}
+                    alt="Foto do usuário"
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover cursor-pointer active:scale-95 transition border-2 border-red-500"
+                  />
+                ) : (
+                  <Image
+                    src="/img/emoji-cool.png"
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="cursor-pointer active:scale-95 transition"
+                  />
+                )}
+              </Link>
+            )}
           </div>
         </div>
       </div>
