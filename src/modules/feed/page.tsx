@@ -88,14 +88,14 @@ export default function Feed() {
 
         {!loading && creators.length > 0 && (
           <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
-            Escolha um canal
+            Choose a channel
           </h2>
         )}
-
             <CreatorsList
               creators={creators}
               loading={loading}
               onCreatorClick={handleCreatorClick}
+              selectedCreator={selectedCreator}
             />
           </div>
         </div>
@@ -125,7 +125,7 @@ interface CreatorsListProps {
   onCreatorClick: (creator: any) => void;
 }
 
-function CreatorsList({ creators, loading, onCreatorClick }: CreatorsListProps) {
+function CreatorsList({ creators, loading, onCreatorClick, selectedCreator }: CreatorsListProps & { selectedCreator: any }) {
   if (loading) {
     return <Loading title="Loading channels..." />;
   }
@@ -146,6 +146,7 @@ function CreatorsList({ creators, loading, onCreatorClick }: CreatorsListProps) 
             name: creator.title,
             avatar: creator.thumbnails.high
           }}
+          selected={selectedCreator && selectedCreator.id === creator.id}
           onClick={() => onCreatorClick(creator)}
         />
       ))}
