@@ -5,6 +5,7 @@ import { removeAuth } from "@services/authStorageService";
 import { getUser } from "@services/userStorageService";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import pkg from '../../../package.json';
 
 export default function Settings() {
   const [user, setUser] = useState<{
@@ -96,6 +97,12 @@ export default function Settings() {
             >
               Logout
             </button>
+          </section>
+
+          <section className="mt-8">
+            <div className="w-full text-center text-xs text-gray-400 dark:text-gray-600 pb-4">
+              Versão do app: {pkg.version}
+            </div>
           </section>
         </div>
       </div>
