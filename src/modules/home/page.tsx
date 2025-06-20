@@ -101,7 +101,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
   return (
     <>
       <div className="flex items-center justify-between mt-6 mb-2 mx-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Seus vídeos</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Your videos</h2>
         <ButtonLink
           onClick={handleListPlaylists}
           aria-label="Listar playlists"
@@ -114,7 +114,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
           grid grid-cols-1
           sm:grid-cols-2
           md:grid-cols-3
-          gap-4
+          gap-0 sm:gap-4
           mx-4
         "
       >
