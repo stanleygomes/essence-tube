@@ -1,13 +1,13 @@
 'use client';
 
-// import InstallPrompt from '@shared/components/install-prompt/InstallPrompt';
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 import { Inter } from "next/font/google";
 import ImageByTheme from '../../ui/image-by-theme/ImageByTheme';
 import Image from "next/image";
 import BackButton from "@shared/components/back-button/BackButton";
+import { getUser } from "@services/userStorageService";
+
 const inter = Inter({ subsets: ["latin"], weight: ["700"] });
 
 export interface IHeader {
@@ -26,10 +26,18 @@ export default function Header({
   actionButton,
 }: IHeader) {
   const [canGoBack, setCanGoBack] = useState(false);
+  const [userPhoto, setUserPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setCanGoBack(window.history.length > 1);
+
+      const user = getUser();
+      if (user && user.photo_url) {
+        setUserPhoto(user.photo_url);
+      } else {
+        setUserPhoto(null);
+      }
     }
   }, []);
 
@@ -67,13 +75,23 @@ export default function Header({
           <div className="flex items-center gap-2">
             {actionButton}
             <Link href="/settings">
-              <Image
-                src="/img/emoji-cool.png"
-                alt={''}
-                width={40}
-                height={40}
-                className="cursor-pointer active:scale-95 transition"
-              />
+              {userPhoto ? (
+                <Image
+                  src={userPhoto}
+                  alt="Foto do usuário"
+                  width={40}
+                  height={40}
+                  className="rounded-full object-cover cursor-pointer active:scale-95 transition border-2 border-red-500"
+                />
+              ) : (
+                <Image
+                  src="/img/emoji-cool.png"
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="cursor-pointer active:scale-95 transition"
+                />
+              )}
             </Link>
           </div>
         </div>
