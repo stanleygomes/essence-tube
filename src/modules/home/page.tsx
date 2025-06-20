@@ -100,7 +100,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between mt-6 mb-2">
+      <div className="flex items-center justify-between mt-6 mb-2 mx-4">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Seus vídeos</h2>
         <ButtonLink
           onClick={handleListPlaylists}
@@ -115,6 +115,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
           sm:grid-cols-2
           md:grid-cols-3
           gap-4
+          mx-4
         "
       >
         {videos.map(video => (

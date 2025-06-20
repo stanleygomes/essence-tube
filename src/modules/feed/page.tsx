@@ -83,20 +83,21 @@ export default function Feed() {
         showLogo={true}
       />
       <div className="py-6">
+        <div className="mb-4 px-6">
+          <div className="max-w-5xl mx-auto">
+
         {!loading && creators.length > 0 && (
-          <div className="px-6">
-            <h2 className="text-lg font-semibold mt-4 mb-2 text-gray-800 dark:text-gray-100">
-              Escolha um canal
-            </h2>
-          </div>
+          <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
+            Escolha um canal
+          </h2>
         )}
 
-        <div className="creators mb-4 pl-6">
-          <CreatorsList
-            creators={creators}
-            loading={loading}
-            onCreatorClick={handleCreatorClick}
-          />
+            <CreatorsList
+              creators={creators}
+              loading={loading}
+              onCreatorClick={handleCreatorClick}
+            />
+          </div>
         </div>
 
         <div className="px-6">
@@ -180,14 +181,21 @@ function ChannelVideosList({
   if (!selectedCreator) return null;
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 max-w-5xl mx-auto">
       <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
         Latest videos from {selectedCreator.title}
       </h2>
       {loading ? (
         <Loading title="Loading videos..." />
       ) : videos.length > 0 ? (
-        <>
+        <div
+          className="
+            grid grid-cols-1
+            sm:grid-cols-2
+            md:grid-cols-3
+            gap-4
+          "
+        >
           {videos.map(video => (
             <div key={video.id} className="relative">
               <VideoCard
@@ -218,7 +226,7 @@ function ChannelVideosList({
               />
             </div>
           ))}
-        </>
+        </div>
       ) : (
         <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
           No videos found for this channel.
