@@ -1,36 +1,151 @@
 # EssenceTube
 
-App react para listar videos de canais do youtube. Sem algoritmos, sem distrações. Apenas o essencial.
+Aplicativo React para listar vídeos de canais do YouTube. Sem algoritmos, sem distrações. Apenas o essencial.
 
-## Next.js
+---
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📖 Índice
 
-## Getting Started
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tech Stack](#-tech-stack)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Começando](#-começando)
+- [Uso](#-uso)
+- [Variáveis de Ambiente](#-variáveis-de-ambiente)
+- [Release e Versionamento](#-release-e-versionamento)
+- [Deploy](#-deploy)
+- [Como Contribuir](#-como-contribuir)
+- [Licença](#-licença)
 
-First, run the development server:
+---
+
+## 🌟 Sobre o Projeto
+
+O **EssenceTube** oferece uma experiência limpa e minimalista para consumir conteúdo do YouTube.  
+Aqui, você vê apenas os vídeos dos canais que escolheu seguir, sem recomendações automáticas, distrações ou algoritmos.
+
+---
+
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (React)
+- **Linguagem:** TypeScript
+- **UI:** TailwindCSS
+- **Gerenciamento de estado:** React Hooks
+- **API:** Integração com YouTube Data API via backend próprio
+- **Autenticação:** Google OAuth 2.0
+- **Deploy:** Vercel
+
+---
+
+## 📁 Estrutura de Pastas
+
+```
+src/
+├── app/           # Páginas Next.js (rotas)
+│   ├── home/
+│   ├── feed/
+│   ├── login/
+│   ├── settings/
+│   ├── terms/
+│   ├── privacy/
+│   └── video/
+├── modules/       # Componentes de página (por domínio)
+├── shared/        # Componentes reutilizáveis, UI, utils
+│   ├── components/
+│   ├── services/
+│   ├── ui/
+│   └── utils/
+├── services/      # Serviços de acesso à API, storage, etc
+├── config/        # Configurações globais
+├── models/        # Tipos e interfaces de dados
+```
+
+---
+
+## 🛠️ Começando
+
+### Pré-requisitos
+
+- **Node.js**: v20.x ou superior
+- **npm**: v10.x ou superior
+
+### Instalação
+
+1. Clone o repositório:
+  ```bash
+  git clone https://github.com/seu-usuario/essence-tube.git
+  cd essence-tube
+  ```
+
+2. Instale as dependências:
+  ```bash
+  npm install
+  ```
+
+3. Configure as variáveis de ambiente:
+  ```bash
+  cp .env.template .env
+  ```
+  Edite o arquivo `.env` conforme necessário.
+
+---
+
+## ▶️ Uso
+
+Para rodar o servidor de desenvolvimento:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para ver o app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Variáveis de Ambiente
 
-## Learn More
+As variáveis necessárias estão no arquivo `.env.template`.  
+Exemplo:
 
-To learn more about Next.js, take a look at the following resources:
+```
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚢 Release e Versionamento
 
-## Deploy on Vercel
+O versionamento segue [Semantic Versioning](https://semver.org/) e utiliza `standard-version` para gerar changelog, atualizar a versão no `package.json` e criar tags automaticamente com base nos commits.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para criar uma nova versão:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run release
+```
+
+---
+
+## 🚀 Deploy
+
+O deploy é feito automaticamente na Vercel a cada push na branch principal.
+
+---
+
+## 🤝 Como Contribuir
+
+Contribuições são bem-vindas!  
+Para contribuir:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature/correção
+3. Commit e push
+4. Abra um Pull Request
+
+Sugestões e melhorias também são bem-vindas via issues.
+
+---
+
+## 📜 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
