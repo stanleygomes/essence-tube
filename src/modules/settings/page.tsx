@@ -62,7 +62,7 @@ export default function Settings() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10 15.172l8.95-8.95 1.414 1.414L10 18 3.636 11.636l1.414-1.414z"/>
                   </svg>
-                  Conta conectada ao YouTube
+                  YouTube account connected!
                 </div>
               </div>
             </section>

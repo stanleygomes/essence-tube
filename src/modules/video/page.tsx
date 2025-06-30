@@ -56,7 +56,7 @@ export default function Video({
     }
     try {
       await removePlaylistVideo(playlistId);
-      alert("Vídeo removido da playlist!");
+      alert("Video removed from playlist successfully!");
       router.push("/home");
     } catch (err) {
       alert("Error to remove video from playlist.");
