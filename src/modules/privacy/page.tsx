@@ -28,7 +28,7 @@ export default function Privacy() {
         </p>
         <p className="mb-4">
           <strong>5. Data Retention and Deletion</strong><br />
-          We do not store your personal Google or YouTube data on our servers. Any temporary data (such as authentication tokens) is deleted when you log out or revoke access. You can revoke the application's access to your Google account at any time via your Google Account settings, which will immediately delete all access and any temporary data.
+          We do not store your personal Google or YouTube data on our servers. Any temporary data (such as authentication tokens) is deleted when you log out or revoke access. You can revoke the application&apos;s access to your Google account at any time via your Google Account settings, which will immediately delete all access and any temporary data.
         </p>
         <p>
           If you have any questions about this policy or wish to request deletion of any data, please contact us.
