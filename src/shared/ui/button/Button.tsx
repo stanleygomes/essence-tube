@@ -1,9 +1,17 @@
 import React from "react";
 import Icon from "@shared/ui/icon/Icon";
 
+export type ButtonColor =
+  | "blue"
+  | "red"
+  | "green"
+  | "default"
+  | "outline"
+  | "transparent";
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  color?: "default" | "red" | "blue" | "outline" | "transparent";
+  color?: ButtonColor;
   icon?: string;
   iconPosition?: "left" | "right";
 }
@@ -18,6 +26,9 @@ const colorClasses: Record<string, string> = {
   blue:
     "bg-[#d7e6f7] text-[#2f4a7c] shadow-[4px_4px_0_#a3b8c2] hover:bg-[#b8d6e6] active:shadow-none active:bg-[#b8d6e6] " +
     "dark:bg-[#7a8cb8] dark:text-[#1a233a] dark:shadow-[4px_4px_0_#4f5c7a] dark:hover:bg-[#5c6ca3] dark:active:shadow-none dark:active:bg-[#5c6ca3]",
+  green:
+    "bg-[#d7f7e6] text-[#2f7c4a] shadow-[4px_4px_0_#a3c2b8] hover:bg-[#b8e6d6] active:shadow-none active:bg-[#b8e6d6] " +
+    "dark:bg-[#7ab88c] dark:text-[#1a3a23] dark:shadow-[4px_4px_0_#4f7a5c] dark:hover:bg-[#5ca36c] dark:active:shadow-none dark:active:bg-[#5ca36c]",
   outline:
     "bg-transparent shadow-none border-none text-[#3a2c1a] dark:text-[#f7ecd7] px-0 py-0 relative after:content-[''] after:block after:w-full after:h-0.5 after:bg-current after:absolute after:left-0 after:-bottom-1",
   transparent:
