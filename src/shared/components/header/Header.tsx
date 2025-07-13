@@ -10,12 +10,13 @@ import { getUser } from "@services/userStorageService";
 import Typography from "@shared/ui/typography/Typography";
 
 export interface IHeader {
-  showLogo?: boolean,
-  title: string,
-  showBackButton?: boolean,
-  backButtonText?: string,
-  actionButton?: React.ReactNode,
-  showUserPhoto?: boolean,
+  showLogo?: boolean;
+  title: string;
+  showBackButton?: boolean;
+  backButtonText?: string;
+  actionButton?: React.ReactNode;
+  backButtonRoute?: string,
+  showUserPhoto?: boolean;
 }
 
 export default function Header({
@@ -23,6 +24,7 @@ export default function Header({
   title,
   showBackButton = false,
   backButtonText,
+  backButtonRoute,
   actionButton,
   showUserPhoto = true,
 }: IHeader) {
@@ -53,6 +55,7 @@ export default function Header({
               <BackButton
                 showBackButton={showBackButton}
                 backButtonText={backButtonText}
+                backRoute={backButtonRoute}
               />
             )}
             <div

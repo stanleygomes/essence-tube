@@ -3,7 +3,7 @@ import Icon from "@shared/ui/icon/Icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  color?: "default" | "red" | "blue" | "outline";
+  color?: "default" | "red" | "blue" | "outline" | "transparent";
   icon?: string;
   iconPosition?: "left" | "right";
 }
@@ -20,6 +20,8 @@ const colorClasses: Record<string, string> = {
     "dark:bg-[#7a8cb8] dark:text-[#1a233a] dark:shadow-[4px_4px_0_#4f5c7a] dark:hover:bg-[#5c6ca3] dark:active:shadow-none dark:active:bg-[#5c6ca3]",
   outline:
     "bg-transparent shadow-none border-none text-[#3a2c1a] dark:text-[#f7ecd7] px-0 py-0 rounded-none relative after:content-[''] after:block after:w-full after:h-0.5 after:bg-current after:absolute after:left-0 after:-bottom-1",
+  transparent:
+    "bg-transparent shadow-none border-none text-[#3a2c1a] dark:text-[#f7ecd7] px-0 py-0 rounded-none",
 };
 
 export default function Button({

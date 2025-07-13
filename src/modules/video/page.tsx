@@ -82,7 +82,7 @@ export default function Video({
 
   return (
     <>
-      <Header title='' showBackButton={true} backButtonText="Playlist" />
+      <Header title='' showBackButton={true} backButtonRoute="/home" backButtonText="Playlist" />
       <div className="p-6 max-w-2xl mx-auto">
         {loading ? (
           <Loading
