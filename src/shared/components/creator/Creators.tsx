@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Typography from "@shared/ui/typography/Typography";
 
 interface Creator {
   id: string;
@@ -20,9 +21,9 @@ export default function Creator({ creator, onClick, selected }: CreatorProps) {
       onClick={onClick}
     >
       <div
-        className={`w-18 h-18 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 ${
-          selected ? "border-2 border-red-500" : ""
-        }`}
+        className={`w-18 h-18 overflow-hidden bg-gray-200 dark:bg-gray-700 ${
+          selected ? "border-2 border-white" : ""
+        } shadow-[4px_4px_0_#c2b8a3] dark:shadow-[4px_4px_0_#7a6a4f] active:shadow-none transition-shadow`}
       >
         <Image
           src={creator.avatar}
@@ -32,13 +33,14 @@ export default function Creator({ creator, onClick, selected }: CreatorProps) {
           className="object-cover w-full h-full"
         />
       </div>
-      <span
+      <Typography
+        variant="span"
         className={`mt-2 text-xs text-center text-gray-800 dark:text-gray-100 w-16 truncate ${
           selected ? "font-bold" : "font-medium"
         }`}
       >
         {creator.name}
-      </span>
+      </Typography>
     </div>
   );
 }

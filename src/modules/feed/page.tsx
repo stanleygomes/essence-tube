@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Header from "@shared/components/header/Header";
+import Typography from "@shared/ui/typography/Typography";
 import { getChannels, getChannelVideos } from "@services/subscriptionService";
 import Creator from "@shared/components/creator/Creators";
 import { addVideoToPlaylist } from "@services/playlistService";
@@ -61,10 +62,10 @@ export default function Feed() {
     setVideoIdError(null);
     try {
       await addVideoToPlaylist(playlistId, videoId);
-      setAddSuccess("Vídeo adicionado à playlist com sucesso!");
+      setAddSuccess("Video added to the playlist!");
       setVideoIdSuccess(videoId);
     } catch (err: any) {
-      setAddError(err.message || "Erro ao adicionar vídeo à playlist!");
+      setAddError(err.message || "Error adding video to the playlist!");
       setVideoIdError(videoId);
     } finally {
       setAddingVideoId(null);
@@ -88,9 +89,9 @@ export default function Feed() {
           <div className="max-w-5xl mx-auto">
 
         {!loading && creators.length > 0 && (
-          <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
+          <Typography variant="h2" className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
             Choose a channel
-          </h2>
+          </Typography>
         )}
             <CreatorsList
               creators={creators}
@@ -132,9 +133,9 @@ function CreatorsList({ creators, loading, onCreatorClick, selectedCreator }: Cr
   }
   if (!creators.length) {
     return (
-      <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
+      <Typography variant="span" className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
         No channels found.
-      </div>
+      </Typography>
     );
   }
   return (
@@ -192,9 +193,9 @@ function ChannelVideosList({
 
   return (
     <div className="mt-6 max-w-5xl mx-auto">
-      <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
+      <Typography variant="h2" className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
         Latest videos from {selectedCreator.title}
-      </h2>
+      </Typography>
       {loading ? (
         <Loading title="Loading videos..." />
       ) : videos.length > 0 ? (
@@ -228,7 +229,7 @@ function ChannelVideosList({
                     ? "Error"
                     : "Add"
                 }
-                buttonVariant={
+                buttonColor={
                   addSuccess && video.id === videoIdSuccess
                     ? "green"
                     : "red"
@@ -238,9 +239,9 @@ function ChannelVideosList({
           ))}
         </div>
       ) : (
-        <div className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
+        <Typography variant="span" className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
           No videos found for this channel.
-        </div>
+        </Typography>
       )}
     </div>
   );

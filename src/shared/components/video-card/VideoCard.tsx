@@ -1,10 +1,11 @@
 
 import Link from "next/link";
-import Button, { ButtonVariant } from "@shared/components/ui/Button";
+import ButtonLoading from "@shared/components/button-loading/ButtonLoading";
 import Image from "next/image";
 
 import Card from "@shared/ui/card/Card";
 import Typography from "@shared/ui/typography/Typography";
+import { ButtonColor } from "@shared/ui/button/Button";
 
 interface VideoCardProps {
   title: string;
@@ -15,7 +16,7 @@ interface VideoCardProps {
   loadingAddButton?: boolean;
   loadingAddButtonText?: string;
   addButtonText?: string;
-  buttonVariant?: ButtonVariant;
+  buttonColor?: ButtonColor;
 }
 
 export default function VideoCard({
@@ -27,7 +28,7 @@ export default function VideoCard({
   loadingAddButton = false,
   loadingAddButtonText,
   addButtonText = "Add",
-  buttonVariant = "red",
+  buttonColor = "red",
 }: VideoCardProps) {
   const cardClass = ` my-2 overflow-hidden${
     buttonClick ? "" : " active:scale-95 cursor-pointer"
@@ -42,7 +43,7 @@ export default function VideoCard({
         height={180}
         className="w-full aspect-video object-cover"
       />
-      <div className="flex items-center px-4 py-3">
+      <div className="flex items-center py-3">
         <div className="flex-1 min-w-0">
           <Typography
             variant="h2"
@@ -59,18 +60,18 @@ export default function VideoCard({
         </div>
         {buttonClick && (
           <div className="ml-4 flex-shrink-0">
-            <Button
+            <ButtonLoading
               onClick={e => {
                 e.stopPropagation();
                 if (!loadingAddButton) buttonClick();
               }}
               loading={loadingAddButton}
               loadingText={loadingAddButtonText}
-              variant={buttonVariant}
+              color={buttonColor}
               title="Ação"
             >
               {addButtonText}
-            </Button>
+            </ButtonLoading>
           </div>
         )}
       </div>
