@@ -15,15 +15,15 @@ export interface IMain {
 
 const tabs = [
   {
-    key: 'tab-home',
-    label: 'Home',
-    icon: <RiHome3Line className="w-7 h-7" />,
+    key: "tab-home",
+    label: "Home",
+    icon: "home-solid",
     content: <Home />,
   },
   {
-    key: 'tab-feed',
-    label: 'Feed',
-    icon: <HiOutlineNewspaper className="w-7 h-7" />,
+    key: "tab-feed",
+    label: "Feed",
+    icon: "tech-stories",
     content: <Feed />,
   },
 ];
