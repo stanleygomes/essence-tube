@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { RiHome3Line } from "react-icons/ri";
-import { HiOutlineNewspaper } from "react-icons/hi2";
 import Home from '@modules/home/page';
 import Feed from '@modules/feed/page';
 import TabBar from '@shared/ui/tab-bar/TabBar';
