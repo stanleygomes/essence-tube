@@ -9,8 +9,9 @@ import Loading from "@shared/ui/loading/Loading";
 import VideoCard from "@shared/components/video-card/VideoCard";
 import PlaylistCard from "@shared/components/playlist-card/PlaylistCard";
 import PullToRefresh from "@shared/ui/pull-to-refresh/PullToRefresh";
-import { ButtonLink } from "@shared/ui/button-link/ButtonLink";
+import Button from "@shared/ui/button/Button";
 import { humanizeDate } from "@shared/utils/date-utils";
+import Typography from "@shared/ui/typography/Typography";
 
 export default function Home() {
   const [playlists, setPlaylists] = useState<IPlaylistItem[]>([]);
@@ -99,16 +100,18 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
   if (!videos.length) return null;
 
   return (
-    <>
-      <div className="flex items-center justify-between mt-6 mb-2 mx-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Your videos</h2>
-        <ButtonLink
-          variant="red"
+    <div className="mb-6">
+      <div className="flex items-center justify-between mt-6 mx-4">
+        <Typography variant="h2" className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          Your videos
+        </Typography>
+        <Button
+          color="red"
           onClick={handleListPlaylists}
           aria-label="Listar playlists"
         >
           Change playlist
-        </ButtonLink>
+        </Button>
       </div>
       <div
         className="
@@ -129,7 +132,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -141,16 +144,22 @@ interface PlaylistListProps {
 function PlaylistList({ playlists, onSelect }: PlaylistListProps) {
   if (!playlists.length) return null;
   return (
-    <>
+    <div className="mx-6 pb-6">
       <div className="my-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+        <Typography
+          variant="h2"
+          className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1"
+        >
           Select a playlist
-        </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        </Typography>
+        <Typography
+          variant="p"
+          className="text-sm text-gray-600 dark:text-gray-400"
+        >
           The videos from this playlist will be listed here
-        </p>
+        </Typography>
       </div>
-      {playlists.map(playlist => (
+      {playlists.map((playlist) => (
         <PlaylistCard
           key={playlist.id}
           id={playlist.id}
@@ -160,6 +169,6 @@ function PlaylistList({ playlists, onSelect }: PlaylistListProps) {
           onClick={onSelect}
         />
       ))}
-    </>
+    </div>
   );
 }
