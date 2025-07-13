@@ -12,7 +12,7 @@ const IconChannels = (
   <Icon name="users-crown" className="text-blue-500 mb-2 text-3xl" />
 );
 const IconFeed = (
-  <Icon name="bars-solid" className="text-green-500 mb-2 text-3xl" />
+  <Icon name="tech-stories" className="text-green-500 mb-2 text-3xl" />
 );
 const IconLock = <Icon name="lock" className="text-gray-500 mb-2 text-3xl" />;
 
@@ -159,10 +159,8 @@ export default function Login() {
       </div>
 
       <div
-        className="fixed bottom-0 left-0 w-full z-50"
+        className="fixed bottom-0 bg-theme left-0 w-full z-50"
         style={{
-          background: "var(--background)",
-          boxShadow: "0 -2px 8px 0 rgba(0,0,0,0.04)",
           borderTop: "2px solid #c2b8a3",
         }}
       >
