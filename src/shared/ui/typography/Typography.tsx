@@ -23,7 +23,7 @@ export default function Typography({
     {
       className: `${
         isHeading
-          ? "fontpixelify- text-[#3a2c1a] dark:text-[#f7ecd7]"
+          ? "font-pixelify text-[#3a2c1a] dark:text-[#f7ecd7]"
           : "font-geist-mono"
       } ${className}`,
       ...props,
