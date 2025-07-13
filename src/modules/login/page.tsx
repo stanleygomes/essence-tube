@@ -170,7 +170,7 @@ export default function Login() {
               <Button
                 type="button"
                 color="red"
-                className="w-full py-2 text-base mb-0"
+                className="w-full py-2 px-3 text-base mb-0"
                 icon="arrow-right"
                 iconPosition="right"
               >
