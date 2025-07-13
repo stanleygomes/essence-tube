@@ -1,11 +1,16 @@
+
 import React from "react";
+
+import Icon from "@shared/ui/icon/Icon";
+import Typography from "@shared/ui/typography/Typography";
 
 interface TabItemProps {
   active?: boolean;
   onClick?: () => void;
-  icon: React.ReactNode;
+  icon: string;
   label: string;
 }
+
 
 const TabItem: React.FC<TabItemProps> = ({ active, onClick, icon, label }) => (
   <button
@@ -17,8 +22,10 @@ const TabItem: React.FC<TabItemProps> = ({ active, onClick, icon, label }) => (
     onClick={onClick}
     type="button"
   >
-    {icon}
-    <span className="text-xs mt-1">{label}</span>
+    <Icon name={icon} className="text-xl" />
+    <Typography variant="span" className="text-xs mt-1 font-pixelify">
+      {label}
+    </Typography>
   </button>
 );
 

@@ -29,7 +29,7 @@ export default function VideoCard({
   addButtonText = "Add",
   buttonVariant = "red",
 }: VideoCardProps) {
-  const cardClass = `bg-white dark:bg-neutral-900 rounded-2xl shadow-md hover:shadow-lg transition my-2 overflow-hidden${
+  const cardClass = ` my-2 overflow-hidden${
     buttonClick ? "" : " active:scale-95 cursor-pointer"
   }`;
 

@@ -16,14 +16,14 @@ export default function Typography({
   className = "",
   ...props
 }: TypographyProps) {
-  const isHeading = headingTags.includes(variant);
+  const isHeading = headingTags.includes(variant)
 
   return createElement(
     variant,
     {
       className: `${
         isHeading
-          ? "font-pixelify text-[#3a2c1a] dark:text-[#f7ecd7]"
+          ? "fontpixelify- text-[#3a2c1a] dark:text-[#f7ecd7]"
           : "font-geist-mono"
       } ${className}`,
       ...props,
