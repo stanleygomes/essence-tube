@@ -1,7 +1,11 @@
 'use client';
 
-import { IoChevronBack } from "react-icons/io5";
+
+
 import { useRouter } from "next/navigation";
+import Typography from "@shared/ui/typography/Typography";
+import Icon from "@shared/ui/icon/Icon";
+import Button from "@shared/ui/button/Button";
 
 export interface IBackButton {
   showBackButton: boolean;
@@ -17,16 +21,17 @@ export default function BackButton({
   if (!showBackButton) return null;
 
   return (
-    <button
+    <Button
       type="button"
+      color="transparent"
       onClick={() => router.back()}
-      className="mr-2 flex items-center gap-2 justify-center cursor-pointer active:scale-95 transition"
+      className="mr-2 flex items-center gap-2 justify-center"
       aria-label="Voltar"
+      icon="arrow-left"
     >
-      <IoChevronBack className="w-7 h-7 text-gray-900 dark:text-gray-100" />
       {backButtonText && (
-        <span>{backButtonText}</span>
+        <Typography variant="span">{backButtonText}</Typography>
       )}
-    </button>
+    </Button>
   );
 }
