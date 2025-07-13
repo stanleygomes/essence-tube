@@ -101,12 +101,12 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
 
   return (
     <div className="mb-6">
-      <div className="flex items-center justify-between mt-6 mx-4">
+      <div className="flex items-center justify-between mt-2 mx-4">
         <Typography variant="h2" className="text-lg font-semibold text-gray-900 dark:text-gray-100">
           Your videos
         </Typography>
         <Button
-          color="red"
+          color="outline"
           onClick={handleListPlaylists}
           aria-label="Listar playlists"
         >
@@ -119,7 +119,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
           sm:grid-cols-2
           md:grid-cols-3
           gap-0 sm:gap-4
-          mx-4
+          mx-4 mt-3
         "
       >
         {videos.map(video => (
