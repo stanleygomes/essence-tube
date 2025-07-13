@@ -1,16 +1,6 @@
 import type { Viewport, Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { pixelify, geistSans, geistMono } from "@config/font";
 import "../style/globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "EssenceTube",
@@ -41,22 +31,37 @@ export default function RootLayout({
         <link rel="icon" href="/img/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="google-site-verification" content="zjHzBow23XhNh-SYFW_B8prT0a_YIOodoR854XReZ34" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta
+          name="google-site-verification"
+          content="zjHzBow23XhNh-SYFW_B8prT0a_YIOodoR854XReZ34"
+        />
 
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181b" />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#ffffff"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#18181b"
+        />
 
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${pixelify.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div id="app-container">
-          {children}
-        </div>
+        <div id="app-container">{children}</div>
       </body>
     </html>
   );

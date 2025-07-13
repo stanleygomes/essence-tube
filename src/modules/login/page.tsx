@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import ImageByTheme from "@shared/ui/image-by-theme/ImageByTheme";
 import { config } from '@config/config'
 
@@ -25,8 +24,6 @@ const IconLock = (
   </svg>
 );
 
-const inter = Inter({ subsets: ["latin"], weight: ["700"] });
-
 export default function Login() {
   const { baseUrl } = config.api;
 
@@ -42,7 +39,7 @@ export default function Login() {
           classNameDark="mb-6 hidden dark:block"
         />
         <h1
-          className={`mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-center ${inter.className}`}
+          className={`mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-center font-pixelify`}
         >
           EssenceTube
         </h1>
