@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/stanleygomes/essence-tube/compare/v0.1.4...v0.1.5) (2025-07-13)
+
+
+### Features
+
+* biblioteca de icones retro ([3685e87](https://github.com/stanleygomes/essence-tube/commit/3685e878291011e6af08bf4c9a7ebe1071117e29))
+* nova pagina home ([cd8828c](https://github.com/stanleygomes/essence-tube/commit/cd8828c1e3de82ad07f468713bcd2d0ca9aa54ce))
+* novo componente loading ([2782e71](https://github.com/stanleygomes/essence-tube/commit/2782e713505e743c20835aaff052fb890ddc654f))
+* tela de configuracoes visual retro ([73af338](https://github.com/stanleygomes/essence-tube/commit/73af338e4d37d71e48805268150f11086e47c5ff))
+* tela de feed com visual retro ([f2c4285](https://github.com/stanleygomes/essence-tube/commit/f2c4285081447abff5aae68aeb964a6962c412da))
+* tela de video visual retro ([7613ac1](https://github.com/stanleygomes/essence-tube/commit/7613ac16fc3d97804fcf234fc9e700627f26fdf2))
+
+
+### Bug Fixes
+
+* corrigir botao de voltar dentro da tela de video ([8158f2d](https://github.com/stanleygomes/essence-tube/commit/8158f2d554f9a37ed4e88e047a9243c9c7d1bc31))
+
 ### [0.1.4](https://github.com/stanleygomes/essence-tube/compare/v0.1.3...v0.1.4) (2025-06-20)
 
 ### [0.1.3](https://github.com/stanleygomes/essence-tube/compare/v0.1.2...v0.1.3) (2025-06-20)
