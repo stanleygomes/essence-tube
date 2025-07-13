@@ -1,3 +1,4 @@
+import Card from "@shared/ui/card/Card";
 import Image from "next/image";
 
 interface PlaylistCardProps {
@@ -10,8 +11,8 @@ interface PlaylistCardProps {
 
 export default function PlaylistCard({ id, title, description, thumbnail, onClick }: PlaylistCardProps) {
   return (
-    <div
-      className="flex gap-4 items-start bg-white dark:bg-neutral-900 rounded-xl shadow hover:shadow-lg transition p-4 mb-4 cursor-pointer"
+    <Card
+      className="flex gap-4 items-start cursor-pointer"
       onClick={() => onClick?.(id)}
     >
       <Image
@@ -25,6 +26,6 @@ export default function PlaylistCard({ id, title, description, thumbnail, onClic
         <h2 className="font-semibold text-base text-gray-900 dark:text-gray-100 mb-1 line-clamp-2">{title}</h2>
         <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{description}</p>
       </div>
-    </div>
+    </Card>
   );
 }
