@@ -23,8 +23,8 @@ const Loading: React.FC<LoadingProps> = ({ title }) => {
       </div>
       <style jsx>{`
         @keyframes retro-bar {
-          0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
-          50% { opacity: 1; transform: scaleY(1.2); }
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
         }
         .animate-retro-bar {
           animation: retro-bar 1s infinite cubic-bezier(.4,0,.6,1);
