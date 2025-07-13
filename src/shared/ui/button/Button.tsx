@@ -1,9 +1,11 @@
-
 import React from "react";
+import Icon from "@shared/ui/icon/Icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   color?: "default" | "red" | "blue";
+  icon?: string;
+  iconPosition?: "left" | "right";
 }
 
 const colorClasses: Record<string, string> = {
@@ -18,7 +20,32 @@ const colorClasses: Record<string, string> = {
     "dark:bg-[#7a8cb8] dark:text-[#1a233a] dark:shadow-[4px_4px_0_#4f5c7a] dark:hover:bg-[#5c6ca3] dark:active:shadow-none dark:active:bg-[#5c6ca3]",
 };
 
-export default function Button({ children, color = "default", className = "", ...props }: ButtonProps) {
+export default function Button({
+  children,
+  color = "default",
+  className = "",
+  icon,
+  iconPosition = "left",
+  ...props
+}: ButtonProps) {
+  const content = (
+    <>
+      {icon && iconPosition === "left" && (
+        <>
+          <Icon name={icon} />
+          <span className="h-5 w-px bg-[#c2b8a3] dark:bg-[#7a6a4f] mx-2 inline-block align-middle"></span>
+        </>
+      )}
+      <span className="flex-1">{children}</span>
+      {icon && iconPosition === "right" && (
+        <>
+          <span className="h-5 w-px bg-[#c2b8a3] dark:bg-[#7a6a4f] mx-2 inline-block align-middle"></span>
+          <Icon name={icon} />
+        </>
+      )}
+    </>
+  );
+
   return (
     <button
       className={`flex items-center gap-2 px-4 py-2 text-sm font-medium cursor-pointer transition-all duration-150 
@@ -30,7 +57,7 @@ export default function Button({ children, color = "default", className = "", ..
       style={{ borderRadius: 0 }}
       {...props}
     >
-      {children}
+      {content}
     </button>
   );
 }
