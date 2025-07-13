@@ -3,13 +3,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@shared/components/header/Header";
-import { FiShare2 } from "react-icons/fi";
-import { MdDelete } from "react-icons/md";
 import { getVideo } from "@services/videoService";
 import { removePlaylistVideo } from "@services/playlistService";
 import Loading from "@shared/ui/loading/Loading";
 import HorizontalScrollList from "@shared/ui/horizontal-scroll/HorizontalScroll";
 import Button from "@shared/ui/button/Button";
+import Typography from "@shared/ui/typography/Typography";
 
 export interface IVideo {
   videoId?: string,
@@ -82,15 +81,18 @@ export default function Video({
 
   return (
     <>
-      <Header title='' showBackButton={true} backButtonRoute="/home" backButtonText="Playlist" />
+      <Header
+        title=""
+        showBackButton={true}
+        backButtonRoute="/home"
+        backButtonText="Playlist"
+      />
       <div className="p-6 max-w-2xl mx-auto">
         {loading ? (
-          <Loading
-            title="Loading video..."
-          />
+          <Loading title="Loading video..." />
         ) : videoData ? (
           <>
-            <div className="aspect-video w-full rounded-lg overflow-hidden shadow mb-4 bg-gray-100 dark:bg-gray-800 relative">
+            <div className="aspect-video w-full overflow-hidden mb-4 bg-gray-100 dark:bg-gray-800 relative shadow-[4px_4px_0_#c2b8a3] dark:shadow-[4px_4px_0_#7a6a4f]">
               <iframe
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${videoData.id}`}
@@ -99,9 +101,15 @@ export default function Video({
                 allowFullScreen
               ></iframe>
             </div>
-            <h1 className="text-2xl font-semibold mb-2 mt-2">{videoData.title}</h1>
+            <Typography
+              variant="h2"
+              className="text-2xl font-semibold mb-2 mt-2"
+            >
+              {videoData.title}
+            </Typography>
             <div className="mb-4">
-              <p
+              <Typography
+                variant="p"
                 className={
                   "text-gray-600 transition-all " +
                   (descExpanded ? "" : "line-clamp-3")
@@ -109,27 +117,29 @@ export default function Video({
                 style={{ wordBreak: "break-word" }}
               >
                 {videoData.description}
-              </p>
+              </Typography>
               {videoData.description && videoData.description.length > 120 && (
-                <button
-                  className="text-blue-600 dark:text-blue-400 text-sm mt-1 hover:underline"
+                <Button
+                  color="outline"
+                  className="text-blue-600 dark:text-blue-400 text-sm mt-1 hover:underline px-0 py-0"
                   onClick={() => setDescExpanded((v) => !v)}
                 >
-                  {descExpanded ? "Show less" : "Read more"}
-                </button>
+                  <Typography variant="span">
+                    {descExpanded ? "Show less" : "Read more"}
+                  </Typography>
+                </Button>
               )}
             </div>
             <HorizontalScrollList className="gap-4 py-3">
-              <Button onClick={handleShare}>
-                <FiShare2 size={18} />
+              <Button onClick={handleShare} icon="share" className="px-4 py-2">
                 <span className="whitespace-nowrap">Share</span>
               </Button>
-              {/* <Button onClick={handleOpenInBrowser}>
-                <FiExternalLink size={18} />
-                <span className="whitespace-nowrap">Open in browser</span>
-              </Button> */}
-              <Button color="red" onClick={handleRemoveFromPlaylist}>
-                <MdDelete size={18} />
+              <Button
+                color="red"
+                onClick={handleRemoveFromPlaylist}
+                icon="trash-alt-solid"
+                className="px-4 py-2"
+              >
                 <span className="whitespace-nowrap">Remove from playlist</span>
               </Button>
             </HorizontalScrollList>
