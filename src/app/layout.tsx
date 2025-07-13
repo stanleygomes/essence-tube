@@ -10,15 +10,15 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#363030' },
+    { media: "(prefers-color-scheme: light)", color: "#f7ecd7" },
+    { media: "(prefers-color-scheme: dark)", color: "#3a2c1a" },
   ],
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  viewportFit: 'cover',
-}
+  viewportFit: "cover",
+};
 
 export default function RootLayout({
   children,
