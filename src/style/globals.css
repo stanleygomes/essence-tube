@@ -30,6 +30,10 @@ body {
   font-family: var(--font-pixelify-sans), sans-serif;
 }
 
+.font-geist-mono {
+  font-family: var(--font-geist-mono), monospace;
+}
+
 #app-container {
   /* padding-top: env(safe-area-inset-top); */
   padding-top: calc(60px + env(safe-area-inset-top));
