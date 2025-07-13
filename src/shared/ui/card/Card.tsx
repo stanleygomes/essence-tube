@@ -19,7 +19,7 @@ const colorClasses: Record<string, string> = {
 export default function Card({ children, color = "default", className = "", ...props }: CardProps) {
   return (
     <div
-      className={`w-full p-5 mb-6 max-w-md mx-auto font-pixelify rounded-none border-none transition-all duration-150 
+      className={`w-full p-5 mb-6 font-pixelify rounded-none border-none transition-all duration-150 
         ${colorClasses[color]} 
         active:shadow-none 
         ${className}`}
