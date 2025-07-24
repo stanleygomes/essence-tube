@@ -13,6 +13,9 @@ const {
   SERVER_PATH,
   SERVER_PORT,
   SWAGGER_PATH,
+  REDIS_HOST,
+  REDIS_PORT,
+  REDIS_PASSWORD,
 } = process.env;
 
 export interface Config {
@@ -39,6 +42,11 @@ export interface Config {
     mongodb: {
       uri?: string;
       dbName?: string;
+    };
+    redis: {
+      host?: string;
+      port?: string;
+      password?: string;
     };
   };
   auth: {
@@ -86,6 +94,11 @@ export const config: Config = {
     mongodb: {
       uri: MONGODB_URI,
       dbName: MONGODB_DATABASE,
+    },
+    redis: {
+      host: REDIS_HOST,
+      port: REDIS_PORT,
+      password: REDIS_PASSWORD,
     },
   },
   auth: {
