@@ -138,3 +138,6 @@ dist
 
 # Docker
 .docker
+
+# Editor
+.idea/

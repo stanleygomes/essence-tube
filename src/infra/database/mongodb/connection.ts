@@ -21,33 +21,3 @@ export async function connectMongoose(): Promise<typeof mongoose> {
 
   return mongoose;
 }
-
-// import { MongoClient, Db } from 'mongodb';
-// import { config } from '../../config/index.js';
-
-// const { uri, dbName } = config.databases.mongodb;
-
-// export class MongoConnection {
-//   private static client: MongoClient | undefined;
-//   private static db: Db | undefined;
-
-//   static async connect(): Promise<Db> {
-//     if (this.db) {
-//       return this.db;
-//     }
-
-//     this.client = new MongoClient(uri as string);
-//     await this.client.connect();
-//     this.db = this.client.db(dbName);
-
-//     return this.db;
-//   }
-
-//   static async disconnect(): Promise<void> {
-//     if (this.client) {
-//       await this.client.close();
-//       this.client = undefined;
-//       this.db = undefined;
-//     }
-//   }
-// }
