@@ -1,30 +1,8 @@
 # EssenceTube API
 
-[](https://www.google.com/search?q=https://vercel.com/new/clone%3Frepository-url%3Dhttps%253A%252F%252Fgithub.com%252Fseu-usuario%252Fessense-tube-api)
+
 
 API de suporte para o EssenceTube, um app para listar vídeos de canais do YouTube. Sem algoritmos, sem distrações. Apenas o essencial.
-
------
-
-## 📖 Índice
-
-  - [Sobre o Projeto](https://www.google.com/search?q=%23-sobre-o-projeto)
-      - [Problema Resolvido](https://www.google.com/search?q=%23-problema-resolvido)
-      - [Status do Projeto](https://www.google.com/search?q=%23-status-do-projeto)
-      - [Tech Stack](https://www.google.com/search?q=%23-tech-stack)
-  - [🏛️ Arquitetura](https://www.google.com/search?q=%23%EF%B8%8F-arquitetura)
-      - [Princípios da Clean Architecture](https://www.google.com/search?q=%23-princ%C3%ADpios-da-clean-architecture)
-      - [Estrutura de Pastas](https://www.google.com/search?q=%23-estrutura-de-pastas)
-  - [🚀 Começando](https://www.google.com/search?q=%23-come%C3%A7ando)
-      - [Pré-requisitos](https://www.google.com/search?q=%23-pr%C3%A9-requisitos)
-      - [Instalação](https://www.google.com/search?q=%23-instala%C3%A7%C3%A3o)
-  - [▶️ Uso](https://www.google.com/search?q=%23%EF%B8%8F-uso)
-  - [🔧 Variáveis de Ambiente](https://www.google.com/search?q=%23-vari%C3%A1veis-de-ambiente)
-  - [🚢 Deploy](https://www.google.com/search?q=%23-deploy)
-  - [🤝 Como Contribuir](https://www.google.com/search?q=%23-como-contribuir)
-  - [📜 Licença](https://www.google.com/search?q=%23-licen%C3%A7a)
-
------
 
 ## 🌟 Sobre o Projeto
 
@@ -81,14 +59,18 @@ Essa abordagem nos permite, por exemplo, trocar o MongoDB por outro banco de dad
     ├── config/
     ├── database/
     │   └── mongodb/
+    │   └── redis/
     ├── logger/
     ├── services/
     │   └── google-account/
     │   └── google-auth/
     │   └── youtube/
     ├── web/
-    │   └── express/
+    │   └── vercel/
     │       └── middlewares/
+    │   └── fastify/
+    │       └── docs/
+    │       └── routes/
     └── providers/           # Injeção de Dependência
 ```
 
@@ -101,8 +83,8 @@ Siga estes passos para configurar e executar o projeto localmente.
 ### ✅ Pré-requisitos
 
   - **Node.js**: `v20.x` ou superior.
-  - **npm**: `v10.x` ou superior.
-  - **Vercel CLI**: `npm install -g vercel`
+  - **pnpm**: `v9.8.x` ou superior.
+  - **Vercel CLI**: `pnpm install -g vercel`
   - Um banco de dados MongoDB acessível (localmente ou na nuvem).
 
 ### 💻 Instalação
@@ -114,7 +96,7 @@ Siga estes passos para configurar e executar o projeto localmente.
     ```
 2.  Instale as dependências:
     ```bash
-    npm install
+    pnpm install
     ```
 3.  Crie o arquivo de variáveis de ambiente. Você pode copiar o exemplo (se houver um `.env.example`):
     ```bash
@@ -129,7 +111,7 @@ Siga estes passos para configurar e executar o projeto localmente.
 Para iniciar o servidor de desenvolvimento local (usando a Vercel CLI), execute:
 
 ```bash
-npm start
+pnpm start
 ```
 
 O servidor estará disponível em `http://localhost:3000` (ou na porta definida pela Vercel).
@@ -178,7 +160,7 @@ O versionamento do projeto segue o [Semantic Versioning](https://semver.org/) e 
 Para criar uma nova versão, gere changelog, commit e tag, execute:
 
 ```bash
-npm run release
+pnpm run release
 ```
 
 -----
