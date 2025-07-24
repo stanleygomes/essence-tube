@@ -14,6 +14,10 @@ import {
 import { PlaylistRoutes } from './routes/playlist.route.js';
 import { SubscriptionRoutes } from './routes/subscription.route.js';
 import { VideoRoutes } from './routes/video.route.js';
+import { loginWithGoogleSchema, oauthCallbackSchema } from './docs/auth.doc.js';
+import { listPlaylistsSchema, listVideosFromPlaylistSchema, addVideoToPlaylistSchema, removeVideoFromPlaylistSchema } from './docs/playlist.doc.js';
+import { listSubscriptionsSchema, listLatestVideosFromChannelSchema } from './docs/subscription.doc.js';
+import { getVideoSchema } from './docs/video.doc.js';
 
 export class AppRouter {
   private authRoutes: AuthRoutes;
@@ -45,163 +49,42 @@ export class AppRouter {
   public register(fastify: FastifyInstance, prefix = '') {
     // Auth routes
     fastify.get(`${prefix}/login`, {
-      schema: {
-        description: 'Login with Google',
-        tags: ['Auth'],
-        response: {
-          302: {
-            description: 'Redirect to Google OAuth',
-            type: 'null'
-          }
-        }
-      }
+      schema: loginWithGoogleSchema
     }, this.authRoutes.getUrlConsentHandler);
 
     fastify.get(`${prefix}/oauthcode`, {
-      schema: {
-        description: 'Callback do OAuth do Google',
-        tags: ['Auth'],
-        response: {
-          200: {
-            description: 'Código de autorização recebido',
-            type: 'object'
-          }
-        }
-      }
+      schema: oauthCallbackSchema
     }, this.authRoutes.getUrlRedirectBackHandler);
 
     // Playlist routes
     fastify.get(`${prefix}/playlists`, {
-      schema: {
-        description: 'Lista todas as playlists do usuário',
-        tags: ['Playlist'],
-        response: {
-          200: {
-            description: 'Lista de playlists',
-            type: 'array',
-            items: { type: 'object' }
-          }
-        }
-      }
+      schema: listPlaylistsSchema
     }, this.playlistRoutes.getPlaylistsHandler);
 
     fastify.get(`${prefix}/playlists/:id`, {
-      schema: {
-        description: 'Lista vídeos de uma playlist',
-        tags: ['Playlist'],
-        params: {
-          type: 'object',
-          properties: {
-            id: { type: 'string', description: 'ID da playlist' }
-          },
-          required: ['id']
-        },
-        response: {
-          200: {
-            description: 'Lista de vídeos',
-            type: 'array',
-            items: { type: 'object' }
-          }
-        }
-      }
+      schema: listVideosFromPlaylistSchema
     }, this.playlistRoutes.getVideosFromPlaylistHandler);
 
     fastify.post(`${prefix}/playlists/video`, {
-      schema: {
-        description: 'Adiciona um vídeo a uma playlist',
-        tags: ['Playlist'],
-        querystring: {
-          type: 'object',
-          properties: {
-            playlistId: { type: 'string' },
-            videoId: { type: 'string' }
-          },
-          required: ['playlistId', 'videoId']
-        },
-        response: {
-          200: {
-            description: 'Vídeo adicionado',
-            type: 'object'
-          }
-        }
-      }
+      schema: addVideoToPlaylistSchema
     }, this.playlistRoutes.addPlaylistVideoHandler);
 
     fastify.delete(`${prefix}/playlists/video`, {
-      schema: {
-        description: 'Remove um vídeo de uma playlist',
-        tags: ['Playlist'],
-        querystring: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' }
-          },
-          required: ['id']
-        },
-        response: {
-          200: {
-            description: 'Vídeo removido',
-            type: 'string'
-          }
-        }
-      }
+      schema: removeVideoFromPlaylistSchema
     }, this.playlistRoutes.removePlaylistVideoHandler);
 
     // Subscription routes
     fastify.get(`${prefix}/subscriptions`, {
-      schema: {
-        description: 'Lista canais inscritos',
-        tags: ['Subscription'],
-        response: {
-          200: {
-            description: 'Lista de canais',
-            type: 'array',
-            items: { type: 'object' }
-          }
-        }
-      }
+      schema: listSubscriptionsSchema
     }, this.subscriptionRoutes.getChannelsHandler);
 
     fastify.get(`${prefix}/subscriptions/:id/videos`, {
-      schema: {
-        description: 'Lista últimos vídeos de um canal',
-        tags: ['Subscription'],
-        params: {
-          type: 'object',
-          properties: {
-            id: { type: 'string', description: 'ID do canal' }
-          },
-          required: ['id']
-        },
-        response: {
-          200: {
-            description: 'Lista de vídeos',
-            type: 'array',
-            items: { type: 'object' }
-          }
-        }
-      }
+      schema: listLatestVideosFromChannelSchema
     }, this.subscriptionRoutes.getLatestVideosFromChannelHandler);
 
     // Video routes
     fastify.get(`${prefix}/videos/:id`, {
-      schema: {
-        description: 'Busca dados de um vídeo',
-        tags: ['Video'],
-        params: {
-          type: 'object',
-          properties: {
-            id: { type: 'string', description: 'ID do vídeo' }
-          },
-          required: ['id']
-        },
-        response: {
-          200: {
-            description: 'Dados do vídeo',
-            type: 'object'
-          }
-        }
-      }
+      schema: getVideoSchema
     }, this.videoRoutes.getVideoHandler);
   }
 }
