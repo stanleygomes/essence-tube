@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:8.0.4
+    container_name: essence-tube-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jhon-the-baptist
+      MONGO_INITDB_ROOT_PASSWORD: ABC123
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker/mongo-data:/data/db
+    network_mode: host
+
+  redis:
+    image: redis:7.2.5
+    container_name: essence-tube-redis
+    command: ["redis-server", "--requirepass", "ABC123"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis-data:/data
+    network_mode: host
