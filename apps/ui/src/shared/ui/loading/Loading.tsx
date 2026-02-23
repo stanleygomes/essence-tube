@@ -20,6 +20,7 @@ const Loading: React.FC<LoadingProps> = ({ title }) => {
           />
         ))}
       </div>
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>{`
         @keyframes retro-bar {
           0%, 100% { opacity: 0.3; }

@@ -1,14 +1,16 @@
 {
   "name": "essence-tube",
+  "type": "module",
   "version": "0.1.5",
   "private": true,
   "scripts": {
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
+    "dev": "next dev --port 3000",
     "dev-https": "NODE_TLS_REJECT_UNAUTHORIZED=0 next dev --experimental-https",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "release": "standard-version && git push --follow-tags origin $(git rev-parse --abbrev-ref HEAD)"
+    "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@hackernoon/pixel-icon-library": "^1.0.6",
@@ -25,11 +27,15 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/next-pwa": "^5.6.9",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "standard-version": "^9.5.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "@repo/ui": "*",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "eslint": "^9.39.1",
+    "typescript": "5.9.2"
   }
 }

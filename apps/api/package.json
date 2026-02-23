@@ -7,10 +7,11 @@
     "start": "npx vercel dev --debug",
     "start:fastify": "node --loader ts-node/esm src/infra/web/fastify/server.ts",
     "build": "echo 'No build step required'",
-    "dev": "npm run start:fastify",
+    "dev": "npx vercel dev",
+    "dev:fastify": "npm run start:fastify",
     "deploy": "npx vercel --prod",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
     "check-types": "tsc --noEmit",
     "release": "standard-version && git push --follow-tags origin $(git rev-parse --abbrev-ref HEAD)",
     "containers:up": "docker-compose -f docker-compose.dev.yml up -d",
@@ -37,6 +38,8 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
     "@types/axios": "^0.9.36",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
@@ -46,12 +49,13 @@
     "@types/node": "^24.0.3",
     "@types/uuid": "^10.0.0",
     "@vercel/node": "^5.2.2",
+    "eslint": "^9.39.1",
+    "typescript": "5.9.2",
     "globals": "^16.2.0",
     "pino-pretty": "^13.0.0",
     "prettier": "^3.5.3",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.8.3",
     "vercel": "^42.1.1"
   },
   "engines": {

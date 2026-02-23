@@ -1,6 +1,6 @@
-const konstaConfig = require('konsta/config');
+import konstaConfig from 'konsta/config';
 
-module.exports = konstaConfig({
+export default konstaConfig({
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',

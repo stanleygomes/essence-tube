@@ -5,6 +5,25 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "env": [
+        "GOOGLE_OAUTH_CLIENT_ID",
+        "GOOGLE_OAUTH_CLIENT_SECRET", 
+        "GOOGLE_OAUTH_REDIRECT_URI",
+        "APP_PUBLIC_BASE_URL",
+        "MONGODB_URI",
+        "MONGODB_DATABASE",
+        "APP_CORS_ORIGIN",
+        "NODE_ENV",
+        "JWT_SECRET",
+        "JWT_EXPIRES_IN",
+        "SERVER_URL",
+        "SERVER_PATH",
+        "SERVER_PORT",
+        "SWAGGER_PATH",
+        "REDIS_HOST",
+        "REDIS_PORT",
+        "REDIS_PASSWORD"
+      ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {

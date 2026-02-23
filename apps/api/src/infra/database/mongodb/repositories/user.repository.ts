@@ -34,6 +34,7 @@ export class UserMongoDBRepository implements UserRepository {
 
   async createUser(user: User): Promise<User> {
     try {
+      // eslint-disable-next-line prefer-const
       let doc = UserMapper.toDocument(user);
 
       if ('_id' in doc) {

@@ -48,6 +48,7 @@ export class JwtService implements AuthService {
       const decoded = this.verifyToken(token);
       return this.generateToken(decoded as AuthInfo, decoded.uuid);
     } catch (error) {
+      console.error('Error refreshing token:', error);
       throw new AuthError('Invalid token or token expired');
     }
   }
