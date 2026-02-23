@@ -15,6 +15,7 @@ O YouTube moderno é construído em torno de algoritmos de recomendação que vi
 ## 🛠️ Tech Stack
 
 ### Frontend (UI)
+
 - **Framework:** [Next.js](https://nextjs.org/) (React)
 - **Linguagem:** TypeScript
 - **UI:** TailwindCSS
@@ -23,6 +24,7 @@ O YouTube moderno é construído em torno de algoritmos de recomendação que vi
 - **Deploy:** Vercel
 
 ### Backend (API)
+
 - **Framework**: Express.js (orquestrado via Vercel Functions)
 - **Linguagem**: TypeScript
 - **Banco de Dados**: MongoDB com Mongoose
@@ -31,6 +33,7 @@ O YouTube moderno é construído em torno de algoritmos de recomendação que vi
 - **Deployment**: Vercel
 
 ### Monorepo
+
 - **Ferramenta:** Turborepo
 - **Gerenciamento de pacotes:** npm
 - **Linting:** ESLint
@@ -55,16 +58,19 @@ Essa abordagem nos permite, por exemplo, trocar o MongoDB por outro banco de dad
 Este Turborepo inclui os seguintes apps e packages:
 
 ### Apps
+
 - `api`: API backend (Node.js/TypeScript)
 - `ui`: Interface do usuário (Next.js)
 
 ### Packages
+
 - `@repo/eslint-config`: Configurações ESLint
 - `@repo/typescript-config`: Configurações TypeScript
 
 Cada app/package é 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Utilitários
+
 - [TypeScript](https://www.typescriptlang.org/) para checagem de tipos
 - [ESLint](https://eslint.org/) para linting
 - [Prettier](https://prettier.io) para formatação
@@ -72,10 +78,12 @@ Cada app/package é 100% [TypeScript](https://www.typescriptlang.org/).
 ## 🚀 Começando
 
 ### Pré-requisitos
+
 - Node.js v18.x
 - npm
 
 ### Instalação
+
 ```sh
 npm install
 ```
@@ -109,11 +117,13 @@ npx turbo build --filter=<app-name>
 ```
 
 ### Lint
+
 ```sh
 npm run lint
 ```
 
 ### Checagem de Tipos
+
 ```sh
 npm run check-types
 ```
@@ -121,23 +131,28 @@ npm run check-types
 ## 📖 Uso
 
 ### API
+
 A API fornece endpoints para autenticação, playlists, vídeos e subscriptions.
 
 Para rodar a API localmente:
+
 ```sh
 cd apps/api
 npm run dev
 ```
 
 Ou via Docker:
+
 ```sh
 npm run docker
 ```
 
 ### UI
+
 A interface permite login via Google OAuth, visualização de feed, gerenciamento de subscriptions, etc.
 
 Para rodar a UI:
+
 ```sh
 cd apps/ui
 npm run dev
