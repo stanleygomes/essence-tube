@@ -1,19 +1,17 @@
 {
-  "name": "@essence-tube/api",
+  "name": "api",
+  "type": "module",
   "version": "1.3.0",
-  "description": "EssenceTube API",
-  "main": "api/login.js",
   "scripts": {
-    "start": "npx vercel dev --debug",
-    "start:fastify": "node --loader ts-node/esm src/infra/web/fastify/server.ts",
+    "start": "npx vercel dev",
+    "start:fastify": "SERVER_PORT=5000 node --loader ts-node/esm src/infra/web/fastify/server.ts",
     "build": "echo 'No build step required'",
-    "dev": "npx vercel dev",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx vercel dev --listen 5000 --debug",
     "dev:fastify": "npm run start:fastify",
     "deploy": "npx vercel --prod",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
     "check-types": "tsc --noEmit",
-    "release": "standard-version && git push --follow-tags origin $(git rev-parse --abbrev-ref HEAD)",
     "containers:up": "docker-compose -f docker-compose.dev.yml up -d",
     "containers:down": "docker-compose -f docker-compose.dev.yml down"
   },
@@ -48,19 +46,13 @@
     "@types/mustache": "^4.2.6",
     "@types/node": "^24.0.3",
     "@types/uuid": "^10.0.0",
-    "@vercel/node": "^5.2.2",
+    "@vercel/node": "^5.6.6",
     "eslint": "^9.39.1",
-    "typescript": "5.9.2",
     "globals": "^16.2.0",
     "pino-pretty": "^13.0.0",
     "prettier": "^3.5.3",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.1",
-    "vercel": "^42.1.1"
-  },
-  "engines": {
-    "node": ">=20.x"
-  },
-  "license": "MIT",
-  "type": "module"
+    "typescript": "5.9.2"
+  }
 }
