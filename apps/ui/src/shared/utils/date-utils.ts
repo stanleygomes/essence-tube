@@ -7,4 +7,3 @@ export const humanizeDate = (date: Date): string => {
     locale: enUS,
   });
 }
-
