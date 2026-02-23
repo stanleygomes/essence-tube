@@ -22,7 +22,10 @@
         "SWAGGER_PATH",
         "REDIS_HOST",
         "REDIS_PORT",
-        "REDIS_PASSWORD"
+        "REDIS_PASSWORD",
+        "INSTAGRAM_PROFILES",
+        "INSTAGRAM_SCRAPER_PORT",
+        "MAX_POSTS"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
