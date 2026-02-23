@@ -5,10 +5,11 @@ interface HorizontalScrollListProps {
   className?: string;
 }
 
-const HorizontalScrollList: React.FC<HorizontalScrollListProps> = ({ children, className }) => (
-  <div className={`flex overflow-x-auto ${className || ""}`}>
-    {children}
-  </div>
+const HorizontalScrollList: React.FC<HorizontalScrollListProps> = ({
+  children,
+  className,
+}) => (
+  <div className={`flex overflow-x-auto ${className || ""}`}>{children}</div>
 );
 
 export default HorizontalScrollList;

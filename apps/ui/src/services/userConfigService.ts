@@ -12,7 +12,10 @@ export function getUserConfig(): IUserConfig | null {
   return null;
 }
 
-export function setItemValue<K extends keyof IUserConfig>(key: K, value: IUserConfig[K]) {
+export function setItemValue<K extends keyof IUserConfig>(
+  key: K,
+  value: IUserConfig[K],
+) {
   if (typeof window !== "undefined") {
     const current = getUserConfig() || {};
     const updated = { ...current, [key]: value };

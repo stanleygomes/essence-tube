@@ -23,7 +23,7 @@ export interface YoutubeVideoResponse {
     dimension: string;
     definition: string;
     caption: string;
-    licensedContent: boolean,
+    licensedContent: boolean;
     contentRating: string;
     projection: string;
   };

@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingIcon from '@shared/ui/loading-icon/LoadingIcon';
+import LoadingIcon from "@shared/ui/loading-icon/LoadingIcon";
 import Button, { ButtonColor } from "@shared/ui/button/Button";
 
 export interface ButtonLoadingProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

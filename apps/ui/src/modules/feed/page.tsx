@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import Header from "@shared/components/header/Header";
@@ -23,7 +23,9 @@ export default function Feed() {
   const [addingVideoId, setAddingVideoId] = useState<string | null>(null);
   const [addSuccess, setAddSuccess] = useState<string | null>(null);
   const [addError, setAddError] = useState<string | null>(null);
-  const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(null);
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(
+    null,
+  );
   const [videoIdSuccess, setVideoIdSuccess] = useState<string | null>(null);
   const [videoIdError, setVideoIdError] = useState<string | null>(null);
 
@@ -38,7 +40,7 @@ export default function Feed() {
   const getPlaylistId = (): string | null => {
     const userConfig = getUserConfig();
     return userConfig?.defaultPlaylist || null;
-  }
+  };
 
   const handleCreatorClick = async (creator: any) => {
     setSelectedCreator(creator);
@@ -80,19 +82,18 @@ export default function Feed() {
 
   return (
     <>
-      <Header
-        title='Feed'
-        showLogo={true}
-      />
+      <Header title="Feed" showLogo={true} />
       <div className="py-6">
         <div className="mb-4 px-6">
           <div className="max-w-5xl mx-auto">
-
-        {!loading && creators.length > 0 && (
-          <Typography variant="h2" className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100">
-            Choose a channel
-          </Typography>
-        )}
+            {!loading && creators.length > 0 && (
+              <Typography
+                variant="h2"
+                className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100"
+              >
+                Choose a channel
+              </Typography>
+            )}
             <CreatorsList
               creators={creators}
               loading={loading}
@@ -127,13 +128,21 @@ interface CreatorsListProps {
   onCreatorClick: (creator: any) => void;
 }
 
-function CreatorsList({ creators, loading, onCreatorClick, selectedCreator }: CreatorsListProps & { selectedCreator: any }) {
+function CreatorsList({
+  creators,
+  loading,
+  onCreatorClick,
+  selectedCreator,
+}: CreatorsListProps & { selectedCreator: any }) {
   if (loading) {
     return <Loading title="Loading channels..." />;
   }
   if (!creators.length) {
     return (
-      <Typography variant="span" className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
+      <Typography
+        variant="span"
+        className="text-base text-gray-700 dark:text-gray-200 text-center py-8"
+      >
         No channels found.
       </Typography>
     );
@@ -146,7 +155,7 @@ function CreatorsList({ creators, loading, onCreatorClick, selectedCreator }: Cr
           creator={{
             id: creator.id,
             name: creator.title,
-            avatar: creator.thumbnails.high
+            avatar: creator.thumbnails.high,
           }}
           selected={selectedCreator && selectedCreator.id === creator.id}
           onClick={() => onCreatorClick(creator)}
@@ -185,15 +194,18 @@ function ChannelVideosList({
 
   const buildVideoSubtitle = (video: any): string => {
     if (video.videoPublishedAt) {
-      return 'Published ' + humanizeDate(new Date(video.videoPublishedAt));
+      return "Published " + humanizeDate(new Date(video.videoPublishedAt));
     }
 
-    return '';
-  }
+    return "";
+  };
 
   return (
     <div className="mt-6 max-w-5xl mx-auto">
-      <Typography variant="h2" className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
+      <Typography
+        variant="h2"
+        className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100"
+      >
         Latest videos from {selectedCreator.title}
       </Typography>
       {loading ? (
@@ -207,7 +219,7 @@ function ChannelVideosList({
             gap-4
           "
         >
-          {videos.map(video => (
+          {videos.map((video) => (
             <div key={video.id} className="relative">
               <VideoCard
                 title={video.title}
@@ -224,22 +236,23 @@ function ChannelVideosList({
                   addingVideoId === video.id
                     ? ""
                     : addSuccess && video.id === videoIdSuccess
-                    ? "Added"
-                    : addError && video.id === videoIdError
-                    ? "Error"
-                    : "Add"
+                      ? "Added"
+                      : addError && video.id === videoIdError
+                        ? "Error"
+                        : "Add"
                 }
                 buttonColor={
-                  addSuccess && video.id === videoIdSuccess
-                    ? "green"
-                    : "red"
+                  addSuccess && video.id === videoIdSuccess ? "green" : "red"
                 }
               />
             </div>
           ))}
         </div>
       ) : (
-        <Typography variant="span" className="text-base text-gray-700 dark:text-gray-200 text-center py-8">
+        <Typography
+          variant="span"
+          className="text-base text-gray-700 dark:text-gray-200 text-center py-8"
+        >
           No videos found for this channel.
         </Typography>
       )}

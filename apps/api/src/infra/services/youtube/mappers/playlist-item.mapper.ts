@@ -1,5 +1,5 @@
-import { PlaylistItem } from '../../../../domain/entities/video.entity.js';
-import { YoutubePlaylistItemResponse } from '../responses/youtube-playlist-item.response.js';
+import { PlaylistItem } from "../../../../domain/entities/video.entity.js";
+import { YoutubePlaylistItemResponse } from "../responses/youtube-playlist-item.response.js";
 
 export class PlaylistItemMapper {
   static toEntity(item: YoutubePlaylistItemResponse): PlaylistItem {

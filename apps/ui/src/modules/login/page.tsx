@@ -1,5 +1,5 @@
 import ImageByTheme from "@shared/ui/image-by-theme/ImageByTheme";
-import { config } from '@config/config'
+import { config } from "@config/config";
 import Button from "@shared/ui/button/Button";
 import Card from "@shared/ui/card/Card";
 import Icon from "@shared/ui/icon/Icon";

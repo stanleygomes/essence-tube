@@ -6,7 +6,7 @@ import "@hackernoon/pixel-icon-library/fonts/iconfont.css";
 export const metadata: Metadata = {
   title: "EssenceTube",
   description: "",
-  manifest: '/manifest.json',
+  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {

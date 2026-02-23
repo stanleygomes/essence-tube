@@ -1,4 +1,4 @@
-import { Token } from '../../entities/token.entity.js';
+import { Token } from "../../entities/token.entity.js";
 
 export interface TokenRepository {
   getTokenByUUID(uuid: string): Promise<Token | null>;

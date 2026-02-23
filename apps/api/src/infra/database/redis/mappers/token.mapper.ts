@@ -1,5 +1,5 @@
-import { Token } from '../../../../domain/entities/token.entity.js';
-import { TokenModel } from '../models/token.model.js';
+import { Token } from "../../../../domain/entities/token.entity.js";
+import { TokenModel } from "../models/token.model.js";
 
 export class TokenMapper {
   static toEntity(model: TokenModel): Token {
@@ -24,7 +24,10 @@ export class TokenMapper {
       token_type: entity.token_type,
       refresh_token: entity.refresh_token,
       refresh_token_expires_in: entity.refresh_token_expires_in,
-      created_at: typeof entity.created_at === 'string' ? entity.created_at : entity.created_at.toISOString(),
+      created_at:
+        typeof entity.created_at === "string"
+          ? entity.created_at
+          : entity.created_at.toISOString(),
     };
   }
 }

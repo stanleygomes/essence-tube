@@ -1,5 +1,5 @@
-import { Channel } from '../../../../domain/entities/channel.entity.js';
-import { YoutubeChannelResponse } from '../responses/youtube-channel.response.js';
+import { Channel } from "../../../../domain/entities/channel.entity.js";
+import { YoutubeChannelResponse } from "../responses/youtube-channel.response.js";
 
 export class ChannelMapper {
   static toEntity(item: YoutubeChannelResponse): Channel {

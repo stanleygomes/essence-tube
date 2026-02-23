@@ -1,7 +1,7 @@
-import { BusinessError } from '../../domain/errors/BusinessError.js';
-import { Logger } from '../../infra/logger/pino.logger.js';
-import { GetPartnerBearerTokenUseCase } from './get-bearer-token.js';
-import { PartnerMediaService } from '../../domain/port/services/partner-media.service.js';
+import { BusinessError } from "../../domain/errors/BusinessError.js";
+import { Logger } from "../../infra/logger/pino.logger.js";
+import { GetPartnerBearerTokenUseCase } from "./get-bearer-token.js";
+import { PartnerMediaService } from "../../domain/port/services/partner-media.service.js";
 
 export class RemoveVideoFromPlaylistUseCase {
   constructor(
@@ -15,14 +15,17 @@ export class RemoveVideoFromPlaylistUseCase {
     const accessToken = await this.getPartnerBearerToken.execute(bearerToken);
 
     if (!playlistItemId) {
-      throw new BusinessError('Playlist Item ID is required!');
+      throw new BusinessError("Playlist Item ID is required!");
     }
 
     try {
-      return await this.partnerMediaService.removeVideoFromPlaylist(accessToken, playlistItemId);
+      return await this.partnerMediaService.removeVideoFromPlaylist(
+        accessToken,
+        playlistItemId,
+      );
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error deleting playlist items video api');
+      throw new BusinessError("Error deleting playlist items video api");
     }
   }
 }

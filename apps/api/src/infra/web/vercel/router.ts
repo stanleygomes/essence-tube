@@ -17,26 +17,21 @@ import {
 
 const authRoutes = new AuthRoutes(
   getUrlConsentUseCase,
-  getUrlRedirectBackUseCase
+  getUrlRedirectBackUseCase,
 );
 
 const playlistRoutes = new PlaylistRoutes(
   getVideosFromPlaylistUseCase,
   getPlaylistsUseCase,
   addVideoToPlaylistUseCase,
-  removeVideoFromPlaylistUseCase
+  removeVideoFromPlaylistUseCase,
 );
 
 const videoRoutes = new VideoRoutes(getVideoUseCase);
 
 const subscriptionRoutes = new SubscriptionRoutes(
   getSubscribedChannelsUseCase,
-  getLatestVideosFromChannelUseCase
+  getLatestVideosFromChannelUseCase,
 );
 
-export {
-  authRoutes,
-  playlistRoutes,
-  videoRoutes,
-  subscriptionRoutes,
-};
+export { authRoutes, playlistRoutes, videoRoutes, subscriptionRoutes };

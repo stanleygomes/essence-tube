@@ -1,7 +1,7 @@
-import { BusinessError } from '../../domain/errors/BusinessError.js';
-import { Logger } from '../../infra/logger/pino.logger.js';
-import { GetPartnerBearerTokenUseCase } from './get-bearer-token.js';
-import { PartnerMediaService } from '../../domain/port/services/partner-media.service.js';
+import { BusinessError } from "../../domain/errors/BusinessError.js";
+import { Logger } from "../../infra/logger/pino.logger.js";
+import { GetPartnerBearerTokenUseCase } from "./get-bearer-token.js";
+import { PartnerMediaService } from "../../domain/port/services/partner-media.service.js";
 
 export class GetVideosFromPlaylistUseCase {
   constructor(
@@ -15,14 +15,17 @@ export class GetVideosFromPlaylistUseCase {
     const accessToken = await this.getPartnerBearerToken.execute(bearerToken);
 
     if (!playlistId) {
-      throw new BusinessError('Playlist ID is required!');
+      throw new BusinessError("Playlist ID is required!");
     }
 
     try {
-      return await this.partnerMediaService.getPlaylistItems(accessToken, playlistId);
+      return await this.partnerMediaService.getPlaylistItems(
+        accessToken,
+        playlistId,
+      );
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error retrieving playlist videos video api');
+      throw new BusinessError("Error retrieving playlist videos video api");
     }
   }
 }

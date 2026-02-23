@@ -8,4 +8,3 @@ export interface TokenModel {
   refresh_token_expires_in?: number;
   created_at: string;
 }
-

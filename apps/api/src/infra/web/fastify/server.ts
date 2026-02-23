@@ -1,9 +1,9 @@
-import 'dotenv/config';
-import Fastify, { FastifyInstance } from 'fastify';
-import { AppRouter } from './router.js';
-import { Logger } from '../../logger/pino.logger.js';
-import { config } from '../../config/index.js';
-import { Docs } from './docs.js';
+import "dotenv/config";
+import Fastify, { FastifyInstance } from "fastify";
+import { AppRouter } from "./router.js";
+import { Logger } from "../../logger/pino.logger.js";
+import { config } from "../../config/index.js";
+import { Docs } from "./docs.js";
 
 export class AppServer {
   private fastify: FastifyInstance;

@@ -1,4 +1,4 @@
-import { Model, Document, FilterQuery, UpdateQuery } from 'mongoose';
+import { Model, Document, FilterQuery, UpdateQuery } from "mongoose";
 
 export class MongoRepository<T extends Document> {
   private model: Model<T>;
@@ -8,43 +8,35 @@ export class MongoRepository<T extends Document> {
   }
 
   async find(query: FilterQuery<T> = {}, sort: any = null): Promise<T[]> {
-    let cursor = this.model
-      .find(query);
+    let cursor = this.model.find(query);
 
     if (sort) {
       cursor = cursor.sort(sort);
     }
 
-    return cursor
-      .exec();
+    return cursor.exec();
   }
 
   async findOne(query: FilterQuery<T> = {}): Promise<T | null> {
-    return this.model
-      .findOne(query)
-      .exec();
+    return this.model.findOne(query).exec();
   }
 
   async create(doc: Partial<T>): Promise<T> {
-    return this.model
-      .create(doc);
+    return this.model.create(doc);
   }
 
-  async update(filter: FilterQuery<T>, updateDoc: UpdateQuery<T>): Promise<any> {
-    return this.model
-      .updateOne(filter, updateDoc)
-      .exec();
+  async update(
+    filter: FilterQuery<T>,
+    updateDoc: UpdateQuery<T>,
+  ): Promise<any> {
+    return this.model.updateOne(filter, updateDoc).exec();
   }
 
   async remove(filter: FilterQuery<T>): Promise<any> {
-    return this.model
-      .deleteOne(filter)
-      .exec();
+    return this.model.deleteOne(filter).exec();
   }
 
   async findById(id: string): Promise<T | null> {
-    return this.model
-      .findById(id)
-      .exec();
+    return this.model.findById(id).exec();
   }
 }

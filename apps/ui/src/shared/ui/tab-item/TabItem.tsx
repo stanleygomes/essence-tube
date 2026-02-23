@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import Icon from "@shared/ui/icon/Icon";
@@ -10,7 +9,6 @@ interface TabItemProps {
   icon: string;
   label: string;
 }
-
 
 const TabItem: React.FC<TabItemProps> = ({ active, onClick, icon, label }) => (
   <button

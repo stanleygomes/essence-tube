@@ -1,13 +1,9 @@
 import { config } from "../../../config/index.js";
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export class CorsMiddleware {
   static apply(req: VercelRequest, res: VercelResponse): boolean {
-    const {
-      allowedOrigin,
-      allowedMethods,
-      allowedHeaders,
-    } = config.app.cors;
+    const { allowedOrigin, allowedMethods, allowedHeaders } = config.app.cors;
 
     res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
     res.setHeader("Access-Control-Allow-Methods", allowedMethods);

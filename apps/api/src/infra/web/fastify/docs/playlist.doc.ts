@@ -1,68 +1,67 @@
 export const listPlaylistsSchema = {
-  description: 'Lista todas as playlists do usuário',
-  tags: ['Playlist'],
+  description: "Lista todas as playlists do usuário",
+  tags: ["Playlist"],
   response: {
     200: {
-      description: 'Lista de playlists',
-      type: 'array',
-      items: { type: 'object' }
-    }
-  }
+      description: "Lista de playlists",
+      type: "array",
+      items: { type: "object" },
+    },
+  },
 };
 
 export const listVideosFromPlaylistSchema = {
-  description: 'Lista vídeos de uma playlist',
-  tags: ['Playlist'],
+  description: "Lista vídeos de uma playlist",
+  tags: ["Playlist"],
   params: {
-    type: 'object',
+    type: "object",
     properties: {
-      id: { type: 'string', description: 'ID da playlist' }
+      id: { type: "string", description: "ID da playlist" },
     },
-    required: ['id']
+    required: ["id"],
   },
   response: {
     200: {
-      description: 'Lista de vídeos',
-      type: 'array',
-      items: { type: 'object' }
-    }
-  }
+      description: "Lista de vídeos",
+      type: "array",
+      items: { type: "object" },
+    },
+  },
 };
 
 export const addVideoToPlaylistSchema = {
-  description: 'Adiciona um vídeo a uma playlist',
-  tags: ['Playlist'],
+  description: "Adiciona um vídeo a uma playlist",
+  tags: ["Playlist"],
   querystring: {
-    type: 'object',
+    type: "object",
     properties: {
-      playlistId: { type: 'string' },
-      videoId: { type: 'string' }
+      playlistId: { type: "string" },
+      videoId: { type: "string" },
     },
-    required: ['playlistId', 'videoId']
+    required: ["playlistId", "videoId"],
   },
   response: {
     200: {
-      description: 'Vídeo adicionado',
-      type: 'object'
-    }
-  }
+      description: "Vídeo adicionado",
+      type: "object",
+    },
+  },
 };
 
 export const removeVideoFromPlaylistSchema = {
-  description: 'Remove um vídeo de uma playlist',
-  tags: ['Playlist'],
+  description: "Remove um vídeo de uma playlist",
+  tags: ["Playlist"],
   querystring: {
-    type: 'object',
+    type: "object",
     properties: {
-      id: { type: 'string' }
+      id: { type: "string" },
     },
-    required: ['id']
+    required: ["id"],
   },
   response: {
     200: {
-      description: 'Vídeo removido',
-      type: 'string'
-    }
-  }
+      description: "Vídeo removido",
+      type: "string",
+    },
+  },
 };
-

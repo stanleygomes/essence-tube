@@ -1,16 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const bars = 12;
 const duration = 1.2;
 
 const LoadingIcon: React.FC<{ className?: string }> = ({ className }) => (
   <>
-    <svg
-      className={className}
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
-    >
+    <svg className={className} width="40" height="40" viewBox="0 0 40 40">
       {[...Array(bars)].map((_, i) => (
         <rect
           key={i}

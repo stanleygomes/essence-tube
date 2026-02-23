@@ -18,7 +18,10 @@ export class PlaylistRoutes {
 
   private logger = Logger.getLogger();
 
-  async getVideosFromPlaylist(req: VercelRequest, res: VercelResponse): Promise<void> {
+  async getVideosFromPlaylist(
+    req: VercelRequest,
+    res: VercelResponse,
+  ): Promise<void> {
     if (CorsMiddleware.apply(req, res)) return;
 
     const bearerToken = GetTokenMiddleware.get(req, res);
@@ -26,25 +29,35 @@ export class PlaylistRoutes {
       return;
     }
 
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
-      const playlistId = typeof req.query.id === 'string' ? req.query.id : Array.isArray(req.query.id) ? req.query.id[0] : undefined;
-      const response = await this.getVideosFromPlaylistUseCase.execute(bearerToken ?? '', playlistId ?? '');
+      const playlistId =
+        typeof req.query.id === "string"
+          ? req.query.id
+          : Array.isArray(req.query.id)
+            ? req.query.id[0]
+            : undefined;
+      const response = await this.getVideosFromPlaylistUseCase.execute(
+        bearerToken ?? "",
+        playlistId ?? "",
+      );
 
       res.status(200).json(response);
     } catch (error: any) {
       this.logger.error(error);
-  
+
       if (error instanceof BusinessError) {
         res.status(400).json({ message: error.message });
         return;
       }
-  
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 
@@ -56,8 +69,8 @@ export class PlaylistRoutes {
       return;
     }
 
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
@@ -67,17 +80,22 @@ export class PlaylistRoutes {
       res.status(200).json(response);
     } catch (error: any) {
       this.logger.error(error);
-  
+
       if (error instanceof BusinessError) {
         res.status(400).json({ message: error.message });
         return;
       }
-  
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 
-  async addPlaylistVideo(req: VercelRequest, res: VercelResponse): Promise<void> {
+  async addPlaylistVideo(
+    req: VercelRequest,
+    res: VercelResponse,
+  ): Promise<void> {
     if (CorsMiddleware.apply(req, res)) return;
 
     const bearerToken = GetTokenMiddleware.get(req, res);
@@ -85,30 +103,49 @@ export class PlaylistRoutes {
       return;
     }
 
-    if (req.method !== 'POST') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "POST") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
-      const playlistId = typeof req.query.playlistId === 'string' ? req.query.playlistId : Array.isArray(req.query.playlistId) ? req.query.playlistId[0] : '';
-      const videoId = typeof req.query.videoId === 'string' ? req.query.videoId : Array.isArray(req.query.videoId) ? req.query.videoId[0] : '';
-      const response = await this.addVideoToPlaylistUseCase.execute(bearerToken, playlistId, videoId);
+      const playlistId =
+        typeof req.query.playlistId === "string"
+          ? req.query.playlistId
+          : Array.isArray(req.query.playlistId)
+            ? req.query.playlistId[0]
+            : "";
+      const videoId =
+        typeof req.query.videoId === "string"
+          ? req.query.videoId
+          : Array.isArray(req.query.videoId)
+            ? req.query.videoId[0]
+            : "";
+      const response = await this.addVideoToPlaylistUseCase.execute(
+        bearerToken,
+        playlistId,
+        videoId,
+      );
 
       res.status(200).json(response);
     } catch (error: any) {
       this.logger.error(error);
-  
+
       if (error instanceof BusinessError) {
         res.status(400).json({ message: error.message });
         return;
       }
-  
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 
-  async removePlaylistVideo(req: VercelRequest, res: VercelResponse): Promise<void> {
+  async removePlaylistVideo(
+    req: VercelRequest,
+    res: VercelResponse,
+  ): Promise<void> {
     if (CorsMiddleware.apply(req, res)) return;
 
     const bearerToken = GetTokenMiddleware.get(req, res);
@@ -116,35 +153,40 @@ export class PlaylistRoutes {
       return;
     }
 
-    if (req.method !== 'DELETE') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "DELETE") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
       const playlistId = this.getQueryId(req);
-      await this.removeVideoFromPlaylistUseCase.execute(bearerToken, playlistId);
+      await this.removeVideoFromPlaylistUseCase.execute(
+        bearerToken,
+        playlistId,
+      );
 
       res.status(200).json("OK");
     } catch (error: any) {
       this.logger.error(error);
-  
+
       if (error instanceof BusinessError) {
         res.status(400).json({ message: error.message });
         return;
       }
-  
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 
   private getQueryId(req: VercelRequest): string | undefined {
-    if (typeof req.query.id === 'string') {
+    if (typeof req.query.id === "string") {
       return req.query.id;
     }
-    
+
     if (Array.isArray(req.query.id)) {
-      return req.query.id[0]
+      return req.query.id[0];
     }
 
     return undefined;

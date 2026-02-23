@@ -1,12 +1,17 @@
-import { Token } from '../../../../domain/entities/token.entity.js';
-import { BusinessError } from '../../../../domain/errors/BusinessError.js';
-import { GoogleTokenResponse } from '../responses/google-token.response.js';
+import { Token } from "../../../../domain/entities/token.entity.js";
+import { BusinessError } from "../../../../domain/errors/BusinessError.js";
+import { GoogleTokenResponse } from "../responses/google-token.response.js";
 
 export class TokenMapper {
   static toEntity(response: GoogleTokenResponse): Token {
-    if (!response || !response.access_token || !response.refresh_token || !response.expires_in) {
-      const responseJson = JSON.stringify(response)
-      throw new BusinessError(`Response token invalid: ${responseJson}`)
+    if (
+      !response ||
+      !response.access_token ||
+      !response.refresh_token ||
+      !response.expires_in
+    ) {
+      const responseJson = JSON.stringify(response);
+      throw new BusinessError(`Response token invalid: ${responseJson}`);
     }
 
     return {

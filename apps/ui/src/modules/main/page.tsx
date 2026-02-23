@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Home from '@modules/home/page';
-import Feed from '@modules/feed/page';
-import TabBar from '@shared/ui/tab-bar/TabBar';
-import TabItem from '@shared/ui/tab-item/TabItem';
-import TabView from '@shared/ui/tab-view/TabView';
+import { useState } from "react";
+import Home from "@modules/home/page";
+import Feed from "@modules/feed/page";
+import TabBar from "@shared/ui/tab-bar/TabBar";
+import TabItem from "@shared/ui/tab-item/TabItem";
+import TabView from "@shared/ui/tab-view/TabView";
 
 export interface IMain {
   activeTabDefault: string;
@@ -32,7 +32,7 @@ export default function Main({ activeTabDefault }: IMain) {
   return (
     <div className="flex flex-col min-h-screen">
       <TabBar>
-        {tabs.map(tab => (
+        {tabs.map((tab) => (
           <TabItem
             key={tab.key}
             active={activeTab === tab.key}
@@ -44,7 +44,7 @@ export default function Main({ activeTabDefault }: IMain) {
       </TabBar>
 
       <div className="flex-1 pb-16 pt-4">
-        {tabs.map(tab => (
+        {tabs.map((tab) => (
           <TabView key={tab.key} active={activeTab === tab.key}>
             {tab.content}
           </TabView>

@@ -1,23 +1,23 @@
-import { MongoRepository } from '../repository.js';
-import { BusinessError } from '../../../../domain/errors/BusinessError.js';
-import type { User } from '../../../../domain/entities/user.entity.js';
-import { UserMapper } from '../mappers/user.mapper.js';
-import { Logger } from '../../../logger/pino.logger.js'
-import type { UserRepository } from '../../../../domain/port/databases/user.repository.js';
-import { UserDocument, UserModel } from '../schemas/user.schema.js';
+import { MongoRepository } from "../repository.js";
+import { BusinessError } from "../../../../domain/errors/BusinessError.js";
+import type { User } from "../../../../domain/entities/user.entity.js";
+import { UserMapper } from "../mappers/user.mapper.js";
+import { Logger } from "../../../logger/pino.logger.js";
+import type { UserRepository } from "../../../../domain/port/databases/user.repository.js";
+import { UserDocument, UserModel } from "../schemas/user.schema.js";
 
 export class UserMongoDBRepository implements UserRepository {
   private userRepository = new MongoRepository(UserModel);
-  private logger = Logger.getLogger()
+  private logger = Logger.getLogger();
 
   async getUserByUUID(uuid: string): Promise<User | null> {
     try {
-      const doc = await this.userRepository.findOne({ uuid })
+      const doc = await this.userRepository.findOne({ uuid });
 
       return doc ? UserMapper.toEntity(doc) : null;
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error retrieving user by uuid from database');
+      throw new BusinessError("Error retrieving user by uuid from database");
     }
   }
 
@@ -28,7 +28,9 @@ export class UserMongoDBRepository implements UserRepository {
       return doc ? UserMapper.toEntity(doc) : null;
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error retrieving user by partner_id from database');
+      throw new BusinessError(
+        "Error retrieving user by partner_id from database",
+      );
     }
   }
 
@@ -37,15 +39,17 @@ export class UserMongoDBRepository implements UserRepository {
       // eslint-disable-next-line prefer-const
       let doc = UserMapper.toDocument(user);
 
-      if ('_id' in doc) {
+      if ("_id" in doc) {
         delete (doc as any)._id;
       }
 
-      await this.userRepository.create(doc as Omit<Partial<UserDocument>, '_id'>);
+      await this.userRepository.create(
+        doc as Omit<Partial<UserDocument>, "_id">,
+      );
       return user;
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error creating user to database');
+      throw new BusinessError("Error creating user to database");
     }
   }
 
@@ -56,7 +60,7 @@ export class UserMongoDBRepository implements UserRepository {
       return user;
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error updating user to database');
+      throw new BusinessError("Error updating user to database");
     }
   }
 }

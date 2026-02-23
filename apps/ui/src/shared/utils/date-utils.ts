@@ -6,4 +6,4 @@ export const humanizeDate = (date: Date): string => {
     addSuffix: true,
     locale: enUS,
   });
-}
+};

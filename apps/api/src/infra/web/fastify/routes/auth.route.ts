@@ -1,8 +1,8 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { GetUrlConsentUseCase } from '../../../../application/usecases/get-url-consent-use-case.js';
-import { GetUrlRedirectBackUseCase } from '../../../../application/usecases/get-url-redirect-back.js';
-import { BusinessError } from '../../../../domain/errors/BusinessError.js';
-import { Logger } from '../../../logger/pino.logger.js';
+import { FastifyRequest, FastifyReply } from "fastify";
+import { GetUrlConsentUseCase } from "../../../../application/usecases/get-url-consent-use-case.js";
+import { GetUrlRedirectBackUseCase } from "../../../../application/usecases/get-url-redirect-back.js";
+import { BusinessError } from "../../../../domain/errors/BusinessError.js";
+import { Logger } from "../../../logger/pino.logger.js";
 
 export class AuthRoutes {
   private logger = Logger.getLogger();
@@ -18,16 +18,21 @@ export class AuthRoutes {
       reply.redirect(redirectUrl, 302);
     } catch (error: any) {
       this.logger.error(error);
-      reply.status(500).send({ message: 'Internal server error!', error: error.message });
+      reply
+        .status(500)
+        .send({ message: "Internal server error!", error: error.message });
     }
   };
 
-  getUrlRedirectBackHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+  getUrlRedirectBackHandler = async (
+    request: FastifyRequest,
+    reply: FastifyReply,
+  ) => {
     try {
       const { code } = request.query as { code?: string };
 
       if (!code) {
-        reply.status(400).send({ message: 'Missing authCode parameter.' });
+        reply.status(400).send({ message: "Missing authCode parameter." });
         return;
       }
 
@@ -41,7 +46,9 @@ export class AuthRoutes {
         return;
       }
 
-      reply.status(500).send({ message: 'Internal server error!', error: error.message });
+      reply
+        .status(500)
+        .send({ message: "Internal server error!", error: error.message });
     }
   };
 }

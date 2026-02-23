@@ -1,4 +1,4 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyRequest, FastifyReply } from "fastify";
 import { BusinessError } from "../../../../domain/errors/BusinessError.js";
 import { Logger } from "../../../logger/pino.logger.js";
 import { GetSubscribedChannelsUseCase } from "../../../../application/usecases/get-subscribed-channels.js";
@@ -14,14 +14,15 @@ export class SubscriptionRoutes {
 
   getChannelsHandler = async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      const bearerToken = request.headers.authorization?.replace('Bearer ', '');
+      const bearerToken = request.headers.authorization?.replace("Bearer ", "");
 
       if (!bearerToken) {
-        reply.status(401).send({ message: 'Unauthorized' });
+        reply.status(401).send({ message: "Unauthorized" });
         return;
       }
 
-      const response = await this.getSubscribedChannelsUseCase.execute(bearerToken);
+      const response =
+        await this.getSubscribedChannelsUseCase.execute(bearerToken);
       reply.status(200).send(response);
     } catch (error: any) {
       this.logger.error(error);
@@ -31,23 +32,31 @@ export class SubscriptionRoutes {
         return;
       }
 
-      reply.status(500).send({ message: 'Internal server error!', error: error.message });
+      reply
+        .status(500)
+        .send({ message: "Internal server error!", error: error.message });
     }
   };
 
-  getLatestVideosFromChannelHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+  getLatestVideosFromChannelHandler = async (
+    request: FastifyRequest,
+    reply: FastifyReply,
+  ) => {
     try {
-      const bearerToken = request.headers.authorization?.replace('Bearer ', '');
+      const bearerToken = request.headers.authorization?.replace("Bearer ", "");
 
       if (!bearerToken) {
-        reply.status(401).send({ message: 'Unauthorized' });
+        reply.status(401).send({ message: "Unauthorized" });
         return;
       }
 
       const { id } = request.query as { id?: string | string[] };
-      const channelId = Array.isArray(id) ? id[0] : id ?? '';
+      const channelId = Array.isArray(id) ? id[0] : (id ?? "");
 
-      const response = await this.getLatestVideosFromChannelUseCase.execute(bearerToken, channelId);
+      const response = await this.getLatestVideosFromChannelUseCase.execute(
+        bearerToken,
+        channelId,
+      );
       reply.status(200).send(response);
     } catch (error: any) {
       this.logger.error(error);
@@ -57,7 +66,9 @@ export class SubscriptionRoutes {
         return;
       }
 
-      reply.status(500).send({ message: 'Internal server error!', error: error.message });
+      reply
+        .status(500)
+        .send({ message: "Internal server error!", error: error.message });
     }
   };
 }

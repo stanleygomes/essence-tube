@@ -1,5 +1,5 @@
-import { RedisClientType } from 'redis';
-import { connectRedis } from './connection.js';
+import { RedisClientType } from "redis";
+import { connectRedis } from "./connection.js";
 
 export class RedisRepository<T> {
   private readonly prefix: string;
@@ -35,7 +35,7 @@ export class RedisRepository<T> {
   async update(id: string, value: Partial<T>): Promise<void> {
     const client = await this.getClient();
     const existing = await this.findOne(id);
-    if (!existing) throw new Error('Entity not found');
+    if (!existing) throw new Error("Entity not found");
     const updated = { ...existing, ...value };
     await client.set(this.getKey(id), JSON.stringify(updated));
   }

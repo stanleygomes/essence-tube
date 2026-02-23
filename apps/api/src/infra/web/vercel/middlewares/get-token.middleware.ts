@@ -1,11 +1,11 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export class GetTokenMiddleware {
   static get(req: VercelRequest, res: VercelResponse): string | undefined {
     const sessionId = this.getBearerTokenId(req);
 
     if (!sessionId) {
-      res.status(401).send("Not authorized!")
+      res.status(401).send("Not authorized!");
       return undefined;
     }
 
@@ -17,12 +17,12 @@ export class GetTokenMiddleware {
   }
 
   private static getBearerTokenId(req: VercelRequest): string {
-    const authHeader = req.headers['authorization'];
+    const authHeader = req.headers["authorization"];
 
-    if (typeof authHeader === 'string' && authHeader.startsWith('Bearer ')) {
-      return authHeader.replace('Bearer ', '').trim();
+    if (typeof authHeader === "string" && authHeader.startsWith("Bearer ")) {
+      return authHeader.replace("Bearer ", "").trim();
     }
 
-    return typeof authHeader === 'string' ? authHeader : '';
+    return typeof authHeader === "string" ? authHeader : "";
   }
 }

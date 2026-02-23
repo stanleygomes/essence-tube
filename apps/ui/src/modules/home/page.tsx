@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import Header from "@shared/components/header/Header";
@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <>
-      <Header title='Home' showLogo={true} />
+      <Header title="Home" showLogo={true} />
       <div className="px-2 sm:px-4">
         <div className="max-w-5xl mx-auto">
           <PullToRefresh onRefresh={fetchVideosFromDefaultPlaylist}>
@@ -71,7 +71,10 @@ export default function Home() {
             ) : loadingPlaylists ? (
               <Loading title="Loading playlists..." />
             ) : (
-              <PlaylistList playlists={playlists} onSelect={handleSelectPlaylist} />
+              <PlaylistList
+                playlists={playlists}
+                onSelect={handleSelectPlaylist}
+              />
             )}
           </PullToRefresh>
         </div>
@@ -86,11 +89,11 @@ interface VideoListProps {
 }
 
 function buildVideoSubtitle(video: any): string {
-  const owner = video.owner?.title ? `By ${video.owner.title}` : '';
-  let publishedAt = '';
+  const owner = video.owner?.title ? `By ${video.owner.title}` : "";
+  let publishedAt = "";
 
   if (video.videoPublishedAt) {
-    publishedAt = ' • ' + humanizeDate(new Date(video.videoPublishedAt));
+    publishedAt = " • " + humanizeDate(new Date(video.videoPublishedAt));
   }
 
   return `${owner}${publishedAt}`;
@@ -102,7 +105,10 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mt-2 mx-4">
-        <Typography variant="h2" className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <Typography
+          variant="h2"
+          className="text-lg font-semibold text-gray-900 dark:text-gray-100"
+        >
           Your videos
         </Typography>
         <Button
@@ -122,7 +128,7 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
           mx-4 mt-3
         "
       >
-        {videos.map(video => (
+        {videos.map((video) => (
           <VideoCard
             key={video.id}
             link={`/video/${video.id}/${video.videoId}`}

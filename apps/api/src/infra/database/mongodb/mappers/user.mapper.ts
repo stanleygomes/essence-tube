@@ -1,5 +1,5 @@
-import { User } from '../../../../domain/entities/user.entity.js';
-import type { UserDocument } from '../schemas/user.schema.js';
+import { User } from "../../../../domain/entities/user.entity.js";
+import type { UserDocument } from "../schemas/user.schema.js";
 
 export class UserMapper {
   static toEntity(doc: UserDocument): User {

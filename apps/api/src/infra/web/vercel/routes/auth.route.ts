@@ -11,10 +11,10 @@ export class AuthRoutes {
   ) {}
 
   private logger = Logger.getLogger();
-  
+
   getUrlConsent(req: VercelRequest, res: VercelResponse): void {
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
@@ -22,30 +22,41 @@ export class AuthRoutes {
     res.redirect(302, redirectUrl);
   }
 
-  async getUrlRedirectBack(req: VercelRequest, res: VercelResponse): Promise<void> {
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+  async getUrlRedirectBack(
+    req: VercelRequest,
+    res: VercelResponse,
+  ): Promise<void> {
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
-      const authCode = typeof req.query.code === 'string' ? req.query.code : Array.isArray(req.query.code) ? req.query.code[0] : undefined;
+      const authCode =
+        typeof req.query.code === "string"
+          ? req.query.code
+          : Array.isArray(req.query.code)
+            ? req.query.code[0]
+            : undefined;
       if (!authCode) {
-        res.status(400).json({ message: 'Missing authCode parameter.' });
+        res.status(400).json({ message: "Missing authCode parameter." });
         return;
       }
-  
-      const redirectUrl = await this.getUrlRedirectBackUseCase.execute(authCode);
+
+      const redirectUrl =
+        await this.getUrlRedirectBackUseCase.execute(authCode);
       res.redirect(302, redirectUrl);
     } catch (error: any) {
       this.logger.error(error);
-  
+
       if (error instanceof BusinessError) {
         res.status(400).json({ message: error.message });
         return;
       }
-  
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 }

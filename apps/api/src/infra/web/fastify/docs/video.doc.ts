@@ -1,18 +1,17 @@
 export const getVideoSchema = {
-  description: 'Busca dados de um vídeo',
-  tags: ['Video'],
+  description: "Busca dados de um vídeo",
+  tags: ["Video"],
   params: {
-    type: 'object',
+    type: "object",
     properties: {
-      id: { type: 'string', description: 'ID do vídeo' }
+      id: { type: "string", description: "ID do vídeo" },
     },
-    required: ['id']
+    required: ["id"],
   },
   response: {
     200: {
-      description: 'Dados do vídeo',
-      type: 'object'
-    }
-  }
+      description: "Dados do vídeo",
+      type: "object",
+    },
+  },
 };
-

@@ -1,5 +1,5 @@
-import { VideoMetadata } from '../../../../domain/entities/video.entity.js';
-import { YoutubeVideoResponse } from '../responses/youtube-search.response.js';
+import { VideoMetadata } from "../../../../domain/entities/video.entity.js";
+import { YoutubeVideoResponse } from "../responses/youtube-search.response.js";
 
 export class VideoMapper {
   static toEntity(item: YoutubeVideoResponse): VideoMetadata {

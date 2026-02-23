@@ -1,16 +1,26 @@
-import { Token } from '../entities/token.entity.js';
-import { BusinessError } from '../errors/BusinessError.js';
+import { Token } from "../entities/token.entity.js";
+import { BusinessError } from "../errors/BusinessError.js";
 
 export class TokenFactory {
-  static build(tokenResponse: Token, uuid: string, token?: string | null): Token {
+  static build(
+    tokenResponse: Token,
+    uuid: string,
+    token?: string | null,
+  ): Token {
     if (!tokenResponse || !tokenResponse.access_token) {
-      throw new BusinessError('Invalid token response from Google. Absent access_token.');
+      throw new BusinessError(
+        "Invalid token response from Google. Absent access_token.",
+      );
     }
     if (!tokenResponse.refresh_token) {
-      throw new BusinessError('Invalid token response from Google. Absent refresh_token.');
+      throw new BusinessError(
+        "Invalid token response from Google. Absent refresh_token.",
+      );
     }
     if (!tokenResponse.expires_in) {
-      throw new BusinessError('Invalid token response from Google. Absent expires_in.');
+      throw new BusinessError(
+        "Invalid token response from Google. Absent expires_in.",
+      );
     }
 
     return {

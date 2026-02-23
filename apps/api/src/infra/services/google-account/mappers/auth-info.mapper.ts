@@ -1,5 +1,5 @@
-import { AuthInfo } from '../../../../domain/entities/auth-info.entity.js';
-import { GoogleAccountInfoResponse } from '../responses/google-account-info.response.js';
+import { AuthInfo } from "../../../../domain/entities/auth-info.entity.js";
+import { GoogleAccountInfoResponse } from "../responses/google-account-info.response.js";
 
 export class AuthInfoMapper {
   static toEntity(response: GoogleAccountInfoResponse): AuthInfo {

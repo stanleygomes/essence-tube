@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-import { config } from '../config/index.js';
-import { AuthInfo } from '../../domain/entities/auth-info.entity.js';
-import { AuthError } from '../../domain/errors/AuthError.js';
-import { AuthService } from '../../domain/port/auth/auth.service.js';
+import jwt from "jsonwebtoken";
+import { config } from "../config/index.js";
+import { AuthInfo } from "../../domain/entities/auth-info.entity.js";
+import { AuthError } from "../../domain/errors/AuthError.js";
+import { AuthService } from "../../domain/port/auth/auth.service.js";
 
 const { jwtSecret, jwtExpiresInSeconds } = config.auth;
 
@@ -16,24 +16,26 @@ interface Payload {
 export class JwtService implements AuthService {
   generateToken(authInfo: AuthInfo, userUUID: string): string {
     if (!jwtSecret) {
-      throw new AuthError('JWT Secret is not defined');
+      throw new AuthError("JWT Secret is not defined");
     }
 
     if (!jwtExpiresInSeconds) {
-      throw new AuthError('JWT Expiration is not defined');
+      throw new AuthError("JWT Expiration is not defined");
     }
 
-    if (typeof authInfo !== 'object' || authInfo === null) {
-      throw new AuthError('Auth info must be a non-null object');
+    if (typeof authInfo !== "object" || authInfo === null) {
+      throw new AuthError("Auth info must be a non-null object");
     }
 
     const payload = this.buildPayload(authInfo, userUUID);
-    return jwt.sign(payload, jwtSecret, { expiresIn: Number(jwtExpiresInSeconds) });
+    return jwt.sign(payload, jwtSecret, {
+      expiresIn: Number(jwtExpiresInSeconds),
+    });
   }
 
   verifyToken(token: string): any {
-    if (!jwtSecret){
-      throw new AuthError('JWT Secret is not defined');
+    if (!jwtSecret) {
+      throw new AuthError("JWT Secret is not defined");
     }
 
     return jwt.verify(token, jwtSecret);
@@ -41,15 +43,15 @@ export class JwtService implements AuthService {
 
   refreshToken(token: string): string {
     if (!token) {
-      throw new AuthError('Token is not defined');
+      throw new AuthError("Token is not defined");
     }
 
     try {
       const decoded = this.verifyToken(token);
       return this.generateToken(decoded as AuthInfo, decoded.uuid);
     } catch (error) {
-      console.error('Error refreshing token:', error);
-      throw new AuthError('Invalid token or token expired');
+      console.error("Error refreshing token:", error);
+      throw new AuthError("Invalid token or token expired");
     }
   }
 
@@ -63,6 +65,6 @@ export class JwtService implements AuthService {
       name: authInfo.name,
       email: authInfo.email,
       photo_url: authInfo.photo_url,
-    } as Payload
+    } as Payload;
   }
 }

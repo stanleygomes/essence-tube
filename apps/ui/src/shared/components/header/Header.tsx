@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ImageByTheme from '../../ui/image-by-theme/ImageByTheme';
+import ImageByTheme from "../../ui/image-by-theme/ImageByTheme";
 import Image from "next/image";
 
 import BackButton from "@shared/components/back-button/BackButton";
@@ -15,7 +15,7 @@ export interface IHeader {
   showBackButton?: boolean;
   backButtonText?: string;
   actionButton?: React.ReactNode;
-  backButtonRoute?: string,
+  backButtonRoute?: string;
   showUserPhoto?: boolean;
 }
 

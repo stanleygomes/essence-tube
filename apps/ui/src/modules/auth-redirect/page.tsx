@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,7 @@ import { jwtDecode } from "jwt-decode";
 import { IUser, setUser } from "@services/userStorageService";
 
 export interface IAuthRedirect {
-  sessionToken?: string,
+  sessionToken?: string;
 }
 
 export default function AuthRedirect({ sessionToken }: IAuthRedirect) {
@@ -45,9 +45,5 @@ export default function AuthRedirect({ sessionToken }: IAuthRedirect) {
     );
   }
 
-  return (
-    <Loading
-      title="Authenticating... Please wait a moment."
-    />
-  );
+  return <Loading title="Authenticating... Please wait a moment." />;
 }

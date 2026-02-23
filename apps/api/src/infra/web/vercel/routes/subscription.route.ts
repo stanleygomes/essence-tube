@@ -12,7 +12,7 @@ export class SubscriptionRoutes {
     private readonly getLatestVideosFromChannelUseCase: GetLatestVideosFromChannelUseCase,
   ) {}
 
-  private logger = Logger.getLogger()
+  private logger = Logger.getLogger();
 
   async getChannels(req: VercelRequest, res: VercelResponse): Promise<void> {
     if (CorsMiddleware.apply(req, res)) return;
@@ -22,13 +22,14 @@ export class SubscriptionRoutes {
       return;
     }
 
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
-      const response = await this.getSubscribedChannelsUseCase.execute(bearerToken);
+      const response =
+        await this.getSubscribedChannelsUseCase.execute(bearerToken);
 
       res.status(200).json(response);
     } catch (error: any) {
@@ -39,11 +40,16 @@ export class SubscriptionRoutes {
         return;
       }
 
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 
-  async getLatestVideosFromChannel(req: VercelRequest, res: VercelResponse): Promise<void> {
+  async getLatestVideosFromChannel(
+    req: VercelRequest,
+    res: VercelResponse,
+  ): Promise<void> {
     if (CorsMiddleware.apply(req, res)) return;
 
     const bearerToken = GetTokenMiddleware.get(req, res);
@@ -51,14 +57,22 @@ export class SubscriptionRoutes {
       return;
     }
 
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
-      const channelId = typeof req.query.id === 'string' ? req.query.id : Array.isArray(req.query.id) ? req.query.id[0] : '';
-      const response = await this.getLatestVideosFromChannelUseCase.execute(bearerToken, channelId);
+      const channelId =
+        typeof req.query.id === "string"
+          ? req.query.id
+          : Array.isArray(req.query.id)
+            ? req.query.id[0]
+            : "";
+      const response = await this.getLatestVideosFromChannelUseCase.execute(
+        bearerToken,
+        channelId,
+      );
 
       res.status(200).json(response);
     } catch (error: any) {
@@ -69,9 +83,9 @@ export class SubscriptionRoutes {
         return;
       }
 
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
-
-  
 }

@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import ButtonLoading from "@shared/components/button-loading/ButtonLoading";
 import Image from "next/image";
@@ -61,7 +60,7 @@ export default function VideoCard({
         {buttonClick && (
           <div className="ml-4 flex-shrink-0">
             <ButtonLoading
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation();
                 if (!loadingAddButton) buttonClick();
               }}

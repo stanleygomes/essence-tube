@@ -1,4 +1,4 @@
-import { User } from '../../entities/user.entity.js';
+import { User } from "../../entities/user.entity.js";
 
 export interface UserRepository {
   getUserByUUID(uuid: string): Promise<User | null>;

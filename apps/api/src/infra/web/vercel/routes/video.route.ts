@@ -8,7 +8,7 @@ import { GetTokenMiddleware } from "../middlewares/get-token.middleware.js";
 export class VideoRoutes {
   constructor(private readonly getVideoUseCase: GetVideoUseCase) {}
 
-  private logger = Logger.getLogger()
+  private logger = Logger.getLogger();
 
   async getVideo(req: VercelRequest, res: VercelResponse): Promise<void> {
     if (CorsMiddleware.apply(req, res)) return;
@@ -18,14 +18,22 @@ export class VideoRoutes {
       return;
     }
 
-    if (req.method !== 'GET') {
-      res.status(405).json({ message: 'Method not allowed!' });
+    if (req.method !== "GET") {
+      res.status(405).json({ message: "Method not allowed!" });
       return;
     }
 
     try {
-      const videoId = typeof req.query.id === 'string' ? req.query.id : Array.isArray(req.query.id) ? req.query.id[0] : undefined;
-      const response = await this.getVideoUseCase.execute(bearerToken ?? '', videoId ?? '');
+      const videoId =
+        typeof req.query.id === "string"
+          ? req.query.id
+          : Array.isArray(req.query.id)
+            ? req.query.id[0]
+            : undefined;
+      const response = await this.getVideoUseCase.execute(
+        bearerToken ?? "",
+        videoId ?? "",
+      );
       res.status(200).json(response);
     } catch (error: any) {
       this.logger.error(error);
@@ -35,7 +43,9 @@ export class VideoRoutes {
         return;
       }
 
-      res.status(500).json({ message: 'Internal server error!', error: error.message });
+      res
+        .status(500)
+        .json({ message: "Internal server error!", error: error.message });
     }
   }
 }

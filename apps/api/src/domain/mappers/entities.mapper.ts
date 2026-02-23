@@ -1,5 +1,5 @@
-import { AuthInfo } from '../entities/auth-info.entity.js';
-import { User } from '../entities/user.entity.js';
+import { AuthInfo } from "../entities/auth-info.entity.js";
+import { User } from "../entities/user.entity.js";
 
 export class AuthInfoToUserMapper {
   static toUser(authInfo: AuthInfo, tokenUUID: string, uuid: string): User {

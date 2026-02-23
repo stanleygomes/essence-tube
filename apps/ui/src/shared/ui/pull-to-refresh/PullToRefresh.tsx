@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useRef, useState } from "react";
 
@@ -7,7 +7,10 @@ interface PullToRefreshProps {
   children: React.ReactNode;
 }
 
-export default function PullToRefresh({ onRefresh, children }: PullToRefreshProps) {
+export default function PullToRefresh({
+  onRefresh,
+  children,
+}: PullToRefreshProps) {
   const [pulling, setPulling] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [pullHeight, setPullHeight] = useState(0);
@@ -54,13 +57,15 @@ export default function PullToRefresh({ onRefresh, children }: PullToRefreshProp
         className="flex items-center justify-center text-sm text-gray-500 dark:text-gray-400 transition-all duration-200"
         style={{ height: pulling || refreshing ? pullHeight : 0 }}
       >
-        {refreshing
-          ? <></>
-          : pulling && pullHeight > 40
-          ? "Solte para atualizar"
-          : pulling
-          ? "Puxe para atualizar"
-          : ""}
+        {refreshing ? (
+          <></>
+        ) : pulling && pullHeight > 40 ? (
+          "Solte para atualizar"
+        ) : pulling ? (
+          "Puxe para atualizar"
+        ) : (
+          ""
+        )}
       </div>
       {children}
     </div>

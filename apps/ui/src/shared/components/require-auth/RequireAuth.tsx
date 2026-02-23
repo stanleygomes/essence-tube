@@ -1,11 +1,15 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAuth } from "@services/authStorageService";
 import Loading from "@shared/ui/loading/Loading";
 
-export default function RequireAuth({ children }: { children: React.ReactNode }) {
+export default function RequireAuth({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
 

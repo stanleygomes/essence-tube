@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -11,14 +11,11 @@ import Button from "@shared/ui/button/Button";
 import Typography from "@shared/ui/typography/Typography";
 
 export interface IVideo {
-  videoId?: string,
-  playlistId?: string,
+  videoId?: string;
+  playlistId?: string;
 }
 
-export default function Video({
-  videoId,
-  playlistId,
-}: IVideo) {
+export default function Video({ videoId, playlistId }: IVideo) {
   const [videoData, setVideoData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [descExpanded, setDescExpanded] = useState(false);
@@ -70,10 +67,15 @@ export default function Video({
   if (!videoId) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <Header title='' showBackButton={true} backButtonText="Playlist" />
+        <Header title="" showBackButton={true} backButtonText="Playlist" />
         <div className="p-6 max-w-md mx-auto text-center">
-          <h1 className="text-2xl font-semibold mb-2 text-red-600">Video not found</h1>
-          <p className="text-gray-600">Could not identify the requested video. Please check the link or try again.</p>
+          <h1 className="text-2xl font-semibold mb-2 text-red-600">
+            Video not found
+          </h1>
+          <p className="text-gray-600">
+            Could not identify the requested video. Please check the link or try
+            again.
+          </p>
         </div>
       </div>
     );

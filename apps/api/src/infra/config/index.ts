@@ -84,7 +84,7 @@ export const config: Config = {
       baseUrl: APP_PUBLIC_BASE_URL,
     },
     cors: {
-      allowedOrigin: APP_CORS_ORIGIN || '*localhost*',
+      allowedOrigin: APP_CORS_ORIGIN || "*localhost*",
       allowedMethods: "GET,POST,PUT,DELETE,OPTIONS",
       allowedHeaders: "Content-Type,Authorization",
     },
@@ -103,21 +103,21 @@ export const config: Config = {
   },
   auth: {
     jwtSecret: JWT_SECRET,
-    jwtExpiresInSeconds: JWT_EXPIRES_IN || '3600',
+    jwtExpiresInSeconds: JWT_EXPIRES_IN || "3600",
   },
   services: {
     googleAuth: {
-      baseUrl: 'https://oauth2.googleapis.com/token',
+      baseUrl: "https://oauth2.googleapis.com/token",
       clientId: GOOGLE_OAUTH_CLIENT_ID,
       clientSecret: GOOGLE_OAUTH_CLIENT_SECRET,
       redirectUri: GOOGLE_OAUTH_REDIRECT_URI,
-      scope: 'openid email profile https://www.googleapis.com/auth/youtube',
+      scope: "openid email profile https://www.googleapis.com/auth/youtube",
     },
     googleAccount: {
-      baseUrl: 'https://www.googleapis.com/oauth2/v3/userinfo',
+      baseUrl: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     youtube: {
-      apiBaseUrl: 'https://www.googleapis.com/youtube/v3',
+      apiBaseUrl: "https://www.googleapis.com/youtube/v3",
     },
-  }
+  },
 };

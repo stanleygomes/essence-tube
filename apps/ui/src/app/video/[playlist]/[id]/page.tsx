@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useParams } from "next/navigation";
 import Video from "@modules/video/page";
@@ -9,10 +9,7 @@ export default function VideoPage() {
 
   return (
     <RequireAuth>
-      <Video
-        videoId={id?.toString()}
-        playlistId={playlist?.toString()}
-      />
+      <Video videoId={id?.toString()} playlistId={playlist?.toString()} />
     </RequireAuth>
   );
 }

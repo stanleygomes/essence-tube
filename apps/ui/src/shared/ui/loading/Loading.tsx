@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 
 interface LoadingProps {
   title: string;
 }
-
 
 const Loading: React.FC<LoadingProps> = ({ title }) => {
   return (
@@ -23,11 +22,16 @@ const Loading: React.FC<LoadingProps> = ({ title }) => {
       {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>{`
         @keyframes retro-bar {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
+          0%,
+          100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 1;
+          }
         }
         .animate-retro-bar {
-          animation: retro-bar 1s infinite cubic-bezier(.4,0,.6,1);
+          animation: retro-bar 1s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
       `}</style>
     </div>

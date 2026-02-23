@@ -16,7 +16,7 @@ export default function Typography({
   className = "",
   ...props
 }: TypographyProps) {
-  const isHeading = headingTags.includes(variant)
+  const isHeading = headingTags.includes(variant);
 
   return createElement(
     variant,
@@ -28,6 +28,6 @@ export default function Typography({
       } ${className}`,
       ...props,
     },
-    children
+    children,
   );
 }

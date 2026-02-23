@@ -1,6 +1,4 @@
-'use client';
-
-
+"use client";
 
 import { useRouter } from "next/navigation";
 import Typography from "@shared/ui/typography/Typography";

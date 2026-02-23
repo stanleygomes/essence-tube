@@ -1,5 +1,5 @@
-import { Video } from '../../../../domain/entities/video.entity.js';
-import { YoutubeVideoSearchResponse } from '../responses/youtube-video.response.js';
+import { Video } from "../../../../domain/entities/video.entity.js";
+import { YoutubeVideoSearchResponse } from "../responses/youtube-video.response.js";
 
 export class VideoSearchMapper {
   static toEntity(item: YoutubeVideoSearchResponse): Video {

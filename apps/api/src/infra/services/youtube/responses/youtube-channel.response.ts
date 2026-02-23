@@ -5,7 +5,7 @@ export interface YoutubeChannelResponse {
     description: string;
     resourceId: {
       channelId: string;
-    },
+    };
     thumbnails: {
       default?: { url: string };
       medium?: { url: string };

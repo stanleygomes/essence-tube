@@ -1,9 +1,9 @@
-import swagger from '@fastify/swagger';
-import swaggerUI from '@fastify/swagger-ui';
-import { config } from '../../config/index.js';
-import { createRequire } from 'node:module';
+import swagger from "@fastify/swagger";
+import swaggerUI from "@fastify/swagger-ui";
+import { config } from "../../config/index.js";
+import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
-const pkg = require('../../../../package.json');
+const pkg = require("../../../../package.json");
 
 export class Docs {
   static buildSwaggerConfig() {
@@ -17,15 +17,15 @@ export class Docs {
         components: {
           securitySchemes: {
             bearerAuth: {
-              type: 'http',
-              scheme: 'bearer',
-              bearerFormat: 'JWT',
+              type: "http",
+              scheme: "bearer",
+              bearerFormat: "JWT",
             },
           },
         },
         security: [{ bearerAuth: [] }],
-      }
-    }
+      },
+    };
   }
 
   static async register(fastify: any) {

@@ -7,7 +7,7 @@ import { removeAuth } from "@services/authStorageService";
 import { getUser } from "@services/userStorageService";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import pkg from '../../../package.json';
+import pkg from "../../../package.json";
 import Card from "@shared/ui/card/Card";
 
 export default function Settings() {
@@ -54,13 +54,22 @@ export default function Settings() {
                 )}
               </div>
               <div className="flex flex-col justify-center flex-1 min-w-0">
-                <Typography variant="h3" className="truncate mb-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+                <Typography
+                  variant="h3"
+                  className="truncate mb-1 text-lg font-semibold text-gray-900 dark:text-gray-100"
+                >
                   {user.name}
                 </Typography>
-                <Typography variant="span" className="truncate text-sm text-gray-600 dark:text-gray-300">
+                <Typography
+                  variant="span"
+                  className="truncate text-sm text-gray-600 dark:text-gray-300"
+                >
                   {user.email}
                 </Typography>
-                <Typography variant="span" className="mt-1 select-all truncate text-xs text-gray-400 dark:text-gray-500">
+                <Typography
+                  variant="span"
+                  className="mt-1 select-all truncate text-xs text-gray-400 dark:text-gray-500"
+                >
                   {user.uuid}
                 </Typography>
                 <div className="mt-2 flex items-center gap-2">
@@ -72,7 +81,10 @@ export default function Settings() {
                   >
                     <path d="M10 15.172l8.95-8.95 1.414 1.414L10 18 3.636 11.636l1.414-1.414z" />
                   </svg>
-                  <Typography variant="span" className="font-medium text-green-600 dark:text-green-400">
+                  <Typography
+                    variant="span"
+                    className="font-medium text-green-600 dark:text-green-400"
+                  >
                     YouTube account connected!
                   </Typography>
                 </div>
@@ -81,7 +93,10 @@ export default function Settings() {
           )}
 
           <section>
-            <Typography variant="h4" className="mb-5 mx-4 text-sm text-gray-900 dark:text-gray-100">
+            <Typography
+              variant="h4"
+              className="mb-5 mx-4 text-sm text-gray-900 dark:text-gray-100"
+            >
               More links
             </Typography>
             <ul className="divide-y divide-[#3a2c1a] dark:divide-[#3a2c1a] bg-white text-[#3a2c1a] shadow-[4px_4px_0_#c2b8a3] dark:bg-[#3a2c1a] dark:text-[#f7ecd7] dark:shadow-[4px_4px_0_#7a6a4f]">
@@ -90,7 +105,10 @@ export default function Settings() {
                   href="/terms"
                   className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-t-xl transition"
                 >
-                  <Typography variant="span" className="text-base text-gray-900 dark:text-gray-100">
+                  <Typography
+                    variant="span"
+                    className="text-base text-gray-900 dark:text-gray-100"
+                  >
                     Terms of Service
                   </Typography>
                 </a>
@@ -100,7 +118,10 @@ export default function Settings() {
                   href="/privacy"
                   className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-b-xl transition"
                 >
-                  <Typography variant="span" className="text-base text-gray-900 dark:text-gray-100">
+                  <Typography
+                    variant="span"
+                    className="text-base text-gray-900 dark:text-gray-100"
+                  >
                     Privacy Policy
                   </Typography>
                 </a>
@@ -119,7 +140,10 @@ export default function Settings() {
           </section>
 
           <section className="mt-8">
-            <Typography variant="span" className="w-full text-center text-xs text-gray-400 dark:text-gray-600 pb-4">
+            <Typography
+              variant="span"
+              className="w-full text-center text-xs text-gray-400 dark:text-gray-600 pb-4"
+            >
               Versão do app: {pkg.version}
             </Typography>
           </section>
