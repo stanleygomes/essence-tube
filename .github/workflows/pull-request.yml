@@ -19,10 +19,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+
   checks:
     needs: [conventional-commits]
     uses: ./.github/workflows/checks.yml
 
   build:
-    needs: [checks]
+    needs: [checks, dependency-review]
     uses: ./.github/workflows/build.yml
