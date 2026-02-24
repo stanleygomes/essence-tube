@@ -24,6 +24,15 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
+      - name: Delete draft releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api repos/${{ github.repository }}/releases --paginate \
+            --jq '.[] | select(.draft == true) | .id' | \
+            while read id; do
+              gh api --method DELETE repos/${{ github.repository }}/releases/$id
+            done
       - uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
