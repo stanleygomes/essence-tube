@@ -6,7 +6,6 @@ on:
 jobs:
   codeql:
     name: CodeQL Analysis
-    needs: [build]
     runs-on: ubuntu-latest
     permissions:
       contents: read

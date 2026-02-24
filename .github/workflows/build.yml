@@ -6,7 +6,6 @@ on:
 jobs:
   build:
     name: Build
-    needs: [lint, format, check-types]
     runs-on: ubuntu-latest
     permissions:
       contents: read
