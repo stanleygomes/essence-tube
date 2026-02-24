@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   checks:
+    if: "!contains(github.event.head_commit.message, 'chore(release):')"
     uses: ./.github/workflows/checks.yml
     permissions:
       contents: read
@@ -18,6 +19,7 @@ jobs:
   release:
     name: Release
     needs: [checks]
+    if: "!contains(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
