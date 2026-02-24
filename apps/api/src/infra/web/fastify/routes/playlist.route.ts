@@ -33,7 +33,7 @@ export class PlaylistRoutes {
 
       const response = await this.getVideosFromPlaylistUseCase.execute(
         bearerToken,
-        playlistId,
+        playlistId!,
       );
       reply.status(200).send(response);
     } catch (error: any) {
@@ -103,8 +103,8 @@ export class PlaylistRoutes {
 
       const response = await this.addVideoToPlaylistUseCase.execute(
         bearerToken,
-        playlistIdValue,
-        videoIdValue,
+        playlistIdValue!,
+        videoIdValue!,
       );
       reply.status(200).send(response);
     } catch (error: any) {

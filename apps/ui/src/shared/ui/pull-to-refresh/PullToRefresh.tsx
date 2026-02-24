@@ -17,14 +17,14 @@ export default function PullToRefresh({
   const startY = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (window.scrollY === 0) {
-      startY.current = e.touches[0].clientY;
+    if (window.scrollY === 0 && e.touches.length > 0) {
+      startY.current = e.touches[0]!.clientY;
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (startY.current !== null) {
-      const distance = e.touches[0].clientY - startY.current;
+    if (startY.current !== null && e.touches.length > 0) {
+      const distance = e.touches[0]!.clientY - startY.current;
       if (distance > 0) {
         setPulling(true);
         setPullHeight(Math.min(distance, 80));

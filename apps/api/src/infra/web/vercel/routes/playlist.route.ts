@@ -123,8 +123,8 @@ export class PlaylistRoutes {
             : "";
       const response = await this.addVideoToPlaylistUseCase.execute(
         bearerToken,
-        playlistId,
-        videoId,
+        playlistId!,
+        videoId!,
       );
 
       res.status(200).json(response);

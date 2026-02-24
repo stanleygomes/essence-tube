@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
-    "tcheck-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@hackernoon/pixel-icon-library": "^1.0.6",

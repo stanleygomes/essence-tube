@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios from "axios";
 import { getAuth } from "@services/authStorageService";
 
 export class HttpClient {
@@ -21,9 +21,9 @@ export class HttpClient {
     return headers;
   }
 
-  async get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  async get<T = any>(url: string, config?: any): Promise<T> {
     const headers = { ...this.getAuthHeaders(), ...(config?.headers || {}) };
-    const response: AxiosResponse<T> = await axios.get(
+    const response: any = await axios.get(
       `${this.baseUrl}${url}`,
       {
         ...config,
@@ -37,10 +37,10 @@ export class HttpClient {
   async post<T = any>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig,
+    config?: any,
   ): Promise<T> {
     const headers = { ...this.getAuthHeaders(), ...(config?.headers || {}) };
-    const response: AxiosResponse<T> = await axios.post(
+    const response: any = await axios.post(
       `${this.baseUrl}${url}`,
       data,
       {
@@ -55,10 +55,10 @@ export class HttpClient {
   async put<T = any>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig,
+    config?: any,
   ): Promise<T> {
     const headers = { ...this.getAuthHeaders(), ...(config?.headers || {}) };
-    const response: AxiosResponse<T> = await axios.put(
+    const response: any = await axios.put(
       `${this.baseUrl}${url}`,
       data,
       {
@@ -69,9 +69,9 @@ export class HttpClient {
     return response.data;
   }
 
-  async delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  async delete<T = any>(url: string, config?: any): Promise<T> {
     const headers = { ...this.getAuthHeaders(), ...(config?.headers || {}) };
-    const response: AxiosResponse<T> = await axios.delete(
+    const response: any = await axios.delete(
       `${this.baseUrl}${url}`,
       {
         ...config,

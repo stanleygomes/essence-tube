@@ -71,7 +71,7 @@ export class SubscriptionRoutes {
             : "";
       const response = await this.getLatestVideosFromChannelUseCase.execute(
         bearerToken,
-        channelId,
+        channelId!,
       );
 
       res.status(200).json(response);
