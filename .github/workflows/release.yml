@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 permissions:
   contents: write
@@ -46,7 +46,7 @@ jobs:
         run: npx standard-version
 
       - name: Push changes and tags
-        run: git push --follow-tags origin main
+        run: git push --follow-tags origin master
 
       - name: Create GitHub Release
         env:
