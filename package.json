@@ -10,11 +10,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "release": "standard-version && git push --follow-tags origin $(git rev-parse --abbrev-ref HEAD)"
+    "release": "echo 'Releases are managed by release-please via GitHub Actions'"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
-    "standard-version": "^9.5.0",
     "turbo": "^2.8.10",
     "typescript": "5.9.2"
   },
