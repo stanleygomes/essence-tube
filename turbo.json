@@ -22,7 +22,9 @@
         "SWAGGER_PATH",
         "REDIS_HOST",
         "REDIS_PORT",
-        "REDIS_PASSWORD"
+        "REDIS_PASSWORD",
+        "TURSO_DATABASE_URL",
+        "TURSO_AUTH_TOKEN"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

@@ -16,6 +16,8 @@ const {
   REDIS_HOST,
   REDIS_PORT,
   REDIS_PASSWORD,
+  TURSO_DATABASE_URL,
+  TURSO_AUTH_TOKEN,
 } = process.env;
 
 export interface Config {
@@ -47,6 +49,10 @@ export interface Config {
       host?: string;
       port?: string;
       password?: string;
+    };
+    turso: {
+      url?: string;
+      authToken?: string;
     };
   };
   auth: {
@@ -99,6 +105,10 @@ export const config: Config = {
       host: REDIS_HOST,
       port: REDIS_PORT,
       password: REDIS_PASSWORD,
+    },
+    turso: {
+      url: TURSO_DATABASE_URL,
+      authToken: TURSO_AUTH_TOKEN,
     },
   },
   auth: {
