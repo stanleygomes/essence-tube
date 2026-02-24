@@ -1,5 +1,5 @@
 {
-  "name": "@essence-tube/monorepo",
+  "name": "essence-tube",
   "private": true,
   "scripts": {
     "build": "turbo run build",
