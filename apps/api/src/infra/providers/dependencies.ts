@@ -1,7 +1,7 @@
 import { GetUrlConsentUseCase } from "../../application/usecases/get-url-consent-use-case.js";
 import { GetUrlRedirectBackUseCase } from "../../application/usecases/get-url-redirect-back.js";
 import { GenerateAuthTokenUseCase } from "../../application/usecases/generate-auth-token.js";
-import { TokenRedisRepository } from "../database/redis/repositories/token.repository.js";
+import { TokenSQLiteRepository } from "../database/sqlite/repositories/token.repository.js";
 import { CreateTokenUseCase } from "../../application/usecases/create-token.js";
 import { GetVideosFromPlaylistUseCase } from "../../application/usecases/get-videos-from-playlist.js";
 import { GetPartnerBearerTokenUseCase } from "../../application/usecases/get-bearer-token.js";
@@ -16,29 +16,16 @@ import { AddVideoToPlaylistUseCase } from "../../application/usecases/add-video-
 import { RemoveVideoFromPlaylistUseCase } from "../../application/usecases/remove-video-from-playlist.js";
 import { GoogleAccountService } from "../services/google-account/google-account.service.js";
 import { SaveUserUseCase } from "../../application/usecases/save-user-use-case.js";
-import { UserMongoDBRepository } from "../database/mongodb/repositories/user.repository.js";
+import { UserSQLiteRepository } from "../database/sqlite/repositories/user.repository.js";
 import { JwtService } from "../auth/jwt.js";
 import { UpdateUserUseCase } from "../../application/usecases/update-user-use-case.js";
-import { connectMongoose } from "../database/mongodb/connection.js";
-import { connectRedis } from "../database/redis/connection.js";
+import { connectSQLite } from "../database/sqlite/connection.js";
 
-try {
-  await connectMongoose();
-} catch (err) {
-  console.error("Erro ao conectar ao MongoDB:", err);
-  throw err;
-}
-
-try {
-  await connectRedis();
-} catch (err) {
-  console.error("Erro ao conectar ao Redis:", err);
-  throw err;
-}
+connectSQLite();
 
 /* repositories */
-const tokenRedisDBRepository = new TokenRedisRepository();
-const userMongoDBRepository = new UserMongoDBRepository();
+const tokenRepository = new TokenSQLiteRepository();
+const userRepository = new UserSQLiteRepository();
 
 /* services */
 const googleAuthService = new GoogleAuthService();
@@ -47,22 +34,22 @@ const googleAccountService = new GoogleAccountService();
 const authService = new JwtService();
 
 /* use cases */
-const updateUserUseCase = new UpdateUserUseCase(userMongoDBRepository);
+const updateUserUseCase = new UpdateUserUseCase(userRepository);
 const saveUserUseCase = new SaveUserUseCase(
-  userMongoDBRepository,
+  userRepository,
   updateUserUseCase,
 );
 const saveRefreshTokenUseCase = new SaveRefreshTokenUseCase(
   googleAuthService,
-  tokenRedisDBRepository,
+  tokenRepository,
 );
 const getPartnerBearerTokenUseCase = new GetPartnerBearerTokenUseCase(
   saveRefreshTokenUseCase,
-  tokenRedisDBRepository,
+  tokenRepository,
   authService,
-  userMongoDBRepository,
+  userRepository,
 );
-const createToken = new CreateTokenUseCase(tokenRedisDBRepository);
+const createToken = new CreateTokenUseCase(tokenRepository);
 const generateAuthToken = new GenerateAuthTokenUseCase(
   googleAuthService,
   createToken,
