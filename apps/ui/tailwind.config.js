@@ -1,16 +1,20 @@
-import konstaConfig from 'konsta/config';
-
-export default konstaConfig({
+/** @type {import('tailwindcss').Config} */
+const config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/modules/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/shared/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      colors: {
+        // Adicione cores personalizadas aqui se necessário
+      },
+    },
   },
   plugins: [],
-});
+};
+
+export default config;
