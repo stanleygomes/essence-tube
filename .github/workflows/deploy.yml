@@ -68,7 +68,7 @@ jobs:
         run: npx turbo build --filter=ui
 
       - name: Deploy to Vercel
-        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
         working-directory: apps/ui
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
