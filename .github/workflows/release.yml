@@ -12,14 +12,8 @@ jobs:
   checks:
     if: "!contains(github.event.head_commit.message, 'chore(release):')"
     uses: ./.github/workflows/checks.yml
-    permissions:
-      contents: read
-      security-events: write
 
   release:
     needs: [checks]
     if: "!contains(github.event.head_commit.message, 'chore(release):')"
     uses: ./.github/workflows/jobs/release.yml
-    permissions:
-      contents: write
-      security-events: write
