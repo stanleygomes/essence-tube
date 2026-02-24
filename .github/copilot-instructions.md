@@ -1,5 +1,5 @@
 ---
-applyTo: '**'
+applyTo: "**"
 ---
 
 ## Project Overview
@@ -75,6 +75,7 @@ The API follows Clean Architecture with dependencies always pointing inward:
 ### Build and Development Commands
 
 Root-level commands (orchestrated by Turborepo):
+
 - `npm run build` - Build all apps
 - `npm run dev` - Start all apps in development mode
 - `npm run lint` - Lint all code (ESLint, max-warnings=0)
@@ -84,12 +85,14 @@ Root-level commands (orchestrated by Turborepo):
 - `npm run check-types` - Run TypeScript type checking
 
 API-specific (`cd apps/api`):
+
 - `npm run dev` - Start Vercel dev server (port 5000)
 - `npm run dev:fastify` - Start Fastify dev server (port 5000)
 - `npm run containers:up` - Start MongoDB & Redis via Docker Compose
 - `npm run containers:down` - Stop containers
 
 UI-specific (`cd apps/ui`):
+
 - `npm run dev` - Start Next.js dev server (port 3000)
 - `npm run build` - Build Next.js production bundle
 
@@ -102,57 +105,68 @@ UI-specific (`cd apps/ui`):
 ## Code Rules
 
 ### Clean Code
+
 - Write extremely concise and objective code
 - Never put comments in the code — prefer clear names and method/class extraction
 
 ### SOLID Principles
+
 - Total priority for Single Responsibility (SRP) and Open/Closed (OCP)
 - Separate responsibilities into reusable classes
 
 ### Project-Specific Rules
 
 **Language**:
+
 - Code must be written in English
 - All text strings and UI labels must be in English
 
 **Architecture**:
+
 - Follow Clean Architecture layers: Domain → Application → Infrastructure
 - Domain layer must be framework-agnostic (no Express, Fastify, MongoDB imports)
 - Use port interfaces in `domain/port/` for dependency inversion
 - Implement concrete classes in `infra/` layer
 
 **Entities**:
+
 - Define as TypeScript interfaces in `domain/entities/`
 - Properties use `snake_case` naming (e.g., `partner_id`, `created_at`)
 - Optional timestamps with `?`
 
 **Use Cases**:
+
 - Place in `application/usecases/`
 - Class-based with constructor dependency injection
 - Single `execute()` method as entry point
 - File naming: `kebab-case.ts` (e.g., `save-user-use-case.ts`)
 
 **Mappers**:
+
 - Place in `domain/mappers/`
 - Use static class methods for entity transformation
 - Name pattern: `[Source]To[Target]Mapper` (e.g., `AuthInfoToUserMapper`)
 
 **Repositories**:
+
 - Define interfaces in `domain/port/databases/`
 - Implement concrete classes in `infra/database/`
 - Use generic base repository pattern (e.g., `MongoRepository`)
 
 **Routes**:
+
 - Class-based route handlers with arrow function methods
 - Error handling with try-catch and custom `BusinessError`
 - Logging via centralized `Logger`
 
 **UI Modules**:
+
 - Place feature pages in `apps/ui/src/modules/[feature]/`
 - Each module contains a `page.tsx`
 - Use shared components from `apps/ui/src/shared/`
 
 **Shared Packages**:
+
 - ESLint config: `packages/eslint-config/`
 - TypeScript config: `packages/typescript-config/`
 - Shared UI components: `packages/ui/`
@@ -168,16 +182,19 @@ UI-specific (`cd apps/ui`):
 ## Test Rules
 
 ### Test Pattern
+
 - **AAA Pattern**: Arrange → Act → Assert
 - **Title Convention**: Use the pattern `"should [behavior] when [condition]"`
 - **Test Type**: Only unit tests
 
 ### Test Structure
+
 - Package structure must match the tested class
 - Test file naming: `[file-name].test.ts`
 - Keep tests short and focused
 
 ### Test Coverage
+
 - Create 1 test for the ideal scenario (Happy Path)
 - Create 1 test for each alternative/error branch
 - Tests must be independent — do not share state
