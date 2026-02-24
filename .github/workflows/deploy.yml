@@ -1,12 +1,8 @@
 name: Deploy to Vercel
 
-# on:
-#   release:
-#     types: [published]
-
 on:
-  push:
-    branches: [master]
+  release:
+    types: [published]
 
 permissions:
   contents: read
