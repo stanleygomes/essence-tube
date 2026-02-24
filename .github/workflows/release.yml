@@ -6,13 +6,17 @@ on:
 
 jobs:
   checks:
-    uses: ./.github/workflows/check-and-build.yml
+    uses: ./.github/workflows/checks.yml
     permissions:
       contents: read
       security-events: write
 
-  release:
+  build:
     needs: [checks]
+    uses: ./.github/workflows/build.yml
+
+  release:
+    needs: [build]
     name: Release
     runs-on: ubuntu-latest
     steps:

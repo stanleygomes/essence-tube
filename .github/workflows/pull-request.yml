@@ -11,4 +11,8 @@ permissions:
 
 jobs:
   checks:
-    uses: ./.github/workflows/check-and-build.yml
+    uses: ./.github/workflows/checks.yml
+
+  build:
+    needs: [checks]
+    uses: ./.github/workflows/build.yml
