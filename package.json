@@ -9,8 +9,7 @@
     "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types",
-    "release": "echo 'Releases are managed by release-please via GitHub Actions'"
+    "check-types": "turbo run check-types"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
