@@ -5,16 +5,15 @@ on:
     branches: [master]
 
 jobs:
-  conventional-commits:
-    uses: ./.github/workflows/conventional-commits.yml
-
   checks:
     uses: ./.github/workflows/checks.yml
 
-  build:
-    needs: [lint, format, check-types]
-    uses: ./.github/workflows/build.yml
-
   release:
     needs: [checks]
-    uses: ./.github/workflows/create-release.yml
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
