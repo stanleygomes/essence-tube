@@ -1,9 +1,0 @@
-{
-  "bumpFiles": [
-    { "filename": "package.json", "type": "json" },
-    { "filename": "apps/api/package.json", "type": "json" },
-    { "filename": "apps/ui/package.json", "type": "json" }
-  ],
-  "types": ["feat", "fix", "chore", "docs", "style", "refactor", "perf", "test"]
-}
-
