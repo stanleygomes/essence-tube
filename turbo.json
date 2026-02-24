@@ -23,7 +23,8 @@
         "REDIS_HOST",
         "REDIS_PORT",
         "REDIS_PASSWORD",
-        "SQLITE_PATH"
+        "TURSO_DATABASE_URL",
+        "TURSO_AUTH_TOKEN"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

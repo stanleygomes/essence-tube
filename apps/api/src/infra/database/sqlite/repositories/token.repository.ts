@@ -8,17 +8,17 @@ import { tokens } from "../schemas/token.schema.js";
 import { connectSQLite } from "../connection.js";
 
 export class TokenSQLiteRepository implements TokenRepository {
-  private db = connectSQLite();
   private readonly logger = Logger.getLogger();
 
   async getTokenByUUID(uuid: string): Promise<Token | null> {
     try {
-      const rows = this.db
+      const db = await connectSQLite();
+      const rows = await db
         .select()
         .from(tokens)
         .where(eq(tokens.uuid, uuid));
-      const row = rows.get();
 
+      const row = rows[0];
       return row ? TokenMapper.toEntity(row) : null;
     } catch (error) {
       this.logger.error(error);
@@ -28,8 +28,9 @@ export class TokenSQLiteRepository implements TokenRepository {
 
   async createToken(token: Token): Promise<Token> {
     try {
+      const db = await connectSQLite();
       const row = TokenMapper.toRow(token);
-      this.db.insert(tokens).values(row).run();
+      await db.insert(tokens).values(row);
       return token;
     } catch (error) {
       this.logger.error(error);
@@ -39,8 +40,9 @@ export class TokenSQLiteRepository implements TokenRepository {
 
   async updateTokenByUUID(token: Token, uuid: string): Promise<Token> {
     try {
+      const db = await connectSQLite();
       const row = TokenMapper.toRow(token);
-      this.db.update(tokens).set(row).where(eq(tokens.uuid, uuid)).run();
+      await db.update(tokens).set(row).where(eq(tokens.uuid, uuid));
       return token;
     } catch (error) {
       this.logger.error(error);

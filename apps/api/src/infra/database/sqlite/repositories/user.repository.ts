@@ -8,14 +8,17 @@ import { users } from "../schemas/user.schema.js";
 import { connectSQLite } from "../connection.js";
 
 export class UserSQLiteRepository implements UserRepository {
-  private db = connectSQLite();
   private logger = Logger.getLogger();
 
   async getUserByUUID(uuid: string): Promise<User | null> {
     try {
-      const rows = this.db.select().from(users).where(eq(users.uuid, uuid));
-      const row = rows.get();
+      const db = await connectSQLite();
+      const rows = await db
+        .select()
+        .from(users)
+        .where(eq(users.uuid, uuid));
 
+      const row = rows[0];
       return row ? UserMapper.toEntity(row) : null;
     } catch (error) {
       this.logger.error(error);
@@ -25,12 +28,13 @@ export class UserSQLiteRepository implements UserRepository {
 
   async getUserByPartnerId(partnerId: string): Promise<User | null> {
     try {
-      const rows = this.db
+      const db = await connectSQLite();
+      const rows = await db
         .select()
         .from(users)
         .where(eq(users.partner_id, partnerId));
-      const row = rows.get();
 
+      const row = rows[0];
       return row ? UserMapper.toEntity(row) : null;
     } catch (error) {
       this.logger.error(error);
@@ -42,8 +46,9 @@ export class UserSQLiteRepository implements UserRepository {
 
   async createUser(user: User): Promise<User> {
     try {
+      const db = await connectSQLite();
       const row = UserMapper.toRow(user);
-      this.db.insert(users).values(row).run();
+      await db.insert(users).values(row);
       return user;
     } catch (error) {
       this.logger.error(error);
@@ -53,8 +58,9 @@ export class UserSQLiteRepository implements UserRepository {
 
   async updateUserByUUID(user: User, uuid: string): Promise<User> {
     try {
+      const db = await connectSQLite();
       const row = UserMapper.toRow(user);
-      this.db.update(users).set(row).where(eq(users.uuid, uuid)).run();
+      await db.update(users).set(row).where(eq(users.uuid, uuid));
       return user;
     } catch (error) {
       this.logger.error(error);

@@ -21,7 +21,7 @@ import { JwtService } from "../auth/jwt.js";
 import { UpdateUserUseCase } from "../../application/usecases/update-user-use-case.js";
 import { connectSQLite } from "../database/sqlite/connection.js";
 
-connectSQLite();
+await connectSQLite();
 
 /* repositories */
 const tokenRepository = new TokenSQLiteRepository();

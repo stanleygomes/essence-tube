@@ -1,27 +1,26 @@
-import Database from "better-sqlite3";
-import { drizzle, BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
+import { createClient } from "@libsql/client";
+import { drizzle, LibSQLDatabase } from "drizzle-orm/libsql";
 import { config } from "../../config/index.js";
 import { sql } from "drizzle-orm";
 
-let db: BetterSQLite3Database | null = null;
+let db: LibSQLDatabase | null = null;
 
-export function connectSQLite(): BetterSQLite3Database {
+export async function connectSQLite(): Promise<LibSQLDatabase> {
   if (db) {
     return db;
   }
 
-  const { path } = config.databases.sqlite;
+  const { url, authToken } = config.databases.turso;
 
-  if (!path) {
-    throw new Error("SQLite path is not defined in config!");
+  if (!url) {
+    throw new Error("Turso database URL is not defined in config!");
   }
 
-  const sqlite = new Database(path);
-  sqlite.pragma("journal_mode = WAL");
+  const client = createClient({ url, authToken });
 
-  db = drizzle(sqlite);
+  db = drizzle(client);
 
-  db.run(sql`
+  await db.run(sql`
     CREATE TABLE IF NOT EXISTS users (
       uuid TEXT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -34,7 +33,7 @@ export function connectSQLite(): BetterSQLite3Database {
     )
   `);
 
-  db.run(sql`
+  await db.run(sql`
     CREATE TABLE IF NOT EXISTS tokens (
       uuid TEXT PRIMARY KEY,
       access_token TEXT NOT NULL,

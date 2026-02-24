@@ -16,7 +16,8 @@ const {
   REDIS_HOST,
   REDIS_PORT,
   REDIS_PASSWORD,
-  SQLITE_PATH,
+  TURSO_DATABASE_URL,
+  TURSO_AUTH_TOKEN,
 } = process.env;
 
 export interface Config {
@@ -49,8 +50,9 @@ export interface Config {
       port?: string;
       password?: string;
     };
-    sqlite: {
-      path?: string;
+    turso: {
+      url?: string;
+      authToken?: string;
     };
   };
   auth: {
@@ -104,8 +106,9 @@ export const config: Config = {
       port: REDIS_PORT,
       password: REDIS_PASSWORD,
     },
-    sqlite: {
-      path: SQLITE_PATH || "essence-tube.db",
+    turso: {
+      url: TURSO_DATABASE_URL,
+      authToken: TURSO_AUTH_TOKEN,
     },
   },
   auth: {
