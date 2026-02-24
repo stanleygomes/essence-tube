@@ -88,6 +88,17 @@ jobs:
       - name: Audit dependencies
         run: npm audit --audit-level=high
 
+  dependency-review:
+    name: Dependency Review
+    needs: [conventional-commits]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+
   build:
     name: Build
     needs: [lint, format, check-types]
