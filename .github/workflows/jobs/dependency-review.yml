@@ -1,0 +1,16 @@
+name: Dependency Review
+
+on:
+  workflow_call:
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    needs: [conventional-commits]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
