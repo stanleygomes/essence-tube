@@ -3,6 +3,10 @@ name: Release
 on:
   workflow_call:
 
+permissions:
+  contents: write
+  security-events: write
+
 jobs:
   release:
     name: Release
@@ -40,6 +44,3 @@ jobs:
         run: |
           TAG=$(git describe --tags --abbrev=0)
           gh release create "$TAG" --generate-notes --title "$TAG"
-    permissions:
-      contents: write
-      security-events: write
