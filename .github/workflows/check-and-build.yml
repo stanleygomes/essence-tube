@@ -136,8 +136,20 @@ jobs:
         run: npm run build
 
   codeql:
-    uses: ./.github/workflows/codeql.yml
+    name: CodeQL Analysis
     needs: [build]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
