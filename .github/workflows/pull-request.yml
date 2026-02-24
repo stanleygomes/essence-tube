@@ -7,68 +7,9 @@ on:
 permissions:
   contents: read
   pull-requests: read
+  security-events: write
 
 jobs:
-  lint:
-    name: Lint
-    needs: [conventional-commits]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run lint
-        run: npm run lint
-
-  format:
-    name: Prettier
-    needs: [conventional-commits]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Check formatting
-        run: npm run format:check
-
-  check-types:
-    name: Type Check
-    needs: [conventional-commits]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Check types
-        run: npm run check-types
-
   conventional-commits:
     name: Conventional Commits
     runs-on: ubuntu-latest
@@ -78,49 +19,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build:
-    name: Build
-    needs: [lint, format, check-types]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-  audit:
-    name: Dependency Audit
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Audit dependencies
-        run: npm audit --audit-level=high
+  checks:
+    needs: [conventional-commits]
+    uses: ./.github/workflows/checks.yml
+    permissions:
+      contents: read
+      security-events: write
 
   dependency-review:
     name: Dependency Review
-    needs: [build]
+    needs: [conventional-commits]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -128,22 +36,3 @@ jobs:
 
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
-
-  codeql:
-    name: CodeQL Analysis
-    needs: [build]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript-typescript
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
