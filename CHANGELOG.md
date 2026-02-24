@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
 ## [1.3.0](https://github.com/stanleygomes/essence-tube-api/compare/v1.2.0...v1.3.0) (2025-07-02)
 
