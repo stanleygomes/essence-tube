@@ -6,7 +6,6 @@ on:
 jobs:
   dependency-review:
     name: Dependency Review
-    needs: [conventional-commits]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

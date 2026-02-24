@@ -5,8 +5,15 @@ on:
     branches: [master]
 
 jobs:
+  conventional-commits:
+    uses: ./.github/workflows/conventional-commits.yml
+
   checks:
     uses: ./.github/workflows/checks.yml
+
+  build:
+    needs: [lint, format, check-types]
+    uses: ./.github/workflows/build.yml
 
   release:
     needs: [checks]
