@@ -5,25 +5,25 @@ on:
 
 jobs:
   lint:
-    uses: ./.github/workflows/jobs/lint.yml
+    uses: ./.github/workflows/lint.yml
 
   format:
-    uses: ./.github/workflows/jobs/format.yml
+    uses: ./.github/workflows/format.yml
 
   check-types:
-    uses: ./.github/workflows/jobs/check-types.yml
+    uses: ./.github/workflows/check-types.yml
 
   audit:
-    uses: ./.github/workflows/jobs/audit.yml
+    uses: ./.github/workflows/audit.yml
 
   dependency-review:
-    uses: ./.github/workflows/jobs/dependency-review.yml
+    uses: ./.github/workflows/dependency-review.yml
 
   build:
-    uses: ./.github/workflows/jobs/build.yml
+    uses: ./.github/workflows/build.yml
 
   codeql:
-    uses: ./.github/workflows/jobs/codeql.yml
+    uses: ./.github/workflows/codeql.yml
     permissions:
       contents: read
       security-events: write

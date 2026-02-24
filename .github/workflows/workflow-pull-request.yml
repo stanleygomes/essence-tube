@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   conventional-commits:
-    uses: ./.github/workflows/jobs/conventional-commits.yml
+    uses: ./.github/workflows/conventional-commits.yml
 
   checks:
     needs: [conventional-commits]

@@ -10,4 +10,4 @@ jobs:
 
   release:
     needs: [checks]
-    uses: ./.github/workflows/jobs/release.yml
+    uses: ./.github/workflows/create-release.yml
