@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
+## [1.5.0](https://github.com/stanleygomes/essence-tube/compare/essence-tube-v1.4.0...essence-tube-v1.5.0) (2026-02-24)
+
+
+### Features
+
+* improve release generation to include more commit types and publish GitHub releases ([c642d4f](https://github.com/stanleygomes/essence-tube/commit/c642d4fe643f6a2d85d0c378ca716a90bdcd6ec8))
+
+
+### Miscellaneous Chores
+
+* ignorar changelog no prettier ([eb1723f](https://github.com/stanleygomes/essence-tube/commit/eb1723fdeeec7e0be2b3141d68ba87ff92e20344))
+
 ## [1.4.0](https://github.com/stanleygomes/essence-tube/compare/essence-tube-v1.3.0...essence-tube-v1.4.0) (2026-02-24)
 
 
