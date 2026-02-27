@@ -63,9 +63,13 @@ export class YoutubeDownloaderService {
     }
   }
 
+  private sanitizeFilename(title: string): string {
+    return title.replace(/[^a-zA-Z0-9_\- ]/g, "_");
+  }
+
   async getVideoTitle(url: string): Promise<string> {
     const info = await ytdl.getInfo(url);
-    return info.videoDetails.title.replace(/[^a-zA-Z0-9_\- ]/g, "_");
+    return this.sanitizeFilename(info.videoDetails.title);
   }
 
   downloadVideo(url: string, format: "mp3" | "mp4"): Readable {
@@ -94,8 +98,10 @@ export class YoutubeDownloaderService {
     for (const item of playlist.items) {
       const videoStream = this.downloadVideo(item.shortUrl, format);
       const ext = format === "mp4" ? "mp4" : "mp3";
-      const safeTitle = item.title.replace(/[^a-zA-Z0-9_\- ]/g, "_");
-      archive.append(videoStream as any, { name: `${safeTitle}.${ext}` });
+      const safeTitle = this.sanitizeFilename(item.title);
+      archive.append(videoStream as unknown as import("stream").Readable, {
+        name: `${safeTitle}.${ext}`,
+      });
     }
 
     archive.finalize();

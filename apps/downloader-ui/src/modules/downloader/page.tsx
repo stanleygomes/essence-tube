@@ -25,10 +25,14 @@ export default function Downloader() {
     try {
       await downloadMedia(url.trim(), format);
       setStatus("success");
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const axiosError = error as {
+        response?: { data?: { message?: string } };
+        message?: string;
+      };
       const message =
-        error?.response?.data?.message ??
-        error?.message ??
+        axiosError?.response?.data?.message ??
+        axiosError?.message ??
         "An unexpected error occurred.";
       setErrorMessage(message);
       setStatus("error");

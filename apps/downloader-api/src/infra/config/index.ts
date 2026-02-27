@@ -35,7 +35,7 @@ export const config: Config = {
       path: SWAGGER_PATH,
     },
     cors: {
-      allowedOrigin: APP_CORS_ORIGIN || "*",
+      allowedOrigin: APP_CORS_ORIGIN || "http://localhost:3001",
     },
     env: NODE_ENV,
   },
