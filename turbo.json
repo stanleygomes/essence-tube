@@ -22,7 +22,8 @@
         "SWAGGER_PATH",
         "REDIS_HOST",
         "REDIS_PORT",
-        "REDIS_PASSWORD"
+        "REDIS_PASSWORD",
+        "NEXT_PUBLIC_DOWNLOADER_API_URL"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
