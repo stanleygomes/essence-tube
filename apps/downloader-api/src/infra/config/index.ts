@@ -5,6 +5,7 @@ const {
   SERVER_PATH,
   SERVER_PORT,
   SWAGGER_PATH,
+  SQLITE_DB_PATH,
 } = process.env;
 
 export interface Config {
@@ -22,6 +23,11 @@ export interface Config {
     };
     env?: string;
   };
+  database: {
+    sqlite: {
+      path: string;
+    };
+  };
 }
 
 export const config: Config = {
@@ -38,5 +44,10 @@ export const config: Config = {
       allowedOrigin: APP_CORS_ORIGIN || "http://localhost:3001",
     },
     env: NODE_ENV,
+  },
+  database: {
+    sqlite: {
+      path: SQLITE_DB_PATH || "download-history.db",
+    },
   },
 };

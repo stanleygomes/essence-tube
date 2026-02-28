@@ -23,7 +23,8 @@
         "REDIS_HOST",
         "REDIS_PORT",
         "REDIS_PASSWORD",
-        "NEXT_PUBLIC_DOWNLOADER_API_URL"
+        "NEXT_PUBLIC_DOWNLOADER_API_URL",
+        "SQLITE_DB_PATH"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

@@ -2,6 +2,7 @@ import { Readable } from "stream";
 import { BusinessError } from "../../domain/errors/BusinessError.js";
 import { NotFoundError } from "../../domain/errors/NotFoundError.js";
 import { DownloadRequest } from "../../domain/entities/download-request.entity.js";
+import { DownloadHistoryRepository } from "../../domain/port/databases/download-history.repository.js";
 import { YoutubeDownloaderService } from "../../infra/services/youtube-downloader.service.js";
 import { Logger } from "../../infra/logger/pino.logger.js";
 
@@ -10,6 +11,7 @@ export interface DownloadResult {
   filename: string;
   contentType: string;
   isPlaylist: boolean;
+  onComplete: () => void;
 }
 
 export class DownloadMediaUseCase {
@@ -17,6 +19,7 @@ export class DownloadMediaUseCase {
 
   constructor(
     private readonly youtubeDownloaderService: YoutubeDownloaderService,
+    private readonly downloadHistoryRepository: DownloadHistoryRepository,
   ) {}
 
   async execute(request: DownloadRequest): Promise<DownloadResult> {
@@ -48,11 +51,19 @@ export class DownloadMediaUseCase {
         url,
         format,
       );
+
       return {
         stream,
-        filename: `playlist.zip`,
+        filename: "playlist.zip",
         contentType: "application/zip",
         isPlaylist: true,
+        onComplete: () =>
+          this.downloadHistoryRepository.save({
+            url,
+            format,
+            type: "playlist",
+            filename: "playlist.zip",
+          }),
       };
     }
 
@@ -65,13 +76,21 @@ export class DownloadMediaUseCase {
     const title = await this.youtubeDownloaderService.getVideoTitle(url);
     const ext = format === "mp4" ? "mp4" : "mp3";
     const contentType = format === "mp4" ? "video/mp4" : "audio/mpeg";
+    const filename = `${title}.${ext}`;
     const stream = this.youtubeDownloaderService.downloadVideo(url, format);
 
     return {
       stream,
-      filename: `${title}.${ext}`,
+      filename,
       contentType,
       isPlaylist: false,
+      onComplete: () =>
+        this.downloadHistoryRepository.save({
+          url,
+          format,
+          type: "video",
+          filename,
+        }),
     };
   }
 }

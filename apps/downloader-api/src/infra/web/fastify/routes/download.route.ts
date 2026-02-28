@@ -27,8 +27,10 @@ export class DownloadRoutes {
       reply.header("Content-Type", result.contentType);
       reply.header("Access-Control-Expose-Headers", "Content-Disposition");
 
+      result.stream.once("close", () => result.onComplete());
+
       return reply.send(result.stream);
-    } catch (error: any) {
+    } catch (error: unknown) {
       this.logger.error(error);
 
       if (error instanceof BusinessError) {
@@ -41,9 +43,10 @@ export class DownloadRoutes {
         return;
       }
 
+      const err = error as { message?: string };
       reply
         .status(500)
-        .send({ message: "Internal server error!", error: error.message });
+        .send({ message: "Internal server error!", error: err.message });
     }
   };
 }
