@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
+## [1.6.0](https://github.com/stanleygomes/essence-tube/compare/essence-tube-v1.5.0...essence-tube-v1.6.0) (2026-03-01)
+
+
+### Features
+
+* criar draft de release ([d59e26a](https://github.com/stanleygomes/essence-tube/commit/d59e26ac5d2e9abf40983153cff1dea976d392ce))
+* criar draft de release ([b2eabc0](https://github.com/stanleygomes/essence-tube/commit/b2eabc0e992ab15d795b5758e9772aef302d37e0))
+
+
+### Miscellaneous Chores
+
+* add step to delete draft releases before running release-please-action ([d8271cb](https://github.com/stanleygomes/essence-tube/commit/d8271cb5137200ec3425c24e7581581e4cf0da9a))
+* Clean up draft releases before running release-please ([fb81ff2](https://github.com/stanleygomes/essence-tube/commit/fb81ff229f275d51cc78345cf42f9ea9bb476cee))
+
 ## [1.5.0](https://github.com/stanleygomes/essence-tube/compare/essence-tube-v1.4.0...essence-tube-v1.5.0) (2026-02-24)
 
 
