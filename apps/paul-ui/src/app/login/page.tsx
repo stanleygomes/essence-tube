@@ -3,24 +3,38 @@
 import React, { useState, useRef, useEffect } from "react";
 
 export default function LoginPage() {
-  console.log("LoginPage rendered");
   const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const [step, setStep] = useState<"email" | "login" | "signup">("email");
+  const [step, setStep] = useState<"email" | "code" | "login" | "signup">(
+    "email",
+  );
   const emailRef = useRef<HTMLInputElement>(null);
+  const codeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (step === "email" && emailRef.current) {
       emailRef.current.focus();
+    } else if (step === "code" && codeRef.current) {
+      codeRef.current.focus();
     }
   }, [step]);
 
   const handleProceed = () => {
-    // Mock logic: if email contains '@gmail.com', assume has account, else signup
-    if (email.includes("@gmail.com")) {
-      setStep("login");
-    } else {
-      setStep("signup");
+    // Mock: send code to email
+    console.log("Sending code to", email);
+    setStep("code");
+  };
+
+  const handleVerifyCode = () => {
+    // Mock verification
+    if (code.length === 6) {
+      // Mock logic: if email contains '@gmail.com', assume has account, else signup
+      if (email.includes("@gmail.com")) {
+        setStep("login");
+      } else {
+        setStep("signup");
+      }
     }
   };
 
@@ -65,8 +79,60 @@ export default function LoginPage() {
           </>
         )}
 
+        {step === "code" && (
+          <>
+            <div>
+              <label htmlFor="code" className="block text-sm font-medium mb-1">
+                Código de Verificação
+              </label>
+              <input
+                ref={codeRef}
+                id="code"
+                type="text"
+                value={code}
+                onChange={(e) =>
+                  setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                }
+                placeholder="Digite o código de 6 dígitos"
+                maxLength={6}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg tracking-widest"
+              />
+              <p className="text-sm text-gray-600 mt-1">
+                Enviamos um código para {email}
+              </p>
+            </div>
+            <button
+              onClick={handleVerifyCode}
+              disabled={code.length !== 6}
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+              {email.includes("@gmail.com")
+                ? "Continuar para Login"
+                : "Continuar para Criar Conta"}
+            </button>
+            <p className="text-center text-sm">
+              <button
+                onClick={() => setStep("email")}
+                className="text-blue-500 hover:underline"
+              >
+                Este não é meu email
+              </button>
+            </p>
+          </>
+        )}
+
         {(step === "login" || step === "signup") && (
           <>
+            <div className="text-center mb-4">
+              <h2 className="text-lg font-semibold">
+                {step === "login" ? "Fazer Login" : "Criar Nova Conta"}
+              </h2>
+              <p className="text-sm text-gray-600">
+                {step === "login"
+                  ? "Digite sua senha para acessar sua conta"
+                  : "Crie uma senha para sua nova conta"}
+              </p>
+            </div>
             <div>
               <label
                 htmlFor="email-display"
@@ -104,13 +170,13 @@ export default function LoginPage() {
                 disabled={!password}
                 className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
-                Entrar
+                Fazer Login
               </button>
             ) : (
               <button
                 onClick={handleSignup}
                 disabled={!password}
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
                 Criar Conta
               </button>
