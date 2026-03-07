@@ -1,0 +1,13 @@
+{
+  "name": "@repo/utils",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "file:../typescript-config",
+    "typescript": "5.9.2"
+  }
+}
