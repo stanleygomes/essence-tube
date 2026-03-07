@@ -1,11 +1,8 @@
 "use client";
 
-import Header from "@shared/components/header/Header";
-
 export default function Privacy() {
   return (
     <>
-      <Header title="Privacy Policy" showBackButton={true} />
       <div className="p-6 max-w-2xl mx-auto">
         <p className="mb-4">
           <strong>1. Data Accessed</strong>

@@ -1,5 +1,6 @@
 import type { Viewport, Metadata } from "next";
 import { pixelify, geistSans, geistMono } from "@config/font";
+import { Providers } from "./providers";
 import "../style/globals.css";
 import "@hackernoon/pixel-icon-library/fonts/iconfont.css";
 
@@ -62,7 +63,9 @@ export default function RootLayout({
       <body
         className={`${pixelify.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div id="app-container">{children}</div>
+        <Providers>
+          <div id="app-container">{children}</div>
+        </Providers>
       </body>
     </html>
   );

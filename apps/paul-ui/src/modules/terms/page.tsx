@@ -1,11 +1,8 @@
 "use client";
 
-import Header from "@shared/components/header/Header";
-
 export default function Terms() {
   return (
     <>
-      <Header title="Terms of Service" showBackButton={true} />
       <div className="p-6 max-w-2xl mx-auto">
         <p className="mb-4">
           By using this application, you agree to the terms described below.
