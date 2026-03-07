@@ -19,7 +19,7 @@ applyTo: "**"
 #### Apps-Specific Technologies
 
 - **apps/ui**: Standard Next.js with TailwindCSS 4
-- **apps/paul-ui**: Next.js with TailwindCSS 4, Hero UI components, @iconify/react icons
+- **apps/paul-ui**: Next.js with TailwindCSS 4
 - **apps/api**: Fastify/Express with MongoDB & Redis
 
 ### Project Structure
@@ -64,7 +64,6 @@ essence-tube/
 │           ├── app/                  # Next.js app router
 │           ├── config/               # Frontend configuration
 │           ├── models/               # Frontend data models
-│           ├── modules/              # Feature modules (feed, video, settings, login, etc.)
 │           ├── services/             # API clients, utilities
 │           ├── shared/               # Reusable components
 │           └── style/                # Global styles
