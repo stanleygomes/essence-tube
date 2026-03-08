@@ -5,7 +5,9 @@
   "exports": {
     "./*": "./src/*.tsx",
     "./button": "./src/components/ui/button.tsx",
-    "./input": "./src/components/ui/input.tsx"
+    "./input": "./src/components/ui/input.tsx",
+    "./label": "./src/components/ui/label.tsx",
+    "./card": "./src/components/ui/card.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -22,6 +24,7 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.1",
     "react": "^19.2.0",
