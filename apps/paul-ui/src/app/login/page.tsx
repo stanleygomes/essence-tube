@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { Button } from "@repo/ui/button";
+import { Input } from "@repo/ui/input";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -55,61 +57,55 @@ export default function LoginPage() {
 
         {step === "email" && (
           <>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">
-                Email
-              </label>
-              <input
-                ref={emailRef}
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Digite seu email"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <button
+            <Input
+              ref={emailRef}
+              type="email"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Digite seu email"
+              className="w-full"
+            />
+            <Button
+              variant="info"
               onClick={handleProceed}
               disabled={!email}
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="w-full"
             >
               Prosseguir
-            </button>
+            </Button>
           </>
         )}
 
         {step === "code" && (
           <>
             <div>
-              <label htmlFor="code" className="block text-sm font-medium mb-1">
-                Código de Verificação
-              </label>
-              <input
+              <Input
                 ref={codeRef}
-                id="code"
                 type="text"
+                label="Código de Verificação"
                 value={code}
                 onChange={(e) =>
                   setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
                 }
                 placeholder="Digite o código de 6 dígitos"
                 maxLength={6}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg tracking-widest"
+                className="w-full text-center text-lg tracking-widest"
               />
               <p className="text-sm text-gray-600 mt-1">
                 Enviamos um código para {email}
               </p>
             </div>
-            <button
+            <Button
+              variant="info"
               onClick={handleVerifyCode}
               disabled={code.length !== 6}
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="w-full"
             >
               {email.includes("@gmail.com")
                 ? "Continuar para Login"
                 : "Continuar para Criar Conta"}
-            </button>
+            </Button>
             <p className="text-center text-sm">
               <button
                 onClick={() => setStep("email")}
@@ -133,53 +129,39 @@ export default function LoginPage() {
                   : "Crie uma senha para sua nova conta"}
               </p>
             </div>
-            <div>
-              <label
-                htmlFor="email-display"
-                className="block text-sm font-medium mb-1"
-              >
-                Email
-              </label>
-              <input
-                id="email-display"
-                type="email"
-                value={email}
-                disabled
-                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium mb-1"
-              >
-                Senha
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Digite sua senha"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            <Input
+              type="email"
+              label="Email"
+              value={email}
+              disabled
+              className="w-full bg-gray-100"
+            />
+            <Input
+              type="password"
+              label="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Digite sua senha"
+              className="w-full"
+            />
             {step === "login" ? (
-              <button
+              <Button
+                variant="info"
                 onClick={handleLogin}
                 disabled={!password}
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="w-full"
               >
                 Fazer Login
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
+                variant="success"
                 onClick={handleSignup}
                 disabled={!password}
-                className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="w-full"
               >
                 Criar Conta
-              </button>
+              </Button>
             )}
             {step === "login" && (
               <a
@@ -196,6 +178,7 @@ export default function LoginPage() {
           <a href="/terms" className="mr-2 text-blue-500">
             Termos de Uso
           </a>
+          <span className="mx-2 text-gray-400">|</span>
           <a href="/privacy" className="text-blue-500">
             Política de Privacidade
           </a>
