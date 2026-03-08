@@ -22,7 +22,11 @@
         "SWAGGER_PATH",
         "REDIS_HOST",
         "REDIS_PORT",
-        "REDIS_PASSWORD"
+        "REDIS_PASSWORD",
+        "RESEND_API_KEY",
+        "RESEND_FROM_EMAIL",
+        "DATABASE_PATH",
+        "DATABASE_MIGRATIONS_FOLDER"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

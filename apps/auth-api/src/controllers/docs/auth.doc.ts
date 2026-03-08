@@ -1,21 +1,40 @@
-export const loginWithGoogleSchema = {
-  description: "Login with Google",
+export const sendCodeSchema = {
+  description: "Send verification code to email",
   tags: ["Auth"],
+  body: {
+    type: "object",
+    required: ["email"],
+    properties: {
+      email: { type: "string", format: "email" },
+    },
+  },
   response: {
-    302: {
-      description: "Redirect to Google OAuth",
-      type: "null",
+    200: {
+      type: "object",
+      properties: {
+        message: { type: "string" },
+      },
     },
   },
 };
 
-export const oauthCallbackSchema = {
-  description: "Callback do OAuth do Google",
+export const verifyCodeSchema = {
+  description: "Verify email code and get token",
   tags: ["Auth"],
+  body: {
+    type: "object",
+    required: ["email", "code"],
+    properties: {
+      email: { type: "string", format: "email" },
+      code: { type: "string" },
+    },
+  },
   response: {
     200: {
-      description: "Código de autorização recebido",
       type: "object",
+      properties: {
+        token: { type: "string" },
+      },
     },
   },
 };

@@ -6,6 +6,12 @@ const {
   SERVER_PATH,
   SERVER_PORT,
   SWAGGER_PATH,
+  RESEND_API_KEY,
+  RESEND_FROM_EMAIL,
+  JWT_SECRET,
+  JWT_EXPIRES_IN,
+  DATABASE_PATH,
+  DATABASE_MIGRATIONS_FOLDER,
 } = process.env;
 
 export interface Environment {
@@ -28,6 +34,20 @@ export interface Environment {
     };
     env?: string;
   };
+  auth: {
+    jwtSecret: string;
+    jwtExpiresIn: string;
+  };
+  database: {
+    path: string;
+    migrationsFolder: string;
+  };
+  services: {
+    resend: {
+      apiKey: string;
+      fromEmail: string;
+    };
+  };
 }
 
 export const config: Environment = {
@@ -49,5 +69,20 @@ export const config: Environment = {
       allowedHeaders: "Content-Type,Authorization",
     },
     env: NODE_ENV,
+  },
+  auth: {
+    jwtSecret: JWT_SECRET || "secret",
+    jwtExpiresIn: JWT_EXPIRES_IN || "3600",
+  },
+  database: {
+    path: DATABASE_PATH || "./auth.db",
+    migrationsFolder:
+      DATABASE_MIGRATIONS_FOLDER || "./src/database/migrations",
+  },
+  services: {
+    resend: {
+      apiKey: RESEND_API_KEY || "",
+      fromEmail: RESEND_FROM_EMAIL || "noreply@example.com",
+    },
   },
 };

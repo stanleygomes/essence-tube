@@ -4,6 +4,7 @@ import { AppRouter } from "./router.js";
 import { Logger } from "./config/pino.logger.js";
 import { config } from "./config/environment.js";
 import { Docs } from "./docs.js";
+import { runMigrations } from "./database/client.js";
 
 export class AppServer {
   private fastify: FastifyInstance;
@@ -18,6 +19,13 @@ export class AppServer {
   }
 
   public async start() {
+    try {
+      runMigrations();
+    } catch (error) {
+      this.logger.error(error, "Migration failed");
+      process.exit(1);
+    }
+
     await Docs.register(this.fastify);
 
     const router = new AppRouter();
