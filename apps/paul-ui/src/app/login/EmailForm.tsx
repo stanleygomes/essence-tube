@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { Button } from "@repo/ui/button";
 import { Input } from "@repo/ui/input";
 import { Label } from "@repo/ui/label";
@@ -11,24 +13,39 @@ import {
   CardTitle,
 } from "@repo/ui/card";
 
+const emailSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+});
+
+type EmailFormData = z.infer<typeof emailSchema>;
+
 interface EmailFormProps {
-  email: string;
-  setEmail: (email: string) => void;
-  handleProceed: () => void;
+  onSubmit: (data: EmailFormData) => void;
 }
 
-export default function EmailForm({
-  email,
-  setEmail,
-  handleProceed,
-}: EmailFormProps) {
-  const emailRef = useRef<HTMLInputElement>(null);
+export default function EmailForm({ onSubmit }: EmailFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    setFocus,
+  } = useForm<EmailFormData>({
+    mode: "onChange",
+    defaultValues: { email: "" },
+  });
 
   React.useEffect(() => {
-    if (emailRef.current) {
-      emailRef.current.focus();
+    setFocus("email");
+  }, [setFocus]);
+
+  const validateEmail = (value: string) => {
+    try {
+      emailSchema.parse({ email: value });
+      return true;
+    } catch {
+      return "Please enter a valid email address";
     }
-  }, []);
+  };
 
   return (
     <Card className="w-full max-w-sm p-10">
@@ -42,30 +59,33 @@ export default function EmailForm({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form id="email-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                ref={emailRef}
                 type="email"
-                value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
+                {...register("email", { validate: validateEmail })}
                 placeholder="Enter your email here"
                 className="w-full"
                 required
               />
+              {errors.email && (
+                <p className="text-sm text-red-500">{errors.email.message}</p>
+              )}
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button
+          type="submit"
+          form="email-form"
           variant="default"
-          onClick={handleProceed}
-          disabled={!email}
+          disabled={!isValid}
           className="w-full"
+          onClick={handleSubmit(onSubmit)}
         >
           Proceed
         </Button>
