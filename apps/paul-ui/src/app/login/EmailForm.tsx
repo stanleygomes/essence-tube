@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Icon } from "@iconify/react";
 import { Button } from "@logos/ui/button";
 import { Input } from "@logos/ui/input";
 import { Label } from "@logos/ui/label";
@@ -48,17 +49,18 @@ export default function EmailForm({ onSubmit }: EmailFormProps) {
   };
 
   return (
-    <Card className="w-full max-w-lg p-10">
+    <Card className="w-full max-w-lg p-12">
       <CardHeader>
-        <CardTitle>
-          <strong>Login to your account</strong>
+        <CardTitle className="text-3xl font-bold text-left">
+          <Icon icon="lucide:clipboard-pen" className="w-12 h-12 my-2" />
+          <div>your account</div>
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="mt-2">
           Enter your email to access your account. You will receive an access
           code via email.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-4">
         <form id="email-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
