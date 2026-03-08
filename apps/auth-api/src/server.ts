@@ -1,5 +1,6 @@
 import "dotenv/config";
 import Fastify, { FastifyInstance } from "fastify";
+import formbody from "@fastify/formbody";
 import { AppRouter } from "./router.js";
 import { Logger } from "./config/pino.logger.js";
 import { config } from "./config/environment.js";
@@ -18,6 +19,7 @@ export class AppServer {
   }
 
   public async start() {
+    await this.fastify.register(formbody);
     await Docs.register(this.fastify);
 
     const router = new AppRouter();
@@ -39,3 +41,4 @@ export class AppServer {
 }
 
 new AppServer().start();
+

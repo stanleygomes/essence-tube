@@ -3,7 +3,7 @@ import swaggerUI from "@fastify/swagger-ui";
 import { config } from "./config/environment.js";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
-const pkg = require("../../../../package.json");
+const pkg = require("../package.json");
 
 export class Docs {
   static buildSwaggerConfig() {
