@@ -1,4 +1,2 @@
-export { Button } from "./button";
-export { Card } from "./card";
-export { Code } from "./code";
-export { Input } from "./input";
+export { Button } from "./components/ui/button";
+export { Input } from "./components/ui/input";

@@ -60,14 +60,13 @@ export default function LoginPage() {
             <Input
               ref={emailRef}
               type="email"
-              label="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail(e.target.value)}
               placeholder="Digite seu email"
               className="w-full"
             />
             <Button
-              variant="info"
+              variant="default"
               onClick={handleProceed}
               disabled={!email}
               className="w-full"
@@ -83,7 +82,6 @@ export default function LoginPage() {
               <Input
                 ref={codeRef}
                 type="text"
-                label="Código de Verificação"
                 value={code}
                 onChange={(e) =>
                   setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
@@ -97,7 +95,7 @@ export default function LoginPage() {
               </p>
             </div>
             <Button
-              variant="info"
+              variant="default"
               onClick={handleVerifyCode}
               disabled={code.length !== 6}
               className="w-full"
@@ -131,14 +129,12 @@ export default function LoginPage() {
             </div>
             <Input
               type="email"
-              label="Email"
               value={email}
               disabled
               className="w-full bg-gray-100"
             />
             <Input
               type="password"
-              label="Senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Digite sua senha"
@@ -146,7 +142,7 @@ export default function LoginPage() {
             />
             {step === "login" ? (
               <Button
-                variant="info"
+                variant="default"
                 onClick={handleLogin}
                 disabled={!password}
                 className="w-full"
@@ -155,7 +151,7 @@ export default function LoginPage() {
               </Button>
             ) : (
               <Button
-                variant="success"
+                variant="default"
                 onClick={handleSignup}
                 disabled={!password}
                 className="w-full"

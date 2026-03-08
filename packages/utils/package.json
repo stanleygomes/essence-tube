@@ -8,6 +8,9 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "file:../typescript-config",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0"
   }
 }

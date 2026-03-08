@@ -16,7 +16,8 @@
       "@config/*": ["src/config/*"],
       "@styles/*": ["src/styles/*"],
       "@models/*": ["src/models/*"],
-      "@repo/ui": ["../../packages/ui/src"]
+      "@repo/ui": ["../../packages/ui/src"],
+      "@repo/utils": ["../../packages/utils"]
     }
   },
   "include": [
