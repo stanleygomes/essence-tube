@@ -48,7 +48,7 @@ export default function EmailForm({ onSubmit }: EmailFormProps) {
   };
 
   return (
-    <Card className="w-full max-w-sm p-10">
+    <Card className="w-full max-w-lg p-10">
       <CardHeader>
         <CardTitle>
           <strong>Login to your account</strong>
