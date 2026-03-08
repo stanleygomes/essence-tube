@@ -1,6 +1,7 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { SendEmailCodeUseCase } from "../usecases/send-email-code.usecase.js";
 import { VerifyEmailCodeUseCase } from "../usecases/verify-email-code.usecase.js";
+import { RefreshTokenUseCase } from "../usecases/refresh-token.usecase.js";
 import { AuthError } from "../errors/AuthError.js";
 import { BusinessError } from "../errors/BusinessError.js";
 import { Logger } from "../config/pino.logger.js";
@@ -11,6 +12,7 @@ export class AuthController {
   constructor(
     private readonly sendEmailCodeUseCase: SendEmailCodeUseCase,
     private readonly verifyEmailCodeUseCase: VerifyEmailCodeUseCase,
+    private readonly refreshTokenUseCase: RefreshTokenUseCase,
   ) {}
 
   sendCode = async (
@@ -41,6 +43,27 @@ export class AuthController {
 
       if (error instanceof AuthError || error instanceof BusinessError) {
         reply.status(400).send({ message: error.message });
+        return;
+      }
+
+      reply.status(500).send({ message: "Internal server error" });
+    }
+  };
+
+  refreshToken = (
+    request: FastifyRequest<{ Body: { refreshToken: string } }>,
+    reply: FastifyReply,
+  ) => {
+    try {
+      const result = this.refreshTokenUseCase.execute(
+        request.body.refreshToken,
+      );
+      reply.send(result);
+    } catch (error: any) {
+      this.logger.error(error);
+
+      if (error instanceof AuthError) {
+        reply.status(401).send({ message: error.message });
         return;
       }
 

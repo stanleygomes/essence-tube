@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
+import { JwtService, JwtPayload } from "@repo/utils";
 import { AuthError } from "../errors/AuthError.js";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
 import { UserRepository } from "../repositories/user.repository.js";
-import { JwtService } from "../services/jwt.service.js";
 
 export class VerifyEmailCodeUseCase {
   constructor(
@@ -11,11 +11,11 @@ export class VerifyEmailCodeUseCase {
     private readonly jwtService: JwtService,
   ) {}
 
-  async execute(email: string, code: string): Promise<{ token: string }> {
-    const record = await this.verificationCodeRepository.findValid(
-      email,
-      code,
-    );
+  async execute(
+    email: string,
+    code: string,
+  ): Promise<{ token: string; refreshToken: string }> {
+    const record = await this.verificationCodeRepository.findValid(email, code);
 
     if (!record) {
       throw new AuthError("Invalid or expired code");
@@ -35,7 +35,10 @@ export class VerifyEmailCodeUseCase {
       });
     }
 
-    const token = this.jwtService.sign({ uuid: user.uuid, email: user.email });
-    return { token };
+    const payload: JwtPayload = { uuid: user.uuid, email: user.email };
+    const token = this.jwtService.signAccessToken(payload);
+    const refreshToken = this.jwtService.signRefreshToken(payload);
+
+    return { token, refreshToken };
   }
 }

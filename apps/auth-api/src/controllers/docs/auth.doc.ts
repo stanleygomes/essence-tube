@@ -19,7 +19,7 @@ export const sendCodeSchema = {
 };
 
 export const verifyCodeSchema = {
-  description: "Verify email code and get token",
+  description: "Verify email code and get tokens",
   tags: ["Auth"],
   body: {
     type: "object",
@@ -27,6 +27,27 @@ export const verifyCodeSchema = {
     properties: {
       email: { type: "string", format: "email" },
       code: { type: "string" },
+    },
+  },
+  response: {
+    200: {
+      type: "object",
+      properties: {
+        token: { type: "string" },
+        refreshToken: { type: "string" },
+      },
+    },
+  },
+};
+
+export const refreshTokenSchema = {
+  description: "Refresh access token using refresh token",
+  tags: ["Auth"],
+  body: {
+    type: "object",
+    required: ["refreshToken"],
+    properties: {
+      refreshToken: { type: "string" },
     },
   },
   response: {

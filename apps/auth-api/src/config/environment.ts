@@ -8,8 +8,10 @@ const {
   SWAGGER_PATH,
   RESEND_API_KEY,
   RESEND_FROM_EMAIL,
-  JWT_SECRET,
-  JWT_EXPIRES_IN,
+  JWT_PRIVATE_KEY,
+  JWT_PUBLIC_KEY,
+  JWT_ACCESS_EXPIRES_IN,
+  JWT_REFRESH_EXPIRES_IN,
   DATABASE_PATH,
   DATABASE_MIGRATIONS_FOLDER,
 } = process.env;
@@ -35,8 +37,10 @@ export interface Environment {
     env?: string;
   };
   auth: {
-    jwtSecret: string;
-    jwtExpiresIn: string;
+    jwtPrivateKey: string;
+    jwtPublicKey: string;
+    accessTokenExpiresIn: string;
+    refreshTokenExpiresIn: string;
   };
   database: {
     path: string;
@@ -71,13 +75,14 @@ export const config: Environment = {
     env: NODE_ENV,
   },
   auth: {
-    jwtSecret: JWT_SECRET || "secret",
-    jwtExpiresIn: JWT_EXPIRES_IN || "3600",
+    jwtPrivateKey: (JWT_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+    jwtPublicKey: (JWT_PUBLIC_KEY || "").replace(/\\n/g, "\n"),
+    accessTokenExpiresIn: JWT_ACCESS_EXPIRES_IN || "1h",
+    refreshTokenExpiresIn: JWT_REFRESH_EXPIRES_IN || "30d",
   },
   database: {
     path: DATABASE_PATH || "./auth.db",
-    migrationsFolder:
-      DATABASE_MIGRATIONS_FOLDER || "./src/database/migrations",
+    migrationsFolder: DATABASE_MIGRATIONS_FOLDER || "./src/database/migrations",
   },
   services: {
     resend: {

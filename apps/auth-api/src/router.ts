@@ -1,6 +1,10 @@
 import { FastifyInstance } from "fastify";
 import { authController } from "./providers/dependencies.js";
-import { sendCodeSchema, verifyCodeSchema } from "./controllers/docs/auth.doc.js";
+import {
+  sendCodeSchema,
+  verifyCodeSchema,
+  refreshTokenSchema,
+} from "./controllers/docs/auth.doc.js";
 
 export class AppRouter {
   public register(fastify: FastifyInstance, prefix = "") {
@@ -14,6 +18,12 @@ export class AppRouter {
       `${prefix}/auth/verify-code`,
       { schema: verifyCodeSchema },
       authController.verifyCode,
+    );
+
+    fastify.post(
+      `${prefix}/auth/refresh-token`,
+      { schema: refreshTokenSchema },
+      authController.refreshToken,
     );
   }
 }
