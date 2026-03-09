@@ -53,6 +53,42 @@ A arquitetura é dividida em camadas concêntricas, onde a regra principal é qu
 
 Essa abordagem nos permite, por exemplo, trocar o MongoDB por outro banco de dados alterando apenas a camada de `infrastructure`, sem impactar a lógica de negócio.
 
+## 🔐 Auth API (`apps/auth-api`)
+
+Serviço de autenticação independente baseado em verificação por e-mail (OTP).
+
+### Fluxo de autenticação
+
+```
+POST /auth/send-code     { email }              → envia OTP de 6 dígitos via Resend
+POST /auth/verify-code   { email, code }        → valida OTP, cria usuário, retorna access + refresh tokens
+POST /auth/refresh-token { refreshToken }       → valida refresh token, retorna novo access token
+```
+
+### Stack
+
+- **Framework**: Fastify 5
+- **Banco de dados**: SQLite com Drizzle ORM
+- **E-mail**: Resend
+- **JWT**: RS256 (par de chaves RSA) — lógica compartilhada via `@repo/utils`
+
+### Configuração
+
+```sh
+cd apps/auth-api
+cp .env.template .env
+# Preencha as variáveis de ambiente (veja .env.template)
+# Gere o par de chaves RSA:
+openssl genrsa -out private.pem 2048
+openssl rsa -in private.pem -pubout -out public.pem
+npm run db:migrate
+npm run dev
+```
+
+Variáveis de ambiente principais: `JWT_PRIVATE_KEY`, `JWT_PUBLIC_KEY`, `JWT_ACCESS_EXPIRES_IN`, `JWT_REFRESH_EXPIRES_IN`, `DATABASE_PATH`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`.
+
+---
+
 ## 📁 Estrutura do Monorepo
 
 Este Turborepo inclui os seguintes apps e packages:
@@ -60,6 +96,7 @@ Este Turborepo inclui os seguintes apps e packages:
 ### Apps
 
 - `api`: API backend (Node.js/TypeScript)
+- `auth-api`: Serviço de autenticação por e-mail (OTP + JWT RS256)
 - `ui`: Interface do usuário (Next.js)
 
 ### Packages

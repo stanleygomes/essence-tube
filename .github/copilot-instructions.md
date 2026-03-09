@@ -21,6 +21,7 @@ applyTo: "**"
 - **apps/ui**: Standard Next.js with TailwindCSS 4
 - **apps/paul-ui**: Next.js with TailwindCSS 4
 - **apps/api**: Fastify/Express with MongoDB & Redis
+- **apps/auth-api**: Fastify + SQLite/Drizzle + Resend — email OTP auth, RS256 JWT (shared via `@repo/utils`). Endpoints: `POST /auth/send-code`, `POST /auth/verify-code`, `POST /auth/refresh-token`
 
 ### Project Structure
 
@@ -98,7 +99,7 @@ essence-tube/
 - ESLint config: `packages/eslint-config/`
 - TypeScript config: `packages/typescript-config/`
 - Shared UI components: `packages/ui/`
-- Shared utilities: `packages/utils/` (e.g., date formatting)
+- Shared utilities: `packages/utils/` (e.g., date formatting, `JwtService` for RS256 token signing/verification)
 
 ## Test Rules
 
