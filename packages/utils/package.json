@@ -1,16 +1,20 @@
 {
-  "name": "@repo/utils",
+  "name": "@logos/utils",
   "version": "0.0.0",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "date-fns": "^4.1.0"
+    "date-fns": "^4.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "pino": "^9.7.0",
+    "pino-pretty": "^13.0.0"
   },
   "devDependencies": {
-    "@repo/typescript-config": "file:../typescript-config",
-    "typescript": "5.9.2",
-    "tailwindcss": "^3.4.0",
+    "@logos/typescript-config": "file:../typescript-config",
+    "@types/jsonwebtoken": "^9.0.10",
     "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0"
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "5.9.2"
   }
 }

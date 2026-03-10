@@ -1,1 +1,1 @@
-export { humanizeDate } from "@repo/utils";
+export { humanizeDate } from "@logos/utils";

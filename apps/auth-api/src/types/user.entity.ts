@@ -1,10 +1,8 @@
 export interface User {
+  id?: number;
   uuid: string;
-  name: string;
+  name: string | null;
   email: string;
-  photo_url: string;
-  partner_id: string;
-  partner_token: string;
-  created_at?: Date;
-  updated_at?: Date;
+  created_at?: Date | null;
+  updated_at?: Date | null;
 }

@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "check": "npm run format:check && npm run lint && npm run check-types",
+    "install:individual": "for dir in apps/* packages/*; do if [ -d \"$dir\" ] && [ -f \"$dir/package.json\" ]; then echo \"Installing in $dir\" && cd \"$dir\" && npm install && cd ../..; fi; done",
     "prepare": "husky"
   },
   "devDependencies": {

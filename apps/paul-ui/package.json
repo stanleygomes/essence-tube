@@ -36,7 +36,7 @@
     "@paul/eslint-config": "file:../../packages/eslint-config",
     "@paul/typescript-config": "file:../../packages/typescript-config",
     "@paul/ui": "file:../../packages/ui",
-    "@repo/utils": "file:../../packages/utils",
+    "@logos/utils": "file:../../packages/utils",
     "@tailwindcss/postcss": "^4",
     "@types/next-pwa": "5.6.9",
     "@types/node": "^22.15.3",
