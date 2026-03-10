@@ -25,8 +25,8 @@
 }
 
 .dark {
-  --background: oklch(28.91% 0.0359 90.09);
-  --secondary-background: oklch(23.93% 0 0);
+  --background: #1a1a1a;
+  --secondary-background: #333333;
   --foreground: oklch(92.49% 0 0);
   --main-foreground: oklch(0% 0 0);
   --main: oklch(77.7% 0.1593880864006951 84.38427202675717);
@@ -73,5 +73,13 @@
 
   h1, h2, h3, h4, h5, h6{
     @apply font-heading;
+  }
+
+  a {
+    @apply transition-colors underline;
+  }
+
+  a:hover {
+    @apply text-main;
   }
 }

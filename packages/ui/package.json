@@ -7,7 +7,10 @@
     "./button": "./src/components/ui/button.tsx",
     "./input": "./src/components/ui/input.tsx",
     "./label": "./src/components/ui/label.tsx",
-    "./card": "./src/components/ui/card.tsx"
+    "./card": "./src/components/ui/card.tsx",
+    "./icon": "./src/components/ui/icon.tsx",
+    "./avatar": "./src/components/ui/avatar.tsx",
+    "./accordion": "./src/components/ui/accordion.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -24,6 +27,9 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.2",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.1",
