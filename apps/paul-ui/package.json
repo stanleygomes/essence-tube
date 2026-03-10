@@ -32,7 +32,6 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@iconify/react": "^6.0.2",
     "@paul/eslint-config": "file:../../packages/eslint-config",
     "@paul/typescript-config": "file:../../packages/typescript-config",
     "@paul/ui": "file:../../packages/ui",

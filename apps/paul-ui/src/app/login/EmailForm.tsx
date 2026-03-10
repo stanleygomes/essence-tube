@@ -1,10 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Icon } from "@iconify/react";
+import { Icon } from "@logos/ui/icon";
 import { Button } from "@logos/ui/button";
 import { Input } from "@logos/ui/input";
-import { Label } from "@logos/ui/label";
+// import { Label } from "@logos/ui/label";
 import {
   Card,
   CardContent,
@@ -52,24 +52,21 @@ export default function EmailForm({ onSubmit }: EmailFormProps) {
     <Card className="w-full max-w-lg p-12">
       <CardHeader>
         <CardTitle className="text-3xl font-bold text-left">
-          <Icon icon="lucide:clipboard-pen" className="w-12 h-12 my-2" />
-          <div>your account</div>
+          <Icon icon="solar:book-broken" className="w-12 h-12 my-2" />
+          <div>Enter your email bellow to get started.</div>
         </CardTitle>
-        <CardDescription className="mt-2">
-          Enter your email to access your account. You will receive an access
-          code via email.
-        </CardDescription>
+        <CardDescription className="mt-2"></CardDescription>
       </CardHeader>
       <CardContent className="mt-4">
         <form id="email-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              {/* <Label htmlFor="email">Your e-mail</Label> */}
               <Input
                 id="email"
                 type="email"
                 {...register("email", { validate: validateEmail })}
-                placeholder="Enter your email here"
+                placeholder="Enter your e-mail here"
                 className="w-full"
                 required
               />
@@ -91,6 +88,13 @@ export default function EmailForm({ onSubmit }: EmailFormProps) {
         >
           Proceed
         </Button>
+        <span className="text-sm text-muted-foreground mt-2">
+          By continuing, you acknowledge our{" "}
+          <a href="/privacy" className="underline">
+            Privacy Policy
+          </a>
+          .
+        </span>
       </CardFooter>
     </Card>
   );
