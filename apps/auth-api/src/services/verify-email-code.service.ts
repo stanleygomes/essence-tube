@@ -27,7 +27,7 @@ export class VerifyEmailCodeService {
 
     if (!user) {
       user = await this.userRepository.create({
-        uuid: uuidv4(),
+        id: uuidv4(),
         name: null,
         email,
         created_at: new Date(),
@@ -35,7 +35,7 @@ export class VerifyEmailCodeService {
       });
     }
 
-    const payload: JwtPayload = { uuid: user.uuid, email: user.email };
+    const payload: JwtPayload = { id: user.id, email: user.email };
     const token = this.jwtService.signAccessToken(payload);
     const refreshToken = this.jwtService.signRefreshToken(payload);
 

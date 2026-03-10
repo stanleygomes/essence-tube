@@ -1,15 +1,20 @@
 import { and, eq, gt } from "drizzle-orm";
+import { v4 as uuidv4 } from "uuid";
 import { db } from "../config/database-client.js";
 import { verification_codes } from "../schemas/database/index.js";
 
 export class VerificationCodeRepository {
   async create(email: string, code: string, expiresAt: Date): Promise<void> {
-    await db
-      .insert(verification_codes)
-      .values({ email, code, expires_at: expiresAt, created_at: new Date() });
+    await db.insert(verification_codes).values({
+      id: uuidv4(),
+      email,
+      code,
+      expires_at: expiresAt,
+      created_at: new Date(),
+    });
   }
 
-  async findValid(email: string, code: string): Promise<{ id: number } | null> {
+  async findValid(email: string, code: string): Promise<{ id: string } | null> {
     const now = new Date();
     const result = await db
       .select({ id: verification_codes.id })
@@ -26,7 +31,7 @@ export class VerificationCodeRepository {
     return result[0] ?? null;
   }
 
-  async markUsed(id: number): Promise<void> {
+  async markUsed(id: string): Promise<void> {
     await db
       .update(verification_codes)
       .set({ used: true })

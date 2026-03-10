@@ -18,7 +18,7 @@ export class RefreshTokenService {
     }
 
     const token = this.jwtService.signAccessToken({
-      uuid: payload.uuid,
+      id: payload.id,
       email: payload.email,
     });
 

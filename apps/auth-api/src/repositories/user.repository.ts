@@ -13,7 +13,7 @@ export class UserRepository {
     return result[0] ?? null;
   }
 
-  async create(user: Omit<User, "id">): Promise<User> {
+  async create(user: User): Promise<User> {
     const result = await db.insert(users).values(user).returning();
     if (!result[0]) throw new Error("User creation failed");
     return result[0];
