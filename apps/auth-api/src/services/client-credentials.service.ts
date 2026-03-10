@@ -21,14 +21,17 @@ export class ClientCredentialsService {
       throw new AuthError("Invalid client credentials");
     }
 
-    const isValid = await bcrypt.compare(clientSecret, client.client_secret_hash);
+    const isValid = await bcrypt.compare(
+      clientSecret,
+      client.client_secret_hash,
+    );
 
     if (!isValid) {
       throw new AuthError("Invalid client credentials");
     }
 
     const token = this.jwtService.signAccessToken({
-      uuid: client.uuid,
+      id: client.uuid,
       email: clientId,
       type: "client_credentials",
     });

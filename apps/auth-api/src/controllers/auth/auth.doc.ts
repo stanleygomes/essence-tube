@@ -61,7 +61,8 @@ export const refreshTokenSchema = {
 };
 
 export const tokenSchema = {
-  description: "OAuth 2.0 client credentials grant — exchange client_id and client_secret for an access token",
+  description:
+    "OAuth 2.0 client credentials grant — exchange client_id and client_secret for an access token",
   tags: ["Auth"],
   body: {
     type: "object",
@@ -85,7 +86,8 @@ export const tokenSchema = {
 };
 
 export const createClientSchema = {
-  description: "Create a new OAuth API client — returns client_id and client_secret (shown once)",
+  description:
+    "Create a new OAuth API client — returns client_id and client_secret (shown once)",
   tags: ["Auth"],
   body: {
     type: "object",
@@ -104,4 +106,3 @@ export const createClientSchema = {
     },
   },
 };
-

@@ -8,6 +8,8 @@ export const clientCredentialsSchema = z.object({
 
 export type ClientCredentialsInput = z.infer<typeof clientCredentialsSchema>;
 
-export function validateClientCredentials(data: unknown): ClientCredentialsInput {
+export function validateClientCredentials(
+  data: unknown,
+): ClientCredentialsInput {
   return clientCredentialsSchema.parse(data);
 }

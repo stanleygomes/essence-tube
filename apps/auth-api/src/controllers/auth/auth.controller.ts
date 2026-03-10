@@ -68,8 +68,9 @@ export class AuthController {
     reply: FastifyReply,
   ) => {
     const validatedData = validateCreateClient(request.body);
-    const result = await this.createApiClientService.execute(validatedData.name);
+    const result = await this.createApiClientService.execute(
+      validatedData.name,
+    );
     reply.status(201).send(result);
   };
 }
-

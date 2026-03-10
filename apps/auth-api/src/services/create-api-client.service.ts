@@ -7,10 +7,15 @@ const BCRYPT_SALT_ROUNDS = 12;
 export class CreateApiClientService {
   constructor(private readonly apiClientRepository: ApiClientRepository) {}
 
-  async execute(name: string): Promise<{ client_id: string; client_secret: string }> {
+  async execute(
+    name: string,
+  ): Promise<{ client_id: string; client_secret: string }> {
     const clientId = uuidv4();
     const clientSecret = uuidv4();
-    const clientSecretHash = await bcrypt.hash(clientSecret, BCRYPT_SALT_ROUNDS);
+    const clientSecretHash = await bcrypt.hash(
+      clientSecret,
+      BCRYPT_SALT_ROUNDS,
+    );
 
     await this.apiClientRepository.create({
       uuid: uuidv4(),

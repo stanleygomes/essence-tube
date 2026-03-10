@@ -35,7 +35,10 @@ const verifyEmailCodeService = new VerifyEmailCodeService(
 );
 
 const refreshTokenService = new RefreshTokenService(jwtService);
-const clientCredentialsService = new ClientCredentialsService(apiClientRepository, jwtService);
+const clientCredentialsService = new ClientCredentialsService(
+  apiClientRepository,
+  jwtService,
+);
 const createApiClientService = new CreateApiClientService(apiClientRepository);
 
 export const authController = new AuthController(
@@ -45,4 +48,3 @@ export const authController = new AuthController(
   clientCredentialsService,
   createApiClientService,
 );
-
