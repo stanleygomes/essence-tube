@@ -1,4 +1,5 @@
-import jwt, { type SignOptions } from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
+import type { SignOptions } from "jsonwebtoken";
 
 export interface JwtPayload {
   id: string;
@@ -24,7 +25,7 @@ export class JwtService {
 
   signRefreshToken(payload: JwtPayload): string {
     return jwt.sign(
-      { uuid: payload.uuid, email: payload.email, type: "refresh" },
+      { id: payload.id, email: payload.email, type: "refresh" },
       this.privateKey,
       {
         algorithm: "RS256",
