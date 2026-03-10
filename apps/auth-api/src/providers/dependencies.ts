@@ -3,14 +3,18 @@ import type { SignOptions } from "jsonwebtoken";
 import { config } from "../config/environment.js";
 import { UserRepository } from "../repositories/user.repository.js";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
+import { ClientRepository } from "../repositories/client.repository.js";
 import { EmailService } from "../services/email.service.js";
 import { SendEmailCodeService } from "../services/send-email-code.service.js";
 import { VerifyEmailCodeService } from "../services/verify-email-code.service.js";
 import { RefreshTokenService } from "../services/refresh-token.service.js";
+import { ClientCredentialsService } from "../services/client-credentials.service.js";
+import { CreateClientService } from "../services/create-client.service.js";
 import { AuthController } from "../controllers/auth/auth.controller.js";
 
 const userRepository = new UserRepository();
 const verificationCodeRepository = new VerificationCodeRepository();
+const clientRepository = new ClientRepository();
 const emailService = new EmailService();
 const jwtService = new JwtService(
   config.auth.jwtPrivateKey,
@@ -32,8 +36,18 @@ const verifyEmailCodeService = new VerifyEmailCodeService(
 
 const refreshTokenService = new RefreshTokenService(jwtService);
 
+const clientCredentialsService = new ClientCredentialsService(
+  clientRepository,
+  jwtService,
+);
+
+const createClientService = new CreateClientService(clientRepository);
+
 export const authController = new AuthController(
   sendEmailCodeService,
   verifyEmailCodeService,
   refreshTokenService,
+  clientCredentialsService,
+  createClientService,
 );
+

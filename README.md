@@ -55,14 +55,21 @@ Essa abordagem nos permite, por exemplo, trocar o MongoDB por outro banco de dad
 
 ## 🔐 Auth API (`apps/auth-api`)
 
-Serviço de autenticação independente baseado em verificação por e-mail (OTP).
+Independent authentication service supporting email OTP verification and OAuth 2.0 Client Credentials.
 
-### Fluxo de autenticação
+### Authentication flows
 
 ```
-POST /auth/send-code     { email }              → envia OTP de 6 dígitos via Resend
-POST /auth/verify-code   { email, code }        → valida OTP, cria usuário, retorna access + refresh tokens
-POST /auth/refresh-token { refreshToken }       → valida refresh token, retorna novo access token
+POST /auth/send-code     { email }              → sends a 6-digit OTP via Resend
+POST /auth/verify-code   { email, code }        → validates OTP, creates user, returns access + refresh tokens
+POST /auth/refresh-token { refreshToken }       → validates refresh token, returns a new access token
+```
+
+### Client Credentials (OAuth 2.0)
+
+```
+POST /auth/clients       { name }                                               → registers a new API client, returns client_id and client_secret (shown once)
+POST /auth/token         { grant_type, client_id, client_secret }               → validates credentials, returns access_token, token_type and expires_in
 ```
 
 ### Stack

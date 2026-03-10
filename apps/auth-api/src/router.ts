@@ -4,6 +4,8 @@ import {
   sendCodeSchema,
   verifyCodeSchema,
   refreshTokenSchema,
+  tokenSchema,
+  createClientSchema,
 } from "./controllers/auth/auth.doc.js";
 
 export class AppRouter {
@@ -24,6 +26,18 @@ export class AppRouter {
       `${prefix}/auth/refresh-token`,
       { schema: refreshTokenSchema },
       authController.refreshToken,
+    );
+
+    fastify.post(
+      `${prefix}/auth/token`,
+      { schema: tokenSchema },
+      authController.token,
+    );
+
+    fastify.post(
+      `${prefix}/auth/clients`,
+      { schema: createClientSchema },
+      authController.createClient,
     );
   }
 }
