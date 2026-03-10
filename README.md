@@ -55,37 +55,44 @@ Essa abordagem nos permite, por exemplo, trocar o MongoDB por outro banco de dad
 
 ## 🔐 Auth API (`apps/auth-api`)
 
-Serviço de autenticação independente baseado em verificação por e-mail (OTP).
+Independent authentication service based on email OTP verification and OAuth 2.0 client credentials.
 
-### Fluxo de autenticação
+### Authentication flow
 
 ```
-POST /auth/send-code     { email }              → envia OTP de 6 dígitos via Resend
-POST /auth/verify-code   { email, code }        → valida OTP, cria usuário, retorna access + refresh tokens
-POST /auth/refresh-token { refreshToken }       → valida refresh token, retorna novo access token
+POST /auth/send-code     { email }              → sends 6-digit OTP via Resend
+POST /auth/verify-code   { email, code }        → validates OTP, creates user, returns access + refresh tokens
+POST /auth/refresh-token { refreshToken }       → validates refresh token, returns new access token
+```
+
+### Client Credentials (OAuth 2.0 — machine-to-machine)
+
+```
+POST /auth/clients  { name }                                                          → creates API client, returns client_id + client_secret (shown once)
+POST /auth/token    { grant_type: "client_credentials", client_id, client_secret }   → validates credentials, returns access token
 ```
 
 ### Stack
 
 - **Framework**: Fastify 5
-- **Banco de dados**: SQLite com Drizzle ORM
-- **E-mail**: Resend
-- **JWT**: RS256 (par de chaves RSA) — lógica compartilhada via `@logos/utils`
+- **Database**: SQLite with Drizzle ORM
+- **Email**: Resend
+- **JWT**: RS256 (RSA key pair) — shared logic via `@logos/utils`
 
-### Configuração
+### Setup
 
 ```sh
 cd apps/auth-api
 cp .env.template .env
-# Preencha as variáveis de ambiente (veja .env.template)
-# Gere o par de chaves RSA:
+# Fill in the environment variables (see .env.template)
+# Generate RSA key pair:
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -pubout -out public.pem
 npm run db:migrate
 npm run dev
 ```
 
-Variáveis de ambiente principais: `JWT_PRIVATE_KEY`, `JWT_PUBLIC_KEY`, `JWT_ACCESS_EXPIRES_IN`, `JWT_REFRESH_EXPIRES_IN`, `DATABASE_PATH`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`.
+Main environment variables: `JWT_PRIVATE_KEY`, `JWT_PUBLIC_KEY`, `JWT_ACCESS_EXPIRES_IN`, `JWT_REFRESH_EXPIRES_IN`, `DATABASE_PATH`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`.
 
 ---
 
