@@ -1,17 +1,20 @@
 import "dotenv/config";
 import Fastify, { FastifyInstance } from "fastify";
 import { AppRouter } from "./router.js";
-import { Logger } from "./config/pino.logger.js";
+import { PinoLogger } from "./config/pino.logger.js";
 import { config } from "./config/environment.js";
-import { Docs } from "./docs.js";
-import { runMigrations } from "./database/client.js";
+import { Docs } from "./config/docs.js";
+import { runMigrations } from "./config/database-client.js";
+import { setupErrorHandler } from "./middlewares/error-handler.middleware.js";
 
 export class AppServer {
   private fastify: FastifyInstance;
-  private logger = Logger.getLogger();
+  private logger = PinoLogger.getLogger();
 
   constructor() {
     this.fastify = Fastify();
+
+    setupErrorHandler(this.fastify);
   }
 
   private getPort(): number {

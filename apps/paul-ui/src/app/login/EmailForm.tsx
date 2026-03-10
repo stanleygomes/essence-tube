@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@repo/ui/button";
-import { Input } from "@repo/ui/input";
-import { Label } from "@repo/ui/label";
+import { Button } from "@logos/ui/button";
+import { Input } from "@logos/ui/input";
+import { Label } from "@logos/ui/label";
 import {
   Card,
   CardContent,
@@ -11,7 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@repo/ui/card";
+} from "@logos/ui/card";
 
 const emailSchema = z.object({
   email: z.string().email("Please enter a valid email address"),

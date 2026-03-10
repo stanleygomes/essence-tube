@@ -1,16 +1,10 @@
-import pino, { Logger as PinoLogger } from "pino";
+import { Logger } from "@logos/utils";
 import { config } from "./environment.js";
 
-export class Logger {
-  private static instance: PinoLogger = (typeof pino === "function"
-    ? pino
-    : (pino as any).default)({
-    level: config.app.env === "production" ? "info" : "debug",
-    transport:
-      config.app.env !== "production" ? { target: "pino-pretty" } : undefined,
-  });
+export class PinoLogger {
+  private static instance = Logger.getLogger(config.logger, "auth-api");
 
-  static getLogger(): PinoLogger {
-    return Logger.instance;
+  static getLogger() {
+    return PinoLogger.instance;
   }
 }

@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
-import { JwtService, JwtPayload } from "@repo/utils";
+import { JwtService, JwtPayload } from "@logos/utils";
 import { AuthError } from "../errors/AuthError.js";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
 import { UserRepository } from "../repositories/user.repository.js";
 
-export class VerifyEmailCodeUseCase {
+export class VerifyEmailCodeService {
   constructor(
     private readonly verificationCodeRepository: VerificationCodeRepository,
     private readonly userRepository: UserRepository,

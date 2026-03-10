@@ -70,7 +70,7 @@ POST /auth/refresh-token { refreshToken }       → valida refresh token, retorn
 - **Framework**: Fastify 5
 - **Banco de dados**: SQLite com Drizzle ORM
 - **E-mail**: Resend
-- **JWT**: RS256 (par de chaves RSA) — lógica compartilhada via `@repo/utils`
+- **JWT**: RS256 (par de chaves RSA) — lógica compartilhada via `@logos/utils`
 
 ### Configuração
 
@@ -101,8 +101,8 @@ Este Turborepo inclui os seguintes apps e packages:
 
 ### Packages
 
-- `@repo/eslint-config`: Configurações ESLint
-- `@repo/typescript-config`: Configurações TypeScript
+- `@logos/eslint-config`: Configurações ESLint
+- `@logos/typescript-config`: Configurações TypeScript
 
 Cada app/package é 100% [TypeScript](https://www.typescriptlang.org/).
 

@@ -4,7 +4,7 @@ import {
   sendCodeSchema,
   verifyCodeSchema,
   refreshTokenSchema,
-} from "./controllers/docs/auth.doc.js";
+} from "./controllers/auth/auth.doc.js";
 
 export class AppRouter {
   public register(fastify: FastifyInstance, prefix = "") {

@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { db } from "../database/client.js";
-import { users } from "../database/schema.js";
+import { db } from "../config/database-client.js";
+import { users } from "../schemas/database/index.js";
 import { User } from "../types/user.entity.js";
 
 export class UserRepository {

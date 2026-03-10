@@ -14,6 +14,8 @@ const {
   JWT_REFRESH_EXPIRES_IN,
   DATABASE_PATH,
   DATABASE_MIGRATIONS_FOLDER,
+  LOG_LEVEL,
+  LOG_TRANSPORT,
 } = process.env;
 
 export interface Environment {
@@ -35,6 +37,10 @@ export interface Environment {
       allowedHeaders: string;
     };
     env?: string;
+  };
+  logger: {
+    level: string;
+    transport?: string;
   };
   auth: {
     jwtPrivateKey: string;
@@ -73,6 +79,10 @@ export const config: Environment = {
       allowedHeaders: "Content-Type,Authorization",
     },
     env: NODE_ENV,
+  },
+  logger: {
+    level: LOG_LEVEL || "info",
+    transport: LOG_TRANSPORT || "pino-pretty",
   },
   auth: {
     jwtPrivateKey: (JWT_PRIVATE_KEY || "").replace(/\\n/g, "\n"),

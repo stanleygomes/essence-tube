@@ -1,7 +1,7 @@
-import { JwtService, JwtPayload } from "@repo/utils";
+import { JwtService, JwtPayload } from "@logos/utils";
 import { AuthError } from "../errors/AuthError.js";
 
-export class RefreshTokenUseCase {
+export class RefreshTokenService {
   constructor(private readonly jwtService: JwtService) {}
 
   execute(refreshToken: string): { token: string } {

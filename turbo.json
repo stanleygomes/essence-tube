@@ -30,7 +30,9 @@
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
         "DATABASE_PATH",
-        "DATABASE_MIGRATIONS_FOLDER"
+        "DATABASE_MIGRATIONS_FOLDER",
+        "LOG_LEVEL",
+        "LOG_TRANSPORT"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
