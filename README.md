@@ -96,6 +96,38 @@ Main environment variables: `JWT_PRIVATE_KEY`, `JWT_PUBLIC_KEY`, `JWT_ACCESS_EXP
 
 ---
 
+## 🤖 Revelation API (`apps/revelation`)
+
+Authenticated prompt execution API using Google AI Studio and persisted prompt history.
+
+### Endpoint
+
+```
+POST /revelation/execute   { prompt }   → executes prompt, stores request/response with user and timestamp
+```
+
+### Rules
+
+- Requires `Authorization: Bearer <token>` from `apps/auth-api`
+- Allows only one prompt execution at a time
+- Returns `423` when another prompt is already running
+
+### Storage
+
+- Local development: SQLite/libSQL (`DATABASE_URL=file:...` or local libSQL container)
+- Production: Turso (`DATABASE_URL=libsql://...` + `DATABASE_AUTH_TOKEN`)
+
+### Setup
+
+```sh
+cd apps/revelation
+cp .env.template .env
+npm run containers:up
+npm run dev
+```
+
+---
+
 ## 📁 Estrutura do Monorepo
 
 Este Turborepo inclui os seguintes apps e packages:
@@ -104,6 +136,7 @@ Este Turborepo inclui os seguintes apps e packages:
 
 - `api`: API backend (Node.js/TypeScript)
 - `auth-api`: Serviço de autenticação por e-mail (OTP + JWT RS256)
+- `revelation`: API de execução de prompts com Google AI Studio
 - `ui`: Interface do usuário (Next.js)
 
 ### Packages
