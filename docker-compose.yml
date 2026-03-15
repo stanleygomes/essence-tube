@@ -3,11 +3,11 @@ services:
     image: postgres:17-alpine
     container_name: logos-auth-postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: auth_api
+      POSTGRES_USER: database_user
+      POSTGRES_PASSWORD: database_password
+      POSTGRES_DB: database_name
     volumes:
-      - ./.docker/postgres-data:/var/lib/postgresql/data
+      - auth-api-postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
@@ -15,3 +15,6 @@ services:
 
 networks:
   logos-network:
+
+volumes:
+  auth-api-postgres-data:

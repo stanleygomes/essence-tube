@@ -91,7 +91,9 @@ export const config: Environment = {
     refreshTokenExpiresIn: JWT_REFRESH_EXPIRES_IN || "30d",
   },
   database: {
-    url: DATABASE_URL || "postgres://postgres:postgres@localhost:5432/auth_api",
+    url:
+      DATABASE_URL ||
+      "postgres://database_user:database_password@localhost:5432/database_name",
     migrationsFolder: DATABASE_MIGRATIONS_FOLDER || "./src/database/migrations",
   },
   services: {
