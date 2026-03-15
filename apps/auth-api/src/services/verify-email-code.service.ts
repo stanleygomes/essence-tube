@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { JwtService, JwtPayload } from "@logos/utils";
+import { JwtService, JwtPayload } from "@logos/jwt";
 import { AuthError } from "../errors/AuthError.js";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
 import { UserRepository } from "../repositories/user.repository.js";

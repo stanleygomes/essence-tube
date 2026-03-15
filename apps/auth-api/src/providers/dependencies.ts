@@ -1,10 +1,10 @@
-import { JwtService } from "@logos/utils";
+import { EmailService } from "@logos/email";
+import { JwtService } from "@logos/jwt";
 import type { SignOptions } from "jsonwebtoken";
 import { config } from "../config/environment.js";
 import { UserRepository } from "../repositories/user.repository.js";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
 import { ApiClientRepository } from "../repositories/api-client.repository.js";
-import { EmailService } from "../services/email.service.js";
 import { SendEmailCodeService } from "../services/send-email-code.service.js";
 import { VerifyEmailCodeService } from "../services/verify-email-code.service.js";
 import { RefreshTokenService } from "../services/refresh-token.service.js";
@@ -15,7 +15,10 @@ import { AuthController } from "../controllers/auth/auth.controller.js";
 const userRepository = new UserRepository();
 const verificationCodeRepository = new VerificationCodeRepository();
 const apiClientRepository = new ApiClientRepository();
-const emailService = new EmailService();
+const emailService = new EmailService(
+  config.services.resend.apiKey,
+  config.services.resend.fromEmail,
+);
 const jwtService = new JwtService(
   config.auth.jwtPrivateKey,
   config.auth.jwtPublicKey,
