@@ -1,10 +1,13 @@
 services:
-  redis:
-    image: redis:7.2.5
-    container_name: essence-tube-redis
-    command: ["redis-server", "--requirepass", "ABC123"]
-    ports:
-      - "6379:6379"
+  sqlite:
+    image: nouchka/sqlite3
+    container_name: logos-auth-sqlite
     volumes:
-      - ./docker/redis-data:/data
-    network_mode: host
+      - ./.docker/sqlite-data:/root/db
+    ports:
+      - "9000:9000"
+    networks:
+      - logos-network
+
+networks:
+  logos-network:
