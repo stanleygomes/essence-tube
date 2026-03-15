@@ -1,4 +1,11 @@
-import { FastifyRequest, FastifyReply } from "fastify";
+import { FastifyReply } from "fastify";
+import {
+  SendCodeRequest,
+  VerifyCodeRequest,
+  RefreshTokenRequest,
+  TokenRequest,
+  CreateClientRequest,
+} from "../../types/auth-request.js";
 import { SendEmailCodeService } from "../../services/send-email-code.service.js";
 import { VerifyEmailCodeService } from "../../services/verify-email-code.service.js";
 import { RefreshTokenService } from "../../services/refresh-token.service.js";
@@ -19,19 +26,13 @@ export class AuthController {
     private readonly createApiClientService: CreateApiClientService,
   ) {}
 
-  sendCode = async (
-    request: FastifyRequest<{ Body: { email: string } }>,
-    reply: FastifyReply,
-  ) => {
+  sendCode = async (request: SendCodeRequest, reply: FastifyReply) => {
     const validatedData = validateSendCode(request.body);
     await this.sendEmailCodeService.execute(validatedData.email);
     reply.send({ message: "Verification code sent" });
   };
 
-  verifyCode = async (
-    request: FastifyRequest<{ Body: { email: string; code: string } }>,
-    reply: FastifyReply,
-  ) => {
+  verifyCode = async (request: VerifyCodeRequest, reply: FastifyReply) => {
     const validatedData = validateVerifyCode(request.body);
     const result = await this.verifyEmailCodeService.execute(
       validatedData.email,
@@ -40,21 +41,13 @@ export class AuthController {
     reply.send(result);
   };
 
-  refreshToken = (
-    request: FastifyRequest<{ Body: { refreshToken: string } }>,
-    reply: FastifyReply,
-  ) => {
+  refreshToken = (request: RefreshTokenRequest, reply: FastifyReply) => {
     const validatedData = validateRefreshToken(request.body);
     const result = this.refreshTokenService.execute(validatedData.refreshToken);
     reply.send(result);
   };
 
-  token = async (
-    request: FastifyRequest<{
-      Body: { grant_type: string; client_id: string; client_secret: string };
-    }>,
-    reply: FastifyReply,
-  ) => {
+  token = async (request: TokenRequest, reply: FastifyReply) => {
     const validatedData = validateClientCredentials(request.body);
     const result = await this.clientCredentialsService.execute(
       validatedData.client_id,
@@ -63,10 +56,7 @@ export class AuthController {
     reply.send(result);
   };
 
-  createClient = async (
-    request: FastifyRequest<{ Body: { name: string } }>,
-    reply: FastifyReply,
-  ) => {
+  createClient = async (request: CreateClientRequest, reply: FastifyReply) => {
     const validatedData = validateCreateClient(request.body);
     const result = await this.createApiClientService.execute(
       validatedData.name,

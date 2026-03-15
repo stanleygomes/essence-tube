@@ -18,7 +18,7 @@ export class AppServer {
   }
 
   private getPort(): number {
-    return config.app.server.port ? Number(config.app.server.port) : 3000;
+    return config.app.server.port ? Number(config.app.server.port) : 5000;
   }
 
   public async start() {
