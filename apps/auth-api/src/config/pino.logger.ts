@@ -1,4 +1,4 @@
-import { Logger } from "@logos/utils";
+import { Logger } from "@logos/logger";
 import { config } from "./environment.js";
 
 export class PinoLogger {

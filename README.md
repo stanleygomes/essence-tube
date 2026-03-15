@@ -77,7 +77,7 @@ POST /auth/token    { grant_type: "client_credentials", client_id, client_secret
 - **Framework**: Fastify 5
 - **Database**: SQLite with Drizzle ORM
 - **Email**: Resend
-- **JWT**: RS256 (RSA key pair) — shared logic via `@logos/utils`
+- **JWT**: RS256 (RSA key pair) — shared logic via `@logos/jwt`
 
 ### Setup
 

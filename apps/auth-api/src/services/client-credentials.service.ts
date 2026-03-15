@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { JwtService } from "@logos/utils";
+import { JwtService } from "@logos/jwt";
 import { AuthError } from "../errors/AuthError.js";
 import { ApiClientRepository } from "../repositories/api-client.repository.js";
 

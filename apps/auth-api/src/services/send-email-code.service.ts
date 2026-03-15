@@ -1,6 +1,6 @@
+import { EmailService } from "@logos/email";
 import { randomInt } from "crypto";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
-import { EmailService } from "./email.service.js";
 
 const CODE_LENGTH = 6;
 const EXPIRES_IN_MINUTES = 15;
