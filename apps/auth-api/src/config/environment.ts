@@ -12,7 +12,7 @@ const {
   JWT_PUBLIC_KEY,
   JWT_ACCESS_EXPIRES_IN,
   JWT_REFRESH_EXPIRES_IN,
-  DATABASE_PATH,
+  DATABASE_URL,
   DATABASE_MIGRATIONS_FOLDER,
   LOG_LEVEL,
   LOG_TRANSPORT,
@@ -49,7 +49,7 @@ export interface Environment {
     refreshTokenExpiresIn: string;
   };
   database: {
-    path: string;
+    url: string;
     migrationsFolder: string;
   };
   services: {
@@ -91,7 +91,7 @@ export const config: Environment = {
     refreshTokenExpiresIn: JWT_REFRESH_EXPIRES_IN || "30d",
   },
   database: {
-    path: DATABASE_PATH || "./auth.db",
+    url: DATABASE_URL || "postgres://postgres:postgres@localhost:5432/auth_api",
     migrationsFolder: DATABASE_MIGRATIONS_FOLDER || "./src/database/migrations",
   },
   services: {

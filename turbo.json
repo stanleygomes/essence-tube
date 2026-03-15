@@ -29,6 +29,7 @@
         "REDIS_PASSWORD",
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
+        "DATABASE_URL",
         "DATABASE_PATH",
         "DATABASE_MIGRATIONS_FOLDER",
         "LOG_LEVEL",

@@ -1,10 +1,10 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
-export const verification_codes = sqliteTable("verification_codes", {
+export const verification_codes = pgTable("verification_codes", {
   id: text("id").primaryKey(),
   email: text("email").notNull(),
   code: text("code").notNull(),
-  expires_at: integer("expires_at", { mode: "timestamp" }).notNull(),
-  used: integer("used", { mode: "boolean" }).notNull().default(false),
-  created_at: integer("created_at", { mode: "timestamp" }),
+  expires_at: timestamp("expires_at", { mode: "date" }).notNull(),
+  used: boolean("used").notNull().default(false),
+  created_at: timestamp("created_at", { mode: "date" }),
 });
