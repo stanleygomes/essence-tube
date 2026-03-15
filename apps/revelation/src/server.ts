@@ -38,14 +38,9 @@ export class AppServer {
     const { url, path } = config.app.server;
     const { path: pathDocs } = config.app.docs;
 
-    this.fastify.listen({ port }, (err) => {
-      if (err) {
-        throw err;
-      }
-
-      this.logger.info(`Fastify server running on ${url}:${port}${path}`);
-      this.logger.info(`Swagger docs available at ${url}:${port}${pathDocs}`);
-    });
+    await this.fastify.listen({ port });
+    this.logger.info(`Fastify server running on ${url}:${port}${path}`);
+    this.logger.info(`Swagger docs available at ${url}:${port}${pathDocs}`);
   }
 }
 

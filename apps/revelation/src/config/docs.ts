@@ -1,9 +1,11 @@
 import swagger from "@fastify/swagger";
 import swaggerUI from "@fastify/swagger-ui";
 import { config } from "./environment.js";
-import { createRequire } from "node:module";
-const require = createRequire(import.meta.url);
-const pkg = require("../../../../package.json");
+import { readFileSync } from "node:fs";
+
+const pkg = JSON.parse(
+  readFileSync(new URL("../../package.json", import.meta.url), "utf8"),
+);
 
 export class Docs {
   static buildSwaggerConfig() {

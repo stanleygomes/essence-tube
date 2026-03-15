@@ -1,7 +1,7 @@
 services:
   libsql:
     image: ghcr.io/tursodatabase/libsql-server:latest
-    container_name: logos-revelation-libsql
+    container_name: revelation-libsql
     command: ["sqld", "--http-listen-addr", "0.0.0.0:8080", "--db-path", "/var/lib/sqld"]
     ports:
       - "8080:8080"

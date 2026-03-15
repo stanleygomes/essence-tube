@@ -1,5 +1,5 @@
 import { JwtService } from "@logos/jwt";
-import { FastifyReply, FastifyRequest } from "fastify";
+import { FastifyRequest } from "fastify";
 import { AuthError } from "../errors/AuthError.js";
 import { config } from "../config/environment.js";
 import type { UserAuth } from "../types/user-auth.js";
@@ -14,7 +14,7 @@ type AuthenticatedRequest = FastifyRequest & {
 };
 
 export class AuthMiddleware {
-  static authorize(request: FastifyRequest, reply: FastifyReply) {
+  static authorize(request: FastifyRequest): void {
     const authHeader = request.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -32,7 +32,5 @@ export class AuthMiddleware {
       id: payload.id,
       email: payload.email,
     };
-
-    return reply;
   }
 }

@@ -2,7 +2,6 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { PromptExecutionService } from "../../services/prompt-execution.service.js";
 import { validateExecutePrompt } from "../../schemas/validators/execute-prompt.validator.js";
 import type { UserAuth } from "../../types/user-auth.js";
-import { AuthError } from "../../errors/AuthError.js";
 
 interface ExecutePromptBody {
   prompt: string;
@@ -23,11 +22,6 @@ export class RevelationController {
   ) => {
     const validatedData = validateExecutePrompt(request.body);
     const user = (request as AuthenticatedRequest).user;
-
-    if (!user) {
-      throw new AuthError("Not authorized");
-    }
-
     const result = await this.promptExecutionService.execute(
       validatedData.prompt,
       user,
