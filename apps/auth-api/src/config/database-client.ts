@@ -1,12 +1,15 @@
-import Database from "better-sqlite3";
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import { migrate } from "drizzle-orm/better-sqlite3/migrator";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
+import { Pool } from "pg";
 import * as schema from "../schemas/database/index.js";
 import { config } from "./environment.js";
 import { PinoLogger } from "./pino.logger.js";
 
-const sqlite = new Database(config.database.path);
-export const db = drizzle(sqlite, { schema });
+const pool = new Pool({
+  connectionString: config.database.url,
+});
+
+export const db = drizzle(pool, { schema });
 
 const logger = PinoLogger.getLogger();
 
