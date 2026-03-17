@@ -1,4 +1,4 @@
-import { FastifyReply } from "fastify";
+import { FastifyInstance, FastifyReply } from "fastify";
 import {
   SendCodeRequest,
   VerifyCodeRequest,
@@ -16,6 +16,13 @@ import { validateVerifyCode } from "../../schemas/validators/verify-code.validat
 import { validateRefreshToken } from "../../schemas/validators/refresh-token.validator.js";
 import { validateClientCredentials } from "../../schemas/validators/client-credentials.validator.js";
 import { validateCreateClient } from "../../schemas/validators/create-client.validator.js";
+import {
+  createClientSchema,
+  refreshTokenSchema,
+  sendCodeSchema,
+  tokenSchema,
+  verifyCodeSchema,
+} from "./auth.doc.js";
 
 export class AuthController {
   constructor(
@@ -25,6 +32,38 @@ export class AuthController {
     private readonly clientCredentialsService: ClientCredentialsService,
     private readonly createApiClientService: CreateApiClientService,
   ) {}
+
+  registerRoutes(fastify: FastifyInstance, prefix = "") {
+    fastify.post(
+      `${prefix}/v1/auth/send-code`,
+      { schema: sendCodeSchema },
+      this.sendCode,
+    );
+
+    fastify.post(
+      `${prefix}/v1/auth/verify-code`,
+      { schema: verifyCodeSchema },
+      this.verifyCode,
+    );
+
+    fastify.post(
+      `${prefix}/v1/auth/refresh-token`,
+      { schema: refreshTokenSchema },
+      this.refreshToken,
+    );
+
+    fastify.post(
+      `${prefix}/v1/auth/token`,
+      { schema: tokenSchema },
+      this.token,
+    );
+
+    fastify.post(
+      `${prefix}/v1/auth/clients`,
+      { schema: createClientSchema },
+      this.createClient,
+    );
+  }
 
   sendCode = async (request: SendCodeRequest, reply: FastifyReply) => {
     const validatedData = validateSendCode(request.body);
