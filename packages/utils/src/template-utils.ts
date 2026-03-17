@@ -7,6 +7,11 @@ export const loadTemplateFile = (
   templateRelativePath: string,
 ): string => {
   const moduleDir = dirname(fileURLToPath(moduleUrl));
+  const templatePath = join(moduleDir, templateRelativePath);
 
-  return readFileSync(join(moduleDir, templateRelativePath), "utf-8");
+  try {
+    return readFileSync(templatePath, "utf-8");
+  } catch {
+    throw new Error(`Failed to load template file: ${templatePath}`);
+  }
 };
