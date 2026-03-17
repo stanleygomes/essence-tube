@@ -1,21 +1,51 @@
-import { Resend } from "resend";
+import { httpClient } from "@logos/http";
+import { Logger } from "@logos/logger";
+
+interface EmailResponse {
+  id: string;
+}
 
 export class EmailService {
-  private resend: Resend;
+  private logger = Logger.getLogger({ level: "error" }, "email-service");
+  private readonly baseUrl = "https://api.resend.com";
 
   constructor(
     private readonly apiKey: string,
     private readonly fromEmail: string,
-  ) {
-    this.resend = new Resend(this.apiKey);
-  }
+  ) {}
 
-  async sendVerificationCode(email: string, code: string): Promise<void> {
-    await this.resend.emails.send({
-      from: this.fromEmail,
-      to: email,
-      subject: "Your verification code",
-      text: `Your verification code is: ${code}`,
-    });
+  async sendVerificationCode(
+    email: string,
+    code: string,
+  ): Promise<EmailResponse> {
+    try {
+      const response = await httpClient.post<EmailResponse>(
+        `${this.baseUrl}/emails`,
+        {
+          from: this.fromEmail,
+          to: [email],
+          subject: "Your verification code",
+          text: `Your verification code is: ${code}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${this.apiKey}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || error.message || "Unknown error";
+      const statusCode = error.response?.status;
+
+      this.logger.error(
+        { err: error.response?.data || error, status: statusCode },
+        `Failed to send email: ${errorMessage}`,
+      );
+
+      throw new Error(`Failed to send email: ${errorMessage}`);
+    }
   }
 }

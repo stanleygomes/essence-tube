@@ -1,14 +1,13 @@
 import pino, { Logger as PinoLogger } from "pino";
-
-export interface LoggerConfig {
-  level: string;
-  transport?: string;
-}
+import type { LoggerConfig } from "./types/logger.js";
 
 export class Logger {
   private static instances = new Map<string, PinoLogger>();
 
-  static getLogger(config: LoggerConfig, instanceKey = "default"): PinoLogger {
+  static getLogger(
+    config: LoggerConfig = { level: "info", transport: "pino-pretty" },
+    instanceKey = "default",
+  ): PinoLogger {
     if (!Logger.instances.has(instanceKey)) {
       Logger.instances.set(
         instanceKey,

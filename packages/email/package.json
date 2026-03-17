@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "resend": "^6.9.3"
+    "@logos/http": "^0.0.0",
+    "@logos/logger": "^0.0.0"
   },
   "devDependencies": {
     "@logos/typescript-config": "file:../typescript-config",

@@ -1,9 +1,12 @@
 import { EmailService } from "@logos/email";
 import { randomInt } from "crypto";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
+import { PinoLogger } from "../config/pino.logger.js";
 
 const CODE_LENGTH = 6;
 const EXPIRES_IN_MINUTES = 15;
+
+const logger = PinoLogger.getLogger();
 
 export class SendEmailCodeService {
   constructor(
@@ -17,6 +20,8 @@ export class SendEmailCodeService {
 
     await this.verificationCodeRepository.create(email, code, expiresAt);
     await this.emailService.sendVerificationCode(email, code);
+
+    logger.info(`Verification code sent to ${email}`);
   }
 
   private generateCode(): string {
