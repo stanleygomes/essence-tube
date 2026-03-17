@@ -11,7 +11,9 @@ export const loadTemplateFile = (
 
   try {
     return readFileSync(templatePath, "utf-8");
-  } catch {
-    throw new Error(`Failed to load template file: ${templatePath}`);
+  } catch (error) {
+    throw new Error(`Failed to load template file: ${templatePath}`, {
+      cause: error,
+    });
   }
 };
