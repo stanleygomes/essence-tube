@@ -25,13 +25,14 @@
     "@logos/email": "^0.0.0",
     "@logos/jwt": "^0.0.0",
     "@logos/logger": "^0.0.0",
+    "@logos/utils": "^0.0.0",
     "axios": "^1.10.0",
     "bcryptjs": "^3.0.3",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.45.1",
     "express": "^5.1.0",
-    "pg": "^8.17.6",
     "fastify": "^5.4.0",
+    "pg": "^8.17.6",
     "zod": "^4.3.6"
   },
   "devDependencies": {
