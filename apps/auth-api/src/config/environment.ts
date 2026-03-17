@@ -1,5 +1,6 @@
 const {
   APP_PUBLIC_BASE_URL,
+  APP_PLATFORM_URL,
   APP_CORS_ORIGIN,
   NODE_ENV,
   SERVER_URL,
@@ -30,6 +31,7 @@ export interface Environment {
     };
     web: {
       baseUrl?: string;
+      platformUrl?: string;
     };
     cors: {
       allowedOrigin: string;
@@ -72,6 +74,7 @@ export const config: Environment = {
     },
     web: {
       baseUrl: APP_PUBLIC_BASE_URL,
+      platformUrl: APP_PLATFORM_URL,
     },
     cors: {
       allowedOrigin: APP_CORS_ORIGIN || "*localhost*",

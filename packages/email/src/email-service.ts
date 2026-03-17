@@ -10,12 +10,17 @@ export class EmailService {
     this.resend = new Resend(this.apiKey);
   }
 
-  async sendVerificationCode(email: string, code: string): Promise<void> {
+  async sendVerificationCode(
+    email: string,
+    code: string,
+    html?: string,
+  ): Promise<void> {
     await this.resend.emails.send({
       from: this.fromEmail,
       to: email,
       subject: "Your verification code",
       text: `Your verification code is: ${code}`,
+      ...(html ? { html } : {}),
     });
   }
 }
