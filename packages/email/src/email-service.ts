@@ -15,8 +15,9 @@ export class EmailService {
   ) {}
 
   async sendVerificationCode(
+    subject: string,
     email: string,
-    code: string,
+    html?: string,
   ): Promise<EmailResponse> {
     try {
       const response = await httpClient.post<EmailResponse>(
@@ -24,8 +25,8 @@ export class EmailService {
         {
           from: this.fromEmail,
           to: [email],
-          subject: "Your verification code",
-          text: `Your verification code is: ${code}`,
+          subject,
+          html,
         },
         {
           headers: {
