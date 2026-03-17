@@ -30,8 +30,11 @@
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
         "DATABASE_URL",
+        "DATABASE_AUTH_TOKEN",
         "DATABASE_PATH",
         "DATABASE_MIGRATIONS_FOLDER",
+        "GOOGLE_AI_STUDIO_API_KEY",
+        "GOOGLE_AI_STUDIO_MODEL",
         "LOG_LEVEL",
         "LOG_TRANSPORT"
       ],

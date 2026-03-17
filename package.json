@@ -6,6 +6,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "app:auth": "turbo run dev --filter=auth-api",
+    "app:revelation": "turbo run dev --filter=revelation",
     "paul-ui": "turbo run dev --filter=paul-ui",
     "ui": "turbo run dev --filter=ui",
     "lint": "turbo run lint",
