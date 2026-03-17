@@ -7,7 +7,7 @@
     "dev": "turbo run dev",
     "app:auth": "turbo run dev --filter=auth-api",
     "app:revelation": "turbo run dev --filter=revelation",
-    "paul-ui": "turbo run dev --filter=paul-ui",
+    "app:paul": "turbo run dev --filter=paul-ui",
     "ui": "turbo run dev --filter=ui",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
@@ -15,6 +15,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "check": "npm run format:check && npm run lint && npm run check-types",
+    "fix": "npm run format && npm run lint:fix && npm run check-types",
     "install:individual": "for dir in apps/* packages/*; do if [ -d \"$dir\" ] && [ -f \"$dir/package.json\" ]; then echo \"Installing in $dir\" && cd \"$dir\" && npm install && cd ../..; fi; done",
     "prepare": "husky"
   },
