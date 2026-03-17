@@ -34,33 +34,44 @@ export class AuthController {
   ) {}
 
   registerRoutes(fastify: FastifyInstance, prefix = "") {
-    fastify.post(
+    const authRateLimit = fastify.rateLimit({
+      max: 10,
+      timeWindow: 60 * 1000,
+    });
+
+    fastify.post<{ Body: { email: string } }>(
       `${prefix}/v1/auth/send-code`,
-      { schema: sendCodeSchema },
+      { schema: sendCodeSchema, onRequest: authRateLimit },
       this.sendCode,
     );
 
-    fastify.post(
+    fastify.post<{ Body: { email: string; code: string } }>(
       `${prefix}/v1/auth/verify-code`,
-      { schema: verifyCodeSchema },
+      { schema: verifyCodeSchema, onRequest: authRateLimit },
       this.verifyCode,
     );
 
-    fastify.post(
+    fastify.post<{ Body: { refreshToken: string } }>(
       `${prefix}/v1/auth/refresh-token`,
-      { schema: refreshTokenSchema },
+      { schema: refreshTokenSchema, onRequest: authRateLimit },
       this.refreshToken,
     );
 
-    fastify.post(
+    fastify.post<{
+      Body: {
+        grant_type: "client_credentials";
+        client_id: string;
+        client_secret: string;
+      };
+    }>(
       `${prefix}/v1/auth/token`,
-      { schema: tokenSchema },
+      { schema: tokenSchema, onRequest: authRateLimit },
       this.token,
     );
 
-    fastify.post(
+    fastify.post<{ Body: { name: string } }>(
       `${prefix}/v1/auth/clients`,
-      { schema: createClientSchema },
+      { schema: createClientSchema, onRequest: authRateLimit },
       this.createClient,
     );
   }

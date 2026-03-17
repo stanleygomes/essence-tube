@@ -1,5 +1,6 @@
 import "dotenv/config";
 import Fastify, { FastifyInstance } from "fastify";
+import rateLimit from "@fastify/rate-limit";
 import { AppRouter } from "./router.js";
 import { PinoLogger } from "./config/pino.logger.js";
 import { config } from "./config/environment.js";
@@ -13,6 +14,10 @@ export class AppServer {
 
   constructor() {
     this.fastify = Fastify();
+
+    this.fastify.register(rateLimit, {
+      global: false,
+    });
 
     setupErrorHandler(this.fastify);
   }
