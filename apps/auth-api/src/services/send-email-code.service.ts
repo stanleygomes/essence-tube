@@ -1,6 +1,9 @@
 import { EmailService } from "@logos/email";
-import { loadTemplateFile } from "@logos/utils";
-import { randomInt } from "crypto";
+import {
+  buildVerificationCodeEmailHtml,
+  generateVerificationCode,
+  loadTemplateFile,
+} from "@logos/utils";
 import { VerificationCodeRepository } from "../repositories/verification-code.repository.js";
 import { PinoLogger } from "../config/pino.logger.js";
 import { config } from "../config/environment.js";
@@ -22,9 +25,14 @@ export class SendEmailCodeService {
   ) {}
 
   async execute(email: string): Promise<void> {
-    const code = this.generateCode();
+    const code = generateVerificationCode(CODE_LENGTH);
     const expiresAt = new Date(Date.now() + EXPIRES_IN_MINUTES * 60 * 1000);
-    const html = this.buildEmailHtml(code);
+    const html = buildVerificationCodeEmailHtml(
+      verificationCodeTemplate,
+      code,
+      EXPIRES_IN_MINUTES,
+      config.app.web.baseUrl ?? "#",
+    );
 
     await this.verificationCodeRepository.create(email, code, expiresAt);
     await this.emailService.sendVerificationCode(
@@ -34,18 +42,5 @@ export class SendEmailCodeService {
     );
 
     logger.info(`Verification code sent to ${email}`);
-  }
-
-  private generateCode(): string {
-    return randomInt(0, 10 ** CODE_LENGTH)
-      .toString()
-      .padStart(CODE_LENGTH, "0");
-  }
-
-  private buildEmailHtml(code: string): string {
-    return verificationCodeTemplate
-      .replace("{{CODE}}", code)
-      .replace("{{EXPIRY_MINUTES}}", String(EXPIRES_IN_MINUTES))
-      .replace("{{PLATFORM_URL}}", config.app.web.baseUrl ?? "#");
   }
 }
