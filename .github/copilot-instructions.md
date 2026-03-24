@@ -75,48 +75,20 @@ essence-tube/
 │   └── utils/                        # Shared utilities (e.g., date formatting)
 ```
 
-## Code Rules
+## Global Code Rules
 
-### Clean Code
+- Write concise, objective code — no inline comments; use clear names and method extraction instead.
+- Apply **SRP** and **OCP** (SOLID): each class has one responsibility; extend via new classes, not by modifying existing ones.
+- All code, identifiers, and UI labels must be in **English**.
+- Prefer existing shared packages (`@logos/*`) over duplicating logic across apps.
 
-- Write extremely concise and objective code
-- Never put comments in the code — prefer clear names and method/class extraction
+## Skills available
 
-### SOLID Principles
+Detailed, task-specific guidance lives in `.github/skills/`. The agent loads a skill when the task matches its keywords.
 
-- Total priority for Single Responsibility (SRP) and Open/Closed (OCP)
-- Separate responsibilities into reusable classes
-
-### Project-Specific Rules
-
-**Language**:
-
-- Code must be written in English
-- All text strings and UI labels must be in English
-
-**Shared Packages**:
-
-- ESLint config: `packages/eslint-config/`
-- TypeScript config: `packages/typescript-config/`
-- Shared UI components: `packages/ui/`
-- Shared utilities: `packages/utils/` (e.g., date formatting, `JwtService` for RS256 token signing/verification)
-
-## Test Rules
-
-### Test Pattern
-
-- **AAA Pattern**: Arrange → Act → Assert
-- **Title Convention**: Use the pattern `"should [behavior] when [condition]"`
-- **Test Type**: Only unit tests
-
-### Test Structure
-
-- Package structure must match the tested class
-- Test file naming: `[file-name].test.ts`
-- Keep tests short and focused
-
-### Test Coverage
-
-- Create 1 test for the ideal scenario (Happy Path)
-- Create 1 test for each alternative/error branch
-- Tests must be independent — do not share state
+| Skill | Path | When to use |
+|-------|------|-------------|
+| **testing** | `.github/skills/testing/SKILL.md` | Writing or reviewing unit tests |
+| **observability** | `.github/skills/observability/SKILL.md` | Adding or reviewing log statements |
+| **code-style** | `.github/skills/code-style/SKILL.md` | Lint, format, or style questions |
+| **monorepo-architecture** | `.github/skills/monorepo-architecture/SKILL.md` | Workspace layout, package boundaries, Turborepo tasks |
