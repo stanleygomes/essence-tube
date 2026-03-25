@@ -1,13 +1,10 @@
 {
-  "name": "logos-monorepo",
+  "name": "essence-tube-monorepo",
   "version": "1.8.0",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "app:auth": "turbo run dev --filter=auth-api",
-    "app:revelation": "turbo run dev --filter=revelation",
-    "app:paul": "turbo run dev --filter=paul-ui",
     "ui": "turbo run dev --filter=ui",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",

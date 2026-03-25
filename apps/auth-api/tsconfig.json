@@ -1,8 +1,0 @@
-{
-  "extends": "@logos/typescript-config/node.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src", "api"],
-  "exclude": ["node_modules", "dist"]
-}

@@ -1,5 +1,5 @@
 {
-  "extends": "@logos/typescript-config/node.json",
+  "extends": "@essence-tube/typescript-config/node.json",
   "compilerOptions": {
     "outDir": "dist"
   },

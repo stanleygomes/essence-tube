@@ -1,8 +1,0 @@
-node_modules/
-dist
-.env
-.vercel
-.docker
-*.db
-*.db-shm
-*.db-wal

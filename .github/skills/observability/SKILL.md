@@ -1,6 +1,6 @@
 ---
 name: observability
-description: Logging conventions using Pino and @logos/logger for all apps in this monorepo.
+description: Logging conventions using Pino and @essence-tube/logger for all apps in this monorepo.
 ---
 
 ## When to apply
@@ -16,13 +16,13 @@ Keywords: `log`, `logger`, `logging`, `pino`, `observability`, `tracing`, `metri
 
 ## Stack
 
-| App               | Logger                                         |
-| ----------------- | ---------------------------------------------- |
-| `apps/api`        | `pino` + `pino-pretty` (direct)                |
-| `apps/auth-api`   | `@logos/logger` (shared package wrapping Pino) |
-| `apps/revelation` | `@logos/logger` (shared package wrapping Pino) |
+| App               | Logger                                                |
+| ----------------- | ----------------------------------------------------- |
+| `apps/api`        | `pino` + `pino-pretty` (direct)                       |
+| `apps/auth-api`   | `@essence-tube/logger` (shared package wrapping Pino) |
+| `apps/revelation` | `@essence-tube/logger` (shared package wrapping Pino) |
 
-The `@logos/logger` package lives at `packages/logger/` and re-exports a configured Pino instance.
+The `@essence-tube/logger` package lives at `packages/logger/` and re-exports a configured Pino instance.
 
 ## Environment variables
 
@@ -45,7 +45,7 @@ The `@logos/logger` package lives at `packages/logger/` and re-exports a configu
 
 ## Checklist
 
-- [ ] Logger imported from `@logos/logger` (or the app's configured Pino instance)
+- [ ] Logger imported from `@essence-tube/logger` (or the app's configured Pino instance)
 - [ ] Structured context object included with every log call
 - [ ] Log level is appropriate for the event
 - [ ] No sensitive fields logged
@@ -54,8 +54,8 @@ The `@logos/logger` package lives at `packages/logger/` and re-exports a configu
 ## Example
 
 ```typescript
-// apps/auth-api — using @logos/logger
-import { logger } from "@logos/logger";
+// apps/auth-api — using @essence-tube/logger
+import { logger } from "@essence-tube/logger";
 
 export class SendEmailCodeService {
   async execute(email: string): Promise<void> {

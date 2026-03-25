@@ -36,8 +36,8 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@logos/eslint-config": "*",
-    "@logos/typescript-config": "*",
+    "@essence-tube/eslint-config": "*",
+    "@essence-tube/typescript-config": "*",
     "@types/axios": "^0.9.36",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",

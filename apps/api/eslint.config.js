@@ -1,4 +1,4 @@
-import { config } from "@logos/eslint-config/base";
+import { config } from "@essence-tube/eslint-config/base";
 
 /** @type {import("eslint").Linter.Config[]} */
 export default config;

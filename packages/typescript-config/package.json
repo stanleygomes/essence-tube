@@ -1,5 +1,5 @@
 {
-  "name": "@logos/typescript-config",
+  "name": "@essence-tube/typescript-config",
   "version": "0.0.0",
   "private": true,
   "publishConfig": {

@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:17-alpine
-    container_name: logos-auth-postgres
+    container_name: essence-tube-auth-postgres
     environment:
       POSTGRES_USER: database_user
       POSTGRES_PASSWORD: database_password
@@ -11,10 +11,10 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - logos-network
+      - essence-tube-network
 
 networks:
-  logos-network:
+  essence-tube-network:
 
 volumes:
   auth-api-postgres-data:

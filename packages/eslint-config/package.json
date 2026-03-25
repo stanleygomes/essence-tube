@@ -1,5 +1,5 @@
 {
-  "name": "@logos/eslint-config",
+  "name": "@essence-tube/eslint-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,

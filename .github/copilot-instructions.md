@@ -19,9 +19,7 @@ applyTo: "**"
 #### Apps-Specific Technologies
 
 - **apps/ui**: Standard Next.js with TailwindCSS 4
-- **apps/paul-ui**: Next.js with TailwindCSS 4
 - **apps/api**: Fastify/Express with MongoDB & Redis
-- **apps/auth-api**: Fastify + SQLite/Drizzle + Resend — email OTP auth, RS256 JWT (shared via `@logos/jwt`). Endpoints: `POST /auth/send-code`, `POST /auth/verify-code`, `POST /auth/refresh-token`
 
 ### Project Structure
 
@@ -60,14 +58,6 @@ essence-tube/
 │   │       ├── services/             # API clients, utilities
 │   │       ├── shared/               # Reusable components
 │   │       └── style/                # Global styles
-│   └── paul-ui/                      # Alternative Frontend (Next.js with Hero UI)
-│       └── src/
-│           ├── app/                  # Next.js app router
-│           ├── config/               # Frontend configuration
-│           ├── models/               # Frontend data models
-│           ├── services/             # API clients, utilities
-│           ├── shared/               # Reusable components
-│           └── style/                # Global styles
 ├── packages/                         # Shared packages
 │   ├── eslint-config/                # Shared ESLint configuration
 │   ├── typescript-config/            # Shared TypeScript configuration
@@ -80,7 +70,7 @@ essence-tube/
 - Write concise, objective code — no inline comments; use clear names and method extraction instead.
 - Apply **SRP** and **OCP** (SOLID): each class has one responsibility; extend via new classes, not by modifying existing ones.
 - All code, identifiers, and UI labels must be in **English**.
-- Prefer existing shared packages (`@logos/*`) over duplicating logic across apps.
+- Prefer existing shared packages (`@essence-tube/*`) over duplicating logic across apps.
 
 ## Skills available
 
