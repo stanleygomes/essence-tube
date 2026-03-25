@@ -6,6 +6,7 @@ description: Workspace layout, app boundaries, and dependency rules for the Esse
 ## When to apply
 
 Apply this skill whenever you are asked to:
+
 - Add a new app or package to the monorepo
 - Move code between workspaces
 - Decide where a piece of logic should live
@@ -59,12 +60,12 @@ Dependency direction: `infra` → `application` → `domain` (never reversed).
 
 Defined in `turbo.json`:
 
-| Task | Dependencies | Notes |
-|------|-------------|-------|
-| `build` | `^build` (dependencies first) | Outputs: `.next/**` |
-| `lint` | `^lint` | |
-| `check-types` | `^check-types` | |
-| `dev` | — | Persistent, no cache |
+| Task          | Dependencies                  | Notes                |
+| ------------- | ----------------------------- | -------------------- |
+| `build`       | `^build` (dependencies first) | Outputs: `.next/**`  |
+| `lint`        | `^lint`                       |                      |
+| `check-types` | `^check-types`                |                      |
+| `dev`         | —                             | Persistent, no cache |
 
 ## Commands
 

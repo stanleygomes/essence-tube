@@ -4,8 +4,8 @@
   "version": "1.6.0",
   "private": true,
   "scripts": {
-    "dev-backup": "next dev --port 3000",
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 NEXT_TURBOPACK_EXPERIMENTAL_USE_SYSTEM_TLS_CERTS=1 next dev --experimental-https",
+    "dev-https": "NODE_TLS_REJECT_UNAUTHORIZED=0 NEXT_TURBOPACK_EXPERIMENTAL_USE_SYSTEM_TLS_CERTS=1 next dev --experimental-https",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",

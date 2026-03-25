@@ -86,9 +86,9 @@ essence-tube/
 
 Detailed, task-specific guidance lives in `.github/skills/`. The agent loads a skill when the task matches its keywords.
 
-| Skill | Path | When to use |
-|-------|------|-------------|
-| **testing** | `.github/skills/testing/SKILL.md` | Writing or reviewing unit tests |
-| **observability** | `.github/skills/observability/SKILL.md` | Adding or reviewing log statements |
-| **code-style** | `.github/skills/code-style/SKILL.md` | Lint, format, or style questions |
+| Skill                     | Path                                            | When to use                                           |
+| ------------------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| **testing**               | `.github/skills/testing/SKILL.md`               | Writing or reviewing unit tests                       |
+| **observability**         | `.github/skills/observability/SKILL.md`         | Adding or reviewing log statements                    |
+| **code-style**            | `.github/skills/code-style/SKILL.md`            | Lint, format, or style questions                      |
 | **monorepo-architecture** | `.github/skills/monorepo-architecture/SKILL.md` | Workspace layout, package boundaries, Turborepo tasks |

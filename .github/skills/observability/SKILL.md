@@ -6,6 +6,7 @@ description: Logging conventions using Pino and @logos/logger for all apps in th
 ## When to apply
 
 Apply this skill whenever you are asked to:
+
 - Add, change, or review log statements
 - Instrument a new service, use-case, or route
 - Configure log levels or transports
@@ -15,20 +16,20 @@ Keywords: `log`, `logger`, `logging`, `pino`, `observability`, `tracing`, `metri
 
 ## Stack
 
-| App | Logger |
-|-----|--------|
-| `apps/api` | `pino` + `pino-pretty` (direct) |
-| `apps/auth-api` | `@logos/logger` (shared package wrapping Pino) |
+| App               | Logger                                         |
+| ----------------- | ---------------------------------------------- |
+| `apps/api`        | `pino` + `pino-pretty` (direct)                |
+| `apps/auth-api`   | `@logos/logger` (shared package wrapping Pino) |
 | `apps/revelation` | `@logos/logger` (shared package wrapping Pino) |
 
 The `@logos/logger` package lives at `packages/logger/` and re-exports a configured Pino instance.
 
 ## Environment variables
 
-| Variable | Purpose |
-|----------|---------|
-| `LOG_LEVEL` | Pino log level (`trace`, `debug`, `info`, `warn`, `error`, `fatal`) |
-| `LOG_TRANSPORT` | Set to `pretty` for local dev; leave unset for JSON in production |
+| Variable        | Purpose                                                             |
+| --------------- | ------------------------------------------------------------------- |
+| `LOG_LEVEL`     | Pino log level (`trace`, `debug`, `info`, `warn`, `error`, `fatal`) |
+| `LOG_TRANSPORT` | Set to `pretty` for local dev; leave unset for JSON in production   |
 
 ## Conventions
 
@@ -54,16 +55,16 @@ The `@logos/logger` package lives at `packages/logger/` and re-exports a configu
 
 ```typescript
 // apps/auth-api — using @logos/logger
-import { logger } from '@logos/logger';
+import { logger } from "@logos/logger";
 
 export class SendEmailCodeService {
   async execute(email: string): Promise<void> {
-    logger.info({ email }, 'Sending OTP code');
+    logger.info({ email }, "Sending OTP code");
     try {
       await this.mailer.send(email);
-      logger.info({ email }, 'OTP code sent successfully');
+      logger.info({ email }, "OTP code sent successfully");
     } catch (err) {
-      logger.error({ email, err }, 'Failed to send OTP code');
+      logger.error({ email, err }, "Failed to send OTP code");
       throw err;
     }
   }

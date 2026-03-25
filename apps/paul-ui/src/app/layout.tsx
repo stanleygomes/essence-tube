@@ -2,7 +2,6 @@ import type { Viewport, Metadata } from "next";
 import { pixelify, geistSans, geistMono } from "@config/font";
 import { Providers } from "./providers";
 import "@logos/utils/globals.css";
-import "@hackernoon/pixel-icon-library/fonts/iconfont.css";
 
 export const metadata: Metadata = {
   title: "EssenceTube",
