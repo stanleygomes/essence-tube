@@ -1,10 +1,12 @@
+import FooterLinks from "@app/components/FooterLinks";
 import DefaultPageHeader from "../components/DefaultPageHeader";
 
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-secondary-background">
       <DefaultPageHeader />
-      <div className="p-6 max-w-2xl mx-auto">
+      <div className="pt-48 px-6 max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
         <p className="mb-4">
           <strong>1. Data Accessed</strong>
           <br />
@@ -51,6 +53,9 @@ export default function PrivacyPage() {
           If you have any questions about this policy or wish to request
           deletion of any data, please contact us.
         </p>
+      </div>
+      <div className="flex justify-center p-6">
+        <FooterLinks />
       </div>
     </div>
   );

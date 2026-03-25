@@ -16,11 +16,11 @@
   --ring: oklch(0% 0 0);
   --overlay: oklch(0% 0 0 / 0.8);
   --shadow: 4px 4px 0px 0px var(--border);
-  --chart-1: #FFBF00;
-  --chart-2: #0099FF;
-  --chart-3: #FF7A05;
-  --chart-4: #00D696;
-  --chart-5: #7A83FF;
+  --chart-1: #ffbf00;
+  --chart-2: #0099ff;
+  --chart-3: #ff7a05;
+  --chart-4: #00d696;
+  --chart-5: #7a83ff;
   --chart-active-dot: #000;
 }
 
@@ -33,11 +33,11 @@
   --border: oklch(0% 0 0);
   --ring: oklch(100% 0 0);
   --shadow: 4px 4px 0px 0px var(--border);
-  --chart-1: #E5AC00;
-  --chart-2: #008AE5;
-  --chart-3: #EB6D00;
-  --chart-4: #00BD84;
-  --chart-5: #7A83FF;
+  --chart-1: #e5ac00;
+  --chart-2: #008ae5;
+  --chart-3: #eb6d00;
+  --chart-4: #00bd84;
+  --chart-5: #7a83ff;
   --chart-active-dot: #fff;
 }
 
@@ -65,13 +65,18 @@
   --font-weight-base: 500;
   --font-weight-heading: 700;
 }
-  
+
 @layer base {
   body {
     @apply text-foreground font-base bg-background;
   }
 
-  h1, h2, h3, h4, h5, h6{
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading;
   }
 
@@ -81,5 +86,13 @@
 
   a:hover {
     @apply text-main;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(20, 20, 20, 0.88);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
 }

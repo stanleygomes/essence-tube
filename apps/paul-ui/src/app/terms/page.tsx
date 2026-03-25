@@ -1,10 +1,12 @@
+import FooterLinks from "@app/components/FooterLinks";
 import DefaultPageHeader from "../components/DefaultPageHeader";
 
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-secondary-background">
       <DefaultPageHeader />
-      <div className="p-6 max-w-2xl mx-auto">
+      <div className="pt-48 px-6 max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
         <p className="mb-4">
           By using this application, you agree to the terms described below.
           This application uses the YouTube API to provide personalized features
@@ -28,6 +30,9 @@ export default function TermsPage() {
           We reserve the right to update these terms at any time. We recommend
           that you review this page periodically.
         </p>
+      </div>
+      <div className="flex justify-center p-6">
+        <FooterLinks />
       </div>
     </div>
   );
