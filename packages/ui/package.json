@@ -12,6 +12,8 @@
     "./avatar": "./src/components/ui/avatar.tsx",
     "./accordion": "./src/components/ui/accordion.tsx",
     "./sonner": "./src/components/ui/sonner.tsx",
+    "./badge": "./src/components/ui/badge.tsx",
+    "./marquee": "./src/components/ui/marquee.tsx",
     "./globals.css": "./src/globals.css"
   },
   "scripts": {

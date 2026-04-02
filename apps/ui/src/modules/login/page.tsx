@@ -1,185 +1,198 @@
-import ImageByTheme from "@shared/ui/image-by-theme/ImageByTheme";
-import { config } from "@config/config";
-import Button from "@shared/ui/button/Button";
-import Card from "@shared/ui/card/Card";
-import Icon from "@shared/ui/icon/Icon";
-import Typography from "@shared/ui/typography/Typography";
+"use client";
 
-const IconNoAlgo = (
-  <Icon name="window-close" className="text-red-500 mb-2 text-3xl" />
-);
-const IconChannels = (
-  <Icon name="users-crown" className="text-blue-500 mb-2 text-3xl" />
-);
-const IconFeed = (
-  <Icon name="tech-stories" className="text-green-500 mb-2 text-3xl" />
-);
-const IconLock = <Icon name="lock" className="text-gray-500 mb-2 text-3xl" />;
+import { config } from "@config/config";
+import { Card, CardContent } from "@packages/ui/card";
+import { Icon } from "@packages/ui/icon";
+import { Badge } from "@packages/ui/badge";
+import Marquee from "@packages/ui/marquee";
+import Image from "next/image";
+
+import { useEffect, useState } from "react";
 
 export default function Login() {
   const { baseUrl } = config.api;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    console.log("EssenceTube Login Page - API Base URL:", baseUrl);
+  }, [baseUrl]);
+
+  const handleLogin = (e: React.MouseEvent) => {
+    console.log("Login button clicked! Redirecting to:", `${baseUrl}/login`, e);
+    if (!baseUrl) {
+      console.warn(
+        "Base URL is not defined. Falling back to local /api/login?",
+      );
+    }
+  };
+
+  const marqueeItems = [
+    "NO ALGORITHMS",
+    "NO DISTRACTIONS",
+    "YOUR FEED",
+    "YOUR CONTROL",
+    "100% PRIVATE",
+    "ESSENTIAL YOUTUBE",
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col pb-24">
-      <div
-        className="flex flex-col items-center justify-center pt-12 pb-6 bg-[#e6d6b8] dark:bg-[#3a2c1a] w-full"
-        style={{ marginTop: "-60px" }}
-      >
-        <ImageByTheme
-          srcDark="/img/logo-dark.png"
-          srcLight="/img/logo-light.png"
-          width={100}
-          height={100}
-          classNameLight="mb-6 block dark:hidden"
-          classNameDark="mb-6 hidden dark:block"
-        />
-        <Typography
-          variant="h1"
-          className="mb-2 text-3xl font-bold tracking-tight text-center"
-        >
-          EssenceTube
-        </Typography>
-        <Typography
-          variant="p"
-          className="mb-2 text-center text-gray-700 dark:text-gray-200 text-base max-w-sm"
-        >
-          The essential YouTube, without distractions.
-        </Typography>
-      </div>
+    <div className="min-h-screen bg-[#fff5e1] dark:bg-[#121212] flex flex-col font-base selection:bg-main selection:text-main-foreground overflow-x-hidden relative">
+      {/* Texture Overlay - Lowered z-index to avoid blocking clicks */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[0] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-      <div className="mx-6">
-        <Card className="mt-6 max-w-md mx-auto">
-          <Typography
-            variant="h2"
-            className="text-lg font-semibold text-center mb-2"
+      <header className="relative z-10 pt-20 pb-16 px-6 flex flex-col items-center text-center overflow-hidden">
+        {/* Floating Decorators */}
+        <div className="absolute top-10 left-[10%] -rotate-12 animate-bounce-slow hidden md:block">
+          <Badge
+            variant="default"
+            className="text-xl py-2 px-6 border-4 border-black shadow-[4px_4px_0px_#000] bg-yellow-400 text-black font-black uppercase tracking-tighter"
           >
-            Why use it?
-          </Typography>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              {IconNoAlgo}
-              <div>
-                <Typography variant="h4" className="font-semibold">
-                  No algorithms
-                </Typography>
-                <Typography variant="p" className="text-xs">
-                  You choose what to watch, no automatic suggestions.
-                </Typography>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              {IconChannels}
-              <div>
-                <Typography variant="h4" className="font-semibold">
-                  Your channels, your videos
-                </Typography>
-                <Typography variant="p" className="text-xs">
-                  See all the channels you are subscribed to and their videos
-                  easily.
-                </Typography>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              {IconFeed}
-              <div>
-                <Typography variant="h4" className="font-semibold">
-                  Personalized feed
-                </Typography>
-                <Typography variant="p" className="text-xs">
-                  Build your feed only with videos you want to watch.
-                </Typography>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              {IconLock}
-              <div>
-                <Typography variant="h4" className="font-semibold">
-                  Privacy and control
-                </Typography>
-                <Typography variant="p" className="text-xs">
-                  Platform protected by login. Only you can see your data.
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </Card>
+            v1.8.0
+          </Badge>
+        </div>
 
-        <Card className="max-w-md mx-auto">
-          <Typography
-            variant="h2"
-            className="text-lg font-semibold mb-2 text-center"
-          >
-            How does it work?
-          </Typography>
-          <ul className="text-gray-700 dark:text-gray-300 text-sm space-y-2 list-disc list-inside">
-            <li>
-              <Typography variant="span">
-                Log in with your Google account
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="span">
-                See all your channels and videos
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="span">
-                Add videos to your personalized feed
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="span">
-                Watch without distractions, only what you choose
-              </Typography>
-            </li>
-          </ul>
-        </Card>
-      </div>
+        <div className="absolute top-20 right-[15%] rotate-6 animate-pulse hidden md:block">
+          <Icon icon="lucide:sparkles" className="w-12 h-12 text-main" />
+        </div>
 
-      <Typography
-        variant="p"
-        className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center max-w-xs mx-auto pb-2"
-      >
-        Your experience is private and secure.
-        <br />
-        Only you have access to your feed.
-      </Typography>
-
-      <div
-        className="flex justify-center max-w-md mx-auto px-6 py-3 my-3 gap-4 text-xs text-gray-500 dark:text-gray-400 pb-6"
-        style={{ borderTop: "2px solid #c2b8a3" }}
-      >
-        <a href="/terms" className="hover:underline">
-          <Typography variant="span">Terms of Service</Typography>
-        </a>
-        <Typography variant="span">|</Typography>
-        <a href="/privacy" className="hover:underline">
-          <Typography variant="span">Privacy</Typography>
-        </a>
-      </div>
-
-      <div
-        className="fixed bottom-0 bg-theme left-0 w-full z-50"
-        style={{
-          borderTop: "2px solid #c2b8a3",
-        }}
-      >
-        <div className="mx-6">
-          <div className="flex justify-end items-center py-6 max-w-md mx-auto">
-            <a href={`${baseUrl}/login`}>
-              <Button
-                type="button"
-                color="red"
-                className="w-full py-2 px-3 text-base mb-0"
-                icon="arrow-right"
-                iconPosition="right"
-              >
-                Sign in with Google
-              </Button>
-            </a>
+        <div className="relative mb-10 group">
+          <div className="absolute -inset-4 bg-main rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity" />
+          <Image
+            src="/img/logo.png"
+            width={160}
+            height={160}
+            alt="EssenceTube Logo"
+            className="relative transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 drop-shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:drop-shadow-[8px_8px_0px_rgba(255,255,255,0.1)]"
+          />
+          <div className="absolute -bottom-4 -right-10 rotate-12">
+            <Badge className="bg-red-500 text-white border-4 border-black shadow-[4px_4px_0px_#000] font-black text-lg py-1 px-4 uppercase italic">
+              Essential
+            </Badge>
           </div>
         </div>
+
+        <h1 className="text-5xl md:text-6xl font-pixelify-sans leading-none mb-6 tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+          EssenceTube
+        </h1>
+
+        <div className="max-w-2xl mx-auto mb-12">
+          <p className="text-xl md:text-3xl font-geist-mono font-bold leading-tight uppercase tracking-tight">
+            Stop the infinite scroll. <br />
+            <span className="bg-main text-white px-4 py-1 inline-block -rotate-1 transform shadow-[4px_4px_0px_#000] border-2 border-black mt-2">
+              Reclaim your time.
+            </span>
+          </p>
+        </div>
+
+        <div className="relative w-full max-w-lg mx-auto z-50 px-4 group">
+          {/* Blur background now with pointer-events-none */}
+          <div className="absolute -inset-2 bg-main rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity animate-pulse pointer-events-none" />
+
+          <a
+            href={isMounted ? `${baseUrl}/login` : "#"}
+            onClick={(e) => {
+              handleLogin(e);
+              // Force navigation just in case
+              if (baseUrl) {
+                window.location.href = `${baseUrl}/login`;
+              }
+            }}
+            className="relative z-10 w-full py-8 text-xl md:text-2xl font-black bg-main text-white border-4 border-black shadow-[12px_12px_0px_rgba(0,0,0,1)] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:translate-x-[12px] active:translate-y-[12px] active:shadow-none transition-all duration-200 uppercase tracking-tighter flex items-center justify-center gap-4 group cursor-pointer"
+          >
+            Sign in with Google
+            <Icon
+              icon="lucide:arrow-right"
+              className="w-6 h-6 md:w-10 md:h-10 opacity-50 group-hover:translate-x-2 transition-transform"
+            />
+          </a>
+        </div>
+      </header>
+
+      <div className="py-2 border-y-4 border-black bg-white dark:bg-black relative z-10">
+        <Marquee items={marqueeItems} />
       </div>
+
+      <main className="max-w-6xl mx-auto w-full px-6 py-24 mb-32 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            {
+              title: "No Algorithms",
+              desc: "Purely user-driven. No manipulation, no rabbit holes.",
+              icon: "lucide:zap-off",
+              color: "bg-[#ff9494]",
+              rotate: "-rotate-1",
+            },
+            {
+              title: "Your Circles",
+              desc: "Simple subscription feed. Focus on creators you love.",
+              icon: "lucide:heart",
+              color: "bg-[#a0e7e5]",
+              rotate: "rotate-1",
+            },
+            {
+              title: "Privacy First",
+              desc: "No tracking, no data selling. Your data, your rules.",
+              icon: "lucide:shield-check",
+              color: "bg-[#b4f8c8]",
+              rotate: "-rotate-2",
+            },
+            {
+              title: "Essential Only",
+              desc: "Minimalist interface built for productivity and focus.",
+              icon: "lucide:layout-template",
+              color: "bg-[#fbe7c6]",
+              rotate: "rotate-2",
+            },
+          ].map((feature, i) => (
+            <Card
+              key={i}
+              className={`${feature.color} border-4 border-black shadow-[8px_8px_0px_#000] transform ${feature.rotate} hover:rotate-0 transition-transform duration-300 h-full`}
+            >
+              <CardContent className="p-8 flex flex-col h-full">
+                <div className="bg-white border-4 border-black p-4 inline-block mb-6 shadow-[4px_4px_0px_#000]">
+                  <Icon icon={feature.icon} className="w-10 h-10 text-black" />
+                </div>
+                <h3 className="text-2xl font-black font-pixelify-sans mb-4 uppercase tracking-tighter">
+                  {feature.title}
+                </h3>
+                <p className="text-lg font-geist-mono font-bold leading-snug opacity-90">
+                  {feature.desc}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-32 flex flex-col items-center gap-12 font-geist-mono">
+          <div className="w-32 h-4 bg-black/10 dark:bg-white/10 rounded-full" />
+          <div className="flex flex-wrap justify-center gap-12 text-lg font-black uppercase tracking-widest">
+            <a
+              href="/terms"
+              className="hover:text-main hover:underline decoration-4 transition-all pb-1"
+            >
+              Terms of Service
+            </a>
+            <a
+              href="/privacy"
+              className="hover:text-main hover:underline decoration-4 transition-all pb-1"
+            >
+              Privacy Policy
+            </a>
+          </div>
+          <p className="max-w-md text-center text-sm font-bold opacity-30 mt-8">
+            &copy; 2026 ESSENCETUBE. <br />
+          </p>
+        </div>
+      </main>
+
+      <div
+        className="fixed inset-0 -z-50 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#000 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
     </div>
   );
 }
