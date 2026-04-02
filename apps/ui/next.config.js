@@ -1,6 +1,6 @@
 import { withSerwist } from "@serwist/turbopack";
 import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import { dirname } from "node:path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,12 +12,11 @@ const nextConfig = {
     unoptimized: true,
   },
   turbopack: {
-    root: resolve(__dirname, "../../"),
+    root: __dirname,
   },
-  outputFileTracingRoot: resolve(__dirname, "../../"),
+  outputFileTracingRoot: __dirname,
   experimental: {
     turbopackUseSystemTlsCerts: true,
-    outputFileTracingRoot: resolve(__dirname, "../../"),
   },
 };
 
