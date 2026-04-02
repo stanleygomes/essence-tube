@@ -14,8 +14,10 @@ const nextConfig = {
   turbopack: {
     root: resolve(__dirname, "../../"),
   },
+  outputFileTracingRoot: resolve(__dirname, "../../"),
   experimental: {
     turbopackUseSystemTlsCerts: true,
+    outputFileTracingRoot: resolve(__dirname, "../../"),
   },
 };
 
