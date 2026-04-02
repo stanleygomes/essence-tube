@@ -18,6 +18,7 @@
     "@": "src"
   },
   "dependencies": {
+    "@fastify/cors": "^11.2.0",
     "@fastify/swagger": "^9.5.1",
     "@fastify/swagger-ui": "^5.2.3",
     "axios": "^1.10.0",

@@ -50,12 +50,11 @@ export class SubscriptionRoutes {
         return;
       }
 
-      const { id } = request.query as { id?: string | string[] };
-      const channelId = Array.isArray(id) ? id[0] : (id ?? "");
-
+      const { id } = request.params as { id?: string };
+      const channelId = id ?? "";
       const response = await this.getLatestVideosFromChannelUseCase.execute(
         bearerToken,
-        channelId!,
+        channelId,
       );
       reply.status(200).send(response);
     } catch (error: any) {

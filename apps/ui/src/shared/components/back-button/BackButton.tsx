@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Typography from "@shared/ui/typography/Typography";
-import Button from "@shared/ui/button/Button";
+import Icon from "@shared/ui/icon/Icon";
 
 export interface IBackButton {
   showBackButton: boolean;
@@ -20,9 +19,8 @@ export default function BackButton({
   if (!showBackButton) return null;
 
   return (
-    <Button
+    <button
       type="button"
-      color="transparent"
       onClick={() => {
         if (backRoute) {
           router.push(backRoute);
@@ -30,13 +28,20 @@ export default function BackButton({
           router.back();
         }
       }}
-      className="mr-2 flex items-center gap-2 justify-center"
+      className="mr-3 flex items-center gap-2 group transition-all active:scale-95 cursor-pointer"
       aria-label="Voltar"
-      icon="arrow-left"
     >
+      <div className="w-8 h-8 flex items-center justify-center border-2 border-black bg-white dark:bg-black shadow-[2px_2px_0px_#000] group-hover:bg-main group-hover:shadow-[4px_4px_0px_#000] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+        <Icon
+          name="arrow-left"
+          className="w-4 h-4 text-black dark:text-white group-hover:text-black"
+        />
+      </div>
       {backButtonText && (
-        <Typography variant="span">{backButtonText}</Typography>
+        <span className="font-black text-xs uppercase tracking-tight text-black dark:text-white hidden sm:block">
+          {backButtonText}
+        </span>
       )}
-    </Button>
+    </button>
   );
 }

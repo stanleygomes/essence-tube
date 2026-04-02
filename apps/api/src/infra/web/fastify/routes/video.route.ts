@@ -17,13 +17,10 @@ export class VideoRoutes {
         return;
       }
 
-      const { id } = request.query as { id?: string | string[] };
-      const videoId = Array.isArray(id) ? id[0] : id;
+      const { id } = request.params as { id?: string };
+      const videoId = id ?? "";
 
-      const response = await this.getVideoUseCase.execute(
-        bearerToken,
-        videoId ?? "",
-      );
+      const response = await this.getVideoUseCase.execute(bearerToken, videoId);
       reply.status(200).send(response);
     } catch (error: any) {
       this.logger.error(error);

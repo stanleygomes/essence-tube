@@ -11,7 +11,6 @@ export const getVideoSchema = {
   response: {
     200: {
       description: "Dados do vídeo",
-      type: "object",
     },
   },
 };

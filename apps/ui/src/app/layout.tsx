@@ -1,5 +1,5 @@
 import type { Viewport, Metadata } from "next";
-import { pixelify, geistSans, geistMono } from "@config/font";
+import { geistSans, geistMono } from "@config/font";
 // import "../style/globals.css";
 import "@hackernoon/pixel-icon-library/fonts/iconfont.css";
 import "@packages/ui/globals.css";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f7ecd7" },
-    { media: "(prefers-color-scheme: dark)", color: "#3a2c1a" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -46,12 +46,12 @@ export default function RootLayout({
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
-          content="#ffffff"
+          content="#f7ecd7"
         />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#18181b"
+          content="#09090b"
         />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,7 +61,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${pixelify.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SerwistProvider swUrl="/serwist/sw.js">
           <div id="app-container">{children}</div>

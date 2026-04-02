@@ -5,7 +5,6 @@ export const listPlaylistsSchema = {
     200: {
       description: "Lista de playlists",
       type: "array",
-      items: { type: "object" },
     },
   },
 };
@@ -24,7 +23,6 @@ export const listVideosFromPlaylistSchema = {
     200: {
       description: "Lista de vídeos",
       type: "array",
-      items: { type: "object" },
     },
   },
 };

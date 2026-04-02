@@ -11,5 +11,5 @@ export async function getChannels() {
 
 export async function getChannelVideos(id: string) {
   if (typeof window === "undefined") return [];
-  return http.get(`/subscriptions/videos/${id}`);
+  return http.get(`/subscriptions/${id}/videos`);
 }

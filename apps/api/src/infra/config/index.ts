@@ -32,7 +32,7 @@ export interface Config {
       baseUrl?: string;
     };
     cors: {
-      allowedOrigin: string;
+      allowedOrigin: string | string[];
       allowedMethods: string;
       allowedHeaders: string;
     };
@@ -84,8 +84,10 @@ export const config: Config = {
       baseUrl: APP_PUBLIC_BASE_URL,
     },
     cors: {
-      allowedOrigin: APP_CORS_ORIGIN || "*localhost*",
-      allowedMethods: "GET,POST,PUT,DELETE,OPTIONS",
+      allowedOrigin: APP_CORS_ORIGIN?.includes(",")
+        ? APP_CORS_ORIGIN.split(",").map((o) => o.trim())
+        : APP_CORS_ORIGIN || "*",
+      allowedMethods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
       allowedHeaders: "Content-Type,Authorization",
     },
     env: NODE_ENV,

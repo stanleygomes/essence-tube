@@ -1,5 +1,6 @@
 import "dotenv/config";
 import Fastify, { FastifyInstance } from "fastify";
+import cors from "@fastify/cors";
 import { AppRouter } from "./router.js";
 import { Logger } from "../../logger/pino.logger.js";
 import { config } from "../../config/index.js";
@@ -19,6 +20,10 @@ export class AppServer {
 
   public async start() {
     await Docs.register(this.fastify);
+    await this.fastify.register(cors, {
+      origin: config.app.cors.allowedOrigin,
+      methods: config.app.cors.allowedMethods.split(","),
+    });
 
     const router = new AppRouter();
     router.register(this.fastify, config.app.server.path);

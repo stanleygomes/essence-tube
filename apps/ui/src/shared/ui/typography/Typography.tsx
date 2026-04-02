@@ -1,33 +1,38 @@
-import { ReactNode, HTMLAttributes, createElement } from "react";
+import React from "react";
 
-type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+type TypographyVariant = "h1" | "h2" | "h3" | "p" | "span" | "label";
 
-interface TypographyProps extends HTMLAttributes<HTMLElement> {
+interface TypographyProps {
   variant?: TypographyVariant;
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
+  id?: string;
 }
 
-const headingTags: TypographyVariant[] = ["h1", "h2", "h3", "h4", "h5", "h6"];
+const variantStyles: Record<TypographyVariant, string> = {
+  h1: "font-black text-4xl sm:text-6xl uppercase tracking-tighter leading-none",
+  h2: "font-black text-3xl sm:text-4xl uppercase tracking-tighter leading-tight",
+  h3: "font-black text-xl sm:text-2xl uppercase tracking-tight",
+  p: "font-geist-mono font-bold text-sm leading-relaxed",
+  span: "font-geist-mono font-medium text-xs uppercase tracking-widest",
+  label:
+    "font-bold text-xs uppercase tracking-wider bg-black text-white px-2 py-0.5",
+};
 
-export default function Typography({
+const Typography: React.FC<TypographyProps> = ({
   variant = "p",
   children,
   className = "",
-  ...props
-}: TypographyProps) {
-  const isHeading = headingTags.includes(variant);
+  id,
+}) => {
+  const Component = variant === "label" ? "span" : variant;
+  const styles = `${variantStyles[variant]} ${className}`;
 
-  return createElement(
-    variant,
-    {
-      className: `${
-        isHeading
-          ? "font-pixelify text-[#3a2c1a] dark:text-[#f7ecd7]"
-          : "font-geist-mono"
-      } ${className}`,
-      ...props,
-    },
-    children,
+  return (
+    <Component id={id} className={styles}>
+      {children}
+    </Component>
   );
-}
+};
+
+export default Typography;

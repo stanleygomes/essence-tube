@@ -5,7 +5,6 @@ export const listSubscriptionsSchema = {
     200: {
       description: "Lista de canais",
       type: "array",
-      items: { type: "object" },
     },
   },
 };
@@ -24,7 +23,6 @@ export const listLatestVideosFromChannelSchema = {
     200: {
       description: "Lista de vídeos",
       type: "array",
-      items: { type: "object" },
     },
   },
 };

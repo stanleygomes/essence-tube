@@ -1,154 +1,103 @@
 "use client";
 
+import React from "react";
 import Header from "@shared/components/header/Header";
-import Typography from "@shared/ui/typography/Typography";
 import Button from "@shared/ui/button/Button";
-import { removeAuth } from "@services/authStorageService";
-import { getUser } from "@services/userStorageService";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import pkg from "../../../package.json";
-import Card from "@shared/ui/card/Card";
+import { getUser } from "@services/userStorageService";
 
 export default function Settings() {
-  const [user, setUser] = useState<{
-    uuid: string;
-    name: string;
-    email: string;
-    photo_url: string;
-  } | null>(null);
-
-  useEffect(() => {
-    setUser(getUser());
-  }, []);
+  const user = getUser();
 
   const handleLogout = () => {
-    removeAuth();
+    localStorage.clear();
     window.location.href = "/login";
   };
 
   return (
-    <>
-      <Header title="Settings" showBackButton={true} showUserPhoto={false} />
-      <div className="min-h-screen flex flex-col">
-        <div className="max-w-md w-full mx-auto flex-1 flex flex-col gap-8 py-8 px-4">
-          {user && (
-            <Card className="gap-4 mb-6 p-4">
-              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
-                {user.photo_url ? (
-                  <Image
-                    src={user.photo_url}
-                    alt={user.name}
-                    width={80}
-                    height={80}
-                    className="object-cover w-full h-full"
-                  />
-                ) : (
-                  <Image
-                    src="/img/emoji-cool.png"
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="object-cover w-full h-full"
-                  />
-                )}
+    <div className="min-h-screen pb-32">
+      <Header
+        title="Settings"
+        showBackButton={true}
+        backButtonRoute="/home"
+        showUserPhoto={false}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 py-10 pt-14">
+        <div className="bg-white dark:bg-[#1a1a1a] border-4 border-black p-8 shadow-[12px_12px_0px_#000] mb-12">
+          <div className="flex flex-col sm:flex-row items-center gap-8">
+            <div className="relative w-32 h-32 rounded-full border-4 border-black overflow-hidden shadow-[6px_6px_0px_#000] bg-main/10 flex items-center justify-center">
+              {user?.photo_url ? (
+                <Image
+                  src={user.photo_url}
+                  alt={user.name || "User"}
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover"
+                  unoptimized
+                />
+              ) : (
+                <Image
+                  src="/img/emoji-cool.png"
+                  alt="User"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover p-4"
+                />
+              )}
+            </div>
+
+            <div className="flex-1 text-center sm:text-left space-y-2">
+              <h1 className="font-black text-4xl uppercase tracking-tighter">
+                {user?.name || "ANONYMOUS USER"}
+              </h1>
+              <p className="font-geist-mono font-bold text-gray-500 uppercase tracking-widest text-sm">
+                {user?.email || "No signal detected"}
+              </p>
+              <div className="inline-block bg-green-100 text-green-800 px-3 py-1 border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0_#000] mt-2">
+                ACTIVE SESSION
               </div>
-              <div className="flex flex-col justify-center flex-1 min-w-0">
-                <Typography
-                  variant="h3"
-                  className="truncate mb-1 text-lg font-semibold text-gray-900 dark:text-gray-100"
-                >
-                  {user.name}
-                </Typography>
-                <Typography
-                  variant="span"
-                  className="truncate text-sm text-gray-600 dark:text-gray-300"
-                >
-                  {user.email}
-                </Typography>
-                <Typography
-                  variant="span"
-                  className="mt-1 select-all truncate text-xs text-gray-400 dark:text-gray-500"
-                >
-                  {user.uuid}
-                </Typography>
-                <div className="mt-2 flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-green-600 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M10 15.172l8.95-8.95 1.414 1.414L10 18 3.636 11.636l1.414-1.414z" />
-                  </svg>
-                  <Typography
-                    variant="span"
-                    className="font-medium text-green-600 dark:text-green-400"
-                  >
-                    YouTube account connected!
-                  </Typography>
-                </div>
-              </div>
-            </Card>
-          )}
+            </div>
+          </div>
+        </div>
 
-          <section>
-            <Typography
-              variant="h4"
-              className="mb-5 mx-4 text-sm text-gray-900 dark:text-gray-100"
-            >
-              More links
-            </Typography>
-            <ul className="divide-y divide-[#3a2c1a] dark:divide-[#3a2c1a] bg-white text-[#3a2c1a] shadow-[4px_4px_0_#c2b8a3] dark:bg-[#3a2c1a] dark:text-[#f7ecd7] dark:shadow-[4px_4px_0_#7a6a4f]">
-              <li>
-                <a
-                  href="/terms"
-                  className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-t-xl transition"
-                >
-                  <Typography
-                    variant="span"
-                    className="text-base text-gray-900 dark:text-gray-100"
-                  >
-                    Terms of Service
-                  </Typography>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/privacy"
-                  className="block py-4 px-4 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-b-xl transition"
-                >
-                  <Typography
-                    variant="span"
-                    className="text-base text-gray-900 dark:text-gray-100"
-                  >
-                    Privacy Policy
-                  </Typography>
-                </a>
-              </li>
-            </ul>
-          </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-blue-100 dark:bg-blue-900/30 p-6 border-4 border-black shadow-[8px_8px_0px_#000]">
+            <h2 className="font-black text-2xl uppercase mb-4 tracking-tighter">
+              Appearance
+            </h2>
+            <div className="space-y-4">
+              <p className="font-geist-mono text-xs uppercase font-bold text-blue-800 dark:text-blue-300">
+                System automatically adapts to your terminal preference.
+              </p>
+            </div>
+          </div>
 
-          <section className="mt-8">
-            <Button
-              onClick={handleLogout}
-              color="red"
-              className="w-full text-base py-3 rounded-lg font-semibold shadow"
-            >
-              Logout
-            </Button>
-          </section>
+          <div className="bg-yellow-100 dark:bg-yellow-900/30 p-6 border-4 border-black shadow-[8px_8px_0px_#000]">
+            <h2 className="font-black text-2xl uppercase mb-4 tracking-tighter">
+              Permissions
+            </h2>
+            <div className="space-y-4">
+              <p className="font-geist-mono text-xs uppercase font-bold text-yellow-800 dark:text-yellow-300">
+                Access to Youtube Playlists and Subscriptions verified.
+              </p>
+            </div>
+          </div>
+        </div>
 
-          <section className="mt-8">
-            <Typography
-              variant="span"
-              className="w-full text-center text-xs text-gray-400 dark:text-gray-600 pb-4"
-            >
-              Versão do app: {pkg.version}
-            </Typography>
-          </section>
+        <div className="border-t-4 border-black pt-12">
+          <Button
+            color="red"
+            onClick={handleLogout}
+            className="w-full py-6 text-xl shadow-[8px_8px_0px_#000]"
+          >
+            TERMINATE SESSION
+          </Button>
+          <p className="text-center font-geist-mono text-[10px] uppercase text-gray-500 mt-4 tracking-widest">
+            Warning: This will clear all local buffers and security tokens.
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

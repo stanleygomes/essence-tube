@@ -28,12 +28,12 @@ export class PlaylistRoutes {
         return;
       }
 
-      const { id } = request.query as { id?: string | string[] };
-      const playlistId = Array.isArray(id) ? id[0] : (id ?? "");
+      const { id } = request.params as { id?: string };
+      const playlistId = id ?? "";
 
       const response = await this.getVideosFromPlaylistUseCase.execute(
         bearerToken,
-        playlistId!,
+        playlistId,
       );
       reply.status(200).send(response);
     } catch (error: any) {
@@ -63,6 +63,7 @@ export class PlaylistRoutes {
       }
 
       const response = await this.getPlaylistsUseCase.execute(bearerToken);
+
       reply.status(200).send(response);
     } catch (error: any) {
       this.logger.error(error);

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Header from "@shared/components/header/Header";
-import Typography from "@shared/ui/typography/Typography";
 import { getChannels, getChannelVideos } from "@services/subscriptionService";
 import Creator from "@shared/components/creator/Creators";
 import { addVideoToPlaylist } from "@services/playlistService";
@@ -83,39 +82,45 @@ export default function Feed() {
   return (
     <>
       <Header title="Feed" showLogo={true} />
-      <div className="py-6">
-        <div className="mb-4 px-6">
-          <div className="max-w-5xl mx-auto">
+      <div className="min-h-screen pb-24">
+        <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[0] mix-blend-overlay" />
+
+        <div className="py-6 relative z-10 px-4 sm:px-6">
+          <div className="mb-8 max-w-5xl mx-auto">
             {!loading && creators.length > 0 && (
-              <Typography
-                variant="h2"
-                className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-100"
-              >
-                Choose a channel
-              </Typography>
+              <div className="bg-white dark:bg-[#1a1a1a] p-6 border-4 border-black shadow-[8px_8px_0_#000] mb-8">
+                <h2 className="font-black text-3xl text-black dark:text-white uppercase tracking-tighter">
+                  Subscriptions
+                </h2>
+                <p className="font-geist-mono font-bold text-xs text-gray-500 uppercase tracking-widest mt-1 pb-4 border-b-2 border-black/10">
+                  Select a creator to browse their latest uploads
+                </p>
+                <div className="mt-6">
+                  <CreatorsList
+                    creators={creators}
+                    loading={loading}
+                    onCreatorClick={handleCreatorClick}
+                    selectedCreator={selectedCreator}
+                  />
+                </div>
+              </div>
             )}
-            <CreatorsList
-              creators={creators}
-              loading={loading}
-              onCreatorClick={handleCreatorClick}
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <ChannelVideosList
+              videos={channelVideos}
+              loading={loadingVideos}
               selectedCreator={selectedCreator}
+              selectedPlaylistId={selectedPlaylistId}
+              addingVideoId={addingVideoId}
+              addSuccess={addSuccess}
+              addError={addError}
+              videoIdSuccess={videoIdSuccess}
+              videoIdError={videoIdError}
+              handleAddToPlaylist={handleAddToPlaylist}
             />
           </div>
-        </div>
-
-        <div className="px-6">
-          <ChannelVideosList
-            videos={channelVideos}
-            loading={loadingVideos}
-            selectedCreator={selectedCreator}
-            selectedPlaylistId={selectedPlaylistId}
-            addingVideoId={addingVideoId}
-            addSuccess={addSuccess}
-            addError={addError}
-            videoIdSuccess={videoIdSuccess}
-            videoIdError={videoIdError}
-            handleAddToPlaylist={handleAddToPlaylist}
-          />
         </div>
       </div>
     </>
@@ -126,6 +131,7 @@ interface CreatorsListProps {
   creators: any[];
   loading: boolean;
   onCreatorClick: (creator: any) => void;
+  selectedCreator: any;
 }
 
 function CreatorsList({
@@ -133,29 +139,33 @@ function CreatorsList({
   loading,
   onCreatorClick,
   selectedCreator,
-}: CreatorsListProps & { selectedCreator: any }) {
+}: CreatorsListProps) {
   if (loading) {
-    return <Loading title="Loading channels..." />;
+    return (
+      <div className="flex justify-center py-10">
+        <Loading title="SCANNING CHANNELS..." />
+      </div>
+    );
   }
   if (!creators.length) {
     return (
-      <Typography
-        variant="span"
-        className="text-base text-gray-700 dark:text-gray-200 text-center py-8"
-      >
-        No channels found.
-      </Typography>
+      <div className="bg-red-100 p-4 border-2 border-black text-red-800 font-bold text-center">
+        NO CHANNELS CONNECTED.
+      </div>
     );
   }
   return (
-    <HorizontalScroll className="gap-4 py-2 px-1">
+    <HorizontalScroll className="gap-6 py-4 px-2">
       {creators.map((creator) => (
         <Creator
           key={creator.id}
           creator={{
             id: creator.id,
             name: creator.title,
-            avatar: creator.thumbnails.high,
+            avatar:
+              creator.thumbnails.high ||
+              creator.thumbnails.medium ||
+              creator.thumbnails.default,
           }}
           selected={selectedCreator && selectedCreator.id === creator.id}
           onClick={() => onCreatorClick(creator)}
@@ -190,72 +200,94 @@ function ChannelVideosList({
   videoIdError,
   handleAddToPlaylist,
 }: ChannelVideosListProps) {
-  if (!selectedCreator) return null;
+  if (!selectedCreator) {
+    return (
+      <div className="py-20 text-center flex flex-col items-center">
+        <div className="w-16 h-16 bg-main border-2 border-black shadow-[4px_4px_0_#000] rotate-3 mb-6" />
+        <p className="font-black text-2xl text-gray-400 uppercase tracking-widest">
+          Choose a channel to begin
+        </p>
+      </div>
+    );
+  }
 
   const buildVideoSubtitle = (video: any): string => {
     if (video.videoPublishedAt) {
-      return "Published " + humanizeDate(new Date(video.videoPublishedAt));
+      return (
+        "UPLOADED " +
+        humanizeDate(new Date(video.videoPublishedAt)).toUpperCase()
+      );
     }
 
     return "";
   };
 
   return (
-    <div className="mt-6 max-w-5xl mx-auto">
-      <Typography
-        variant="h2"
-        className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100"
-      >
-        Latest videos from {selectedCreator.title}
-      </Typography>
-      {loading ? (
-        <Loading title="Loading videos..." />
-      ) : videos.length > 0 ? (
-        <div
-          className="
-            grid grid-cols-1
-            sm:grid-cols-2
-            md:grid-cols-3
-            gap-4
-          "
-        >
-          {videos.map((video) => (
-            <div key={video.id} className="relative">
-              <VideoCard
-                title={video.title}
-                subtitle={buildVideoSubtitle(video)}
-                thumbnail={video.thumbnails?.high}
-                buttonClick={
-                  selectedPlaylistId
-                    ? () => handleAddToPlaylist(video.id, selectedPlaylistId)
-                    : undefined
-                }
-                loadingAddButton={addingVideoId === video.id}
-                loadingAddButtonText="Adding..."
-                addButtonText={
-                  addingVideoId === video.id
-                    ? ""
-                    : addSuccess && video.id === videoIdSuccess
-                      ? "Added"
-                      : addError && video.id === videoIdError
-                        ? "Error"
-                        : "Add"
-                }
-                buttonColor={
-                  addSuccess && video.id === videoIdSuccess ? "green" : "red"
-                }
-              />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <Typography
-          variant="span"
-          className="text-base text-gray-700 dark:text-gray-200 text-center py-8"
-        >
-          No videos found for this channel.
-        </Typography>
-      )}
+    <div className="mt-2">
+      <div className="bg-main/90 p-4 border-x-4 border-t-4 border-black inline-block translate-y-1 z-10 relative">
+        <h2 className="font-black text-xl text-black uppercase tracking-tighter">
+          Archive: {selectedCreator.title}
+        </h2>
+      </div>
+
+      <div className="bg-white dark:bg-[#1a1a1a] p-6 border-4 border-black shadow-[8px_8px_0_#000] min-h-[400px]">
+        {loading ? (
+          <div className="flex justify-center py-20">
+            <Loading title="RETRIEVING ARCHIVE..." />
+          </div>
+        ) : videos.length > 0 ? (
+          <div
+            className="
+              grid grid-cols-1
+              sm:grid-cols-2
+              md:grid-cols-2
+              lg:grid-cols-3
+              gap-8
+            "
+          >
+            {videos.map((video, idx) => (
+              <div key={video.id} className="relative">
+                <VideoCard
+                  title={video.title}
+                  subtitle={buildVideoSubtitle(video)}
+                  thumbnail={
+                    video.thumbnails?.high ||
+                    video.thumbnails?.medium ||
+                    video.thumbnails?.default
+                  }
+                  buttonClick={
+                    selectedPlaylistId
+                      ? () => handleAddToPlaylist(video.id, selectedPlaylistId)
+                      : undefined
+                  }
+                  loadingAddButton={addingVideoId === video.id}
+                  loadingAddButtonText="ADDING..."
+                  addButtonText={
+                    addingVideoId === video.id
+                      ? ""
+                      : addSuccess && video.id === videoIdSuccess
+                        ? "DONE"
+                        : addError && video.id === videoIdError
+                          ? "ERR"
+                          : "ADD"
+                  }
+                  buttonColor={
+                    addSuccess && video.id === videoIdSuccess ? "green" : "red"
+                  }
+                  addSuccess={!!(addSuccess && video.id === videoIdSuccess)}
+                  cardClass={
+                    idx % 2 === 0 ? "rotate-[0.5deg]" : "-rotate-[0.5deg]"
+                  }
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="py-20 text-center font-black text-gray-400 uppercase text-2xl">
+            NO RECORDINGS FOUND.
+          </div>
+        )}
+      </div>
     </div>
   );
 }

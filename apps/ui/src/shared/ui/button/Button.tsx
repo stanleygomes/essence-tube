@@ -5,6 +5,7 @@ export type ButtonColor =
   | "blue"
   | "red"
   | "green"
+  | "yellow"
   | "default"
   | "outline"
   | "transparent";
@@ -18,21 +19,17 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const colorClasses: Record<string, string> = {
   default:
-    "bg-[#3a2c1a] text-[#f7ecd7] shadow-[4px_4px_0_#7a6a4f] hover:bg-[#2d2417] active:shadow-none active:bg-[#2d2417] " +
-    "dark:bg-[#f7ecd7] dark:text-[#3a2c1a] dark:shadow-[4px_4px_0_#c2b8a3] dark:hover:bg-[#e6d6b8] dark:active:shadow-none dark:active:bg-[#e6d6b8]",
-  red:
-    "bg-[#f7d7d7] text-[#7c2f2f] shadow-[4px_4px_0_#c2a3a3] hover:bg-[#e6b8b8] active:shadow-none active:bg-[#e6b8b8] " +
-    "dark:bg-[#b87a7a] dark:text-[#3a1a1a] dark:shadow-[4px_4px_0_#7a4f4f] dark:hover:bg-[#a35c5c] dark:active:shadow-none dark:active:bg-[#a35c5c]",
-  blue:
-    "bg-[#d7e6f7] text-[#2f4a7c] shadow-[4px_4px_0_#a3b8c2] hover:bg-[#b8d6e6] active:shadow-none active:bg-[#b8d6e6] " +
-    "dark:bg-[#7a8cb8] dark:text-[#1a233a] dark:shadow-[4px_4px_0_#4f5c7a] dark:hover:bg-[#5c6ca3] dark:active:shadow-none dark:active:bg-[#5c6ca3]",
+    "bg-white dark:bg-[#1a1a1a] text-black dark:text-white shadow-[4px_4px_0px_#000] hover:bg-gray-50 active:bg-gray-100",
+  red: "bg-[#ffaebc] dark:bg-[#991b1b] text-black shadow-[4px_4px_0px_#000] hover:bg-[#ff94a8] active:bg-[#ff7a94]",
+  yellow:
+    "bg-[#fbe7c6] dark:bg-[#b45309] text-black shadow-[4px_4px_0px_#000] hover:bg-[#f6d8a4] active:bg-[#f1c982]",
+  blue: "bg-[#a0e7e5] dark:bg-[#1e40af] text-black shadow-[4px_4px_0px_#000] hover:bg-[#86d6d4] active:bg-[#6cc5c3]",
   green:
-    "bg-[#d7f7e6] text-[#2f7c4a] shadow-[4px_4px_0_#a3c2b8] hover:bg-[#b8e6d6] active:shadow-none active:bg-[#b8e6d6] " +
-    "dark:bg-[#7ab88c] dark:text-[#1a3a23] dark:shadow-[4px_4px_0_#4f7a5c] dark:hover:bg-[#5ca36c] dark:active:shadow-none dark:active:bg-[#5ca36c]",
+    "bg-[#b4f8c8] dark:bg-[#065f46] text-black shadow-[4px_4px_0px_#000] hover:bg-[#96e8ad] active:bg-[#78d892]",
   outline:
-    "bg-transparent shadow-none border-none text-[#3a2c1a] dark:text-[#f7ecd7] px-0 py-0 relative after:content-[''] after:block after:w-full after:h-0.5 after:bg-current after:absolute after:left-0 after:-bottom-1",
+    "bg-transparent border-4 border-black text-black dark:text-white shadow-none",
   transparent:
-    "bg-transparent shadow-none border-none text-[#3a2c1a] dark:text-[#f7ecd7]",
+    "bg-transparent shadow-none border-none text-black dark:text-white",
 };
 
 export default function Button({
@@ -46,29 +43,27 @@ export default function Button({
   const content = (
     <>
       {icon && iconPosition === "left" && (
-        <>
+        <div className="flex items-center gap-2 pr-2 border-r-2 border-black/10 dark:border-white/10 mr-2">
           <Icon name={icon} />
-          <span className="h-5 w-px bg-[#c2b8a3] dark:bg-[#7a6a4f] mx-2 inline-block align-middle"></span>
-        </>
+        </div>
       )}
-      <span className="flex-1">{children}</span>
+      <span className="flex-1 font-bold">{children}</span>
       {icon && iconPosition === "right" && (
-        <>
-          <span className="h-5 w-px bg-[#c2b8a3] dark:bg-[#7a6a4f] mx-2 inline-block align-middle"></span>
+        <div className="flex items-center gap-2 pl-2 border-l-2 border-black/10 dark:border-white/10 ml-2">
           <Icon name={icon} />
-        </>
+        </div>
       )}
     </>
   );
 
   return (
     <button
-      className={`flex items-center gap-2 text-sm font-medium cursor-pointer transition-all duration-150 
+      className={`flex items-center justify-center gap-2 py-3 px-6 text-sm font-black cursor-pointer transition-all duration-150 
+        border-4 border-black uppercase tracking-tight
+        hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000]
+        active:translate-x-[4px] active:translate-y-[4px] active:shadow-none
         ${colorClasses[color]} 
-        font-pixelify 
-        active:scale-95 
         ${className}`}
-      style={{ borderRadius: 0 }}
       {...props}
     >
       {content}

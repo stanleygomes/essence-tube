@@ -14,12 +14,14 @@ export async function getPlaylistVideos(id: string) {
   return http.get(`/playlists/${id}`);
 }
 
-export async function removePlaylistVideo(playlistId: string) {
+export async function removePlaylistVideo(playlistItemId: string) {
   if (typeof window === "undefined") return [];
-  return http.delete(`/playlistItems/${playlistId}`);
+  return http.delete(`/playlists/video?id=${playlistItemId}`);
 }
 
 export async function addVideoToPlaylist(playlistId: string, videoId: string) {
   if (typeof window === "undefined") return [];
-  return http.post(`/playlists/items/${playlistId}/${videoId}`);
+  return http.post(
+    `/playlists/video?playlistId=${playlistId}&videoId=${videoId}`,
+  );
 }

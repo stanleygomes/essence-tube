@@ -11,7 +11,6 @@ import PlaylistCard from "@shared/components/playlist-card/PlaylistCard";
 import PullToRefresh from "@shared/ui/pull-to-refresh/PullToRefresh";
 import Button from "@shared/ui/button/Button";
 import { humanizeDate } from "@shared/utils/date-utils";
-import Typography from "@shared/ui/typography/Typography";
 
 export default function Home() {
   const [playlists, setPlaylists] = useState<IPlaylistItem[]>([]);
@@ -58,25 +57,33 @@ export default function Home() {
   return (
     <>
       <Header title="Home" showLogo={true} />
-      <div className="px-2 sm:px-4">
-        <div className="max-w-5xl mx-auto">
-          <PullToRefresh onRefresh={fetchVideosFromDefaultPlaylist}>
-            {loadingVideos ? (
-              <Loading title="Loading videos..." />
-            ) : videos.length > 0 ? (
-              <VideoList
-                videos={videos}
-                handleListPlaylists={handleListPlaylists}
-              />
-            ) : loadingPlaylists ? (
-              <Loading title="Loading playlists..." />
-            ) : (
-              <PlaylistList
-                playlists={playlists}
-                onSelect={handleSelectPlaylist}
-              />
-            )}
-          </PullToRefresh>
+      <div className="min-h-screen pb-24">
+        <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[0] mix-blend-overlay" />
+
+        <div className="px-4 sm:px-6 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <PullToRefresh onRefresh={fetchVideosFromDefaultPlaylist}>
+              {loadingVideos ? (
+                <div className="py-20 text-center">
+                  <Loading title="RETRIEVING VIDEOS..." />
+                </div>
+              ) : videos.length > 0 ? (
+                <VideoList
+                  videos={videos}
+                  handleListPlaylists={handleListPlaylists}
+                />
+              ) : loadingPlaylists ? (
+                <div className="py-20 text-center">
+                  <Loading title="LOADING PLAYLISTS..." />
+                </div>
+              ) : (
+                <PlaylistList
+                  playlists={playlists}
+                  onSelect={handleSelectPlaylist}
+                />
+              )}
+            </PullToRefresh>
+          </div>
         </div>
       </div>
     </>
@@ -89,11 +96,12 @@ interface VideoListProps {
 }
 
 function buildVideoSubtitle(video: any): string {
-  const owner = video.owner?.title ? `By ${video.owner.title}` : "";
+  const owner = video.owner?.title ? `BY ${video.owner.title}` : "";
   let publishedAt = "";
 
   if (video.videoPublishedAt) {
-    publishedAt = " • " + humanizeDate(new Date(video.videoPublishedAt));
+    publishedAt =
+      " • " + humanizeDate(new Date(video.videoPublishedAt)).toUpperCase();
   }
 
   return `${owner}${publishedAt}`;
@@ -103,38 +111,44 @@ function VideoList({ videos, handleListPlaylists }: VideoListProps) {
   if (!videos.length) return null;
 
   return (
-    <div className="mb-6">
-      <div className="flex items-center justify-between mt-2 mx-4">
-        <Typography
-          variant="h2"
-          className="text-lg font-semibold text-gray-900 dark:text-gray-100"
-        >
-          Your videos
-        </Typography>
+    <div className="py-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 bg-white dark:bg-[#1a1a1a] p-6 border-4 border-black shadow-[8px_8px_0px_#000]">
+        <div>
+          <h2 className="font-black text-3xl sm:text-4xl text-black dark:text-white uppercase tracking-tighter">
+            Your feed
+          </h2>
+          <p className="font-geist-mono font-bold text-xs text-gray-500 uppercase tracking-widest mt-1">
+            {videos.length} videos curated for you
+          </p>
+        </div>
         <Button
-          color="outline"
+          color="yellow"
           onClick={handleListPlaylists}
+          className="w-full sm:w-auto py-4 px-8 border-4 border-black shadow-[4px_4px_0px_#000]"
           aria-label="Listar playlists"
         >
-          Change playlist
+          Change playlist source
         </Button>
       </div>
+
       <div
         className="
           grid grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          gap-0 sm:gap-4
-          mx-4 mt-3
+          md:grid-cols-2
+          lg:grid-cols-2
+          gap-8
         "
       >
-        {videos.map((video) => (
+        {videos.map((video, idx) => (
           <VideoCard
             key={video.id}
             link={`/video/${video.id}/${video.videoId}`}
             title={video.title}
             subtitle={buildVideoSubtitle(video)}
             thumbnail={video.thumbnails.high}
+            cardClass={
+              idx % 3 === 0 ? "rotate-1" : idx % 3 === 1 ? "-rotate-1" : ""
+            }
           />
         ))}
       </div>
@@ -150,31 +164,32 @@ interface PlaylistListProps {
 function PlaylistList({ playlists, onSelect }: PlaylistListProps) {
   if (!playlists.length) return null;
   return (
-    <div className="mx-6 pb-6">
-      <div className="my-6">
-        <Typography
-          variant="h2"
-          className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1"
-        >
+    <div className="py-8">
+      <div className="mb-10 bg-main p-8 border-4 border-black shadow-[8px_8px_0px_#000]">
+        <h2 className="font-black text-4xl sm:text-5xl text-black uppercase tracking-tighter leading-none mb-4">
           Select a playlist
-        </Typography>
-        <Typography
-          variant="p"
-          className="text-sm text-gray-600 dark:text-gray-400"
-        >
-          The videos from this playlist will be listed here
-        </Typography>
+        </h2>
+        <p className="font-geist-mono font-bold text-sm text-black py-2 border-y-2 border-black/10 uppercase tracking-tight">
+          Choose a source to populate your minimalist video feed
+        </p>
       </div>
-      {playlists.map((playlist) => (
-        <PlaylistCard
-          key={playlist.id}
-          id={playlist.id}
-          title={playlist.title}
-          description={playlist.description}
-          thumbnail={playlist.thumbnails.high}
-          onClick={onSelect}
-        />
-      ))}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {playlists.map((playlist) => (
+          <PlaylistCard
+            key={playlist.id}
+            id={playlist.id}
+            title={playlist.title}
+            description={playlist.description}
+            thumbnail={
+              playlist.thumbnails.high ||
+              playlist.thumbnails.medium ||
+              playlist.thumbnails.default
+            }
+            onClick={onSelect}
+          />
+        ))}
+      </div>
     </div>
   );
 }

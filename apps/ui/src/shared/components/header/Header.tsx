@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ImageByTheme from "../../ui/image-by-theme/ImageByTheme";
 import Image from "next/image";
 
 import BackButton from "@shared/components/back-button/BackButton";
 import { getUser } from "@services/userStorageService";
-import Typography from "@shared/ui/typography/Typography";
 
 export interface IHeader {
   showLogo?: boolean;
@@ -46,11 +44,11 @@ export default function Header({
 
   return (
     <>
-      {/* <InstallPrompt /> */}
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 px-6 py-2 bg-[#fff5e1]/80 dark:bg-[#121212]/80 backdrop-blur-md border-4 border-black shadow-[8px_8px_0px_#000] header-top-safe-area rounded-2xl">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-[100] mix-blend-overlay rounded-2xl" />
 
-      <div className="fixed top-0 left-0 w-full z-50 px-6 py-2 bg-theme header-top-safe-area">
-        <div className="flex items-center justify-between py-3">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between py-3 relative z-10">
+          <div className="flex items-center gap-4">
             {canGoBack && (
               <BackButton
                 showBackButton={showBackButton}
@@ -59,55 +57,52 @@ export default function Header({
               />
             )}
             <div
-              className="flex items-center justify-center gap-3 min-h-[40px]"
+              className="flex items-center justify-center gap-3 min-h-[44px]"
               tabIndex={0}
               role="button"
               aria-label={title}
             >
               {showLogo && (
-                <ImageByTheme
-                  srcDark="/img/logo-dark.png"
-                  srcLight="/img/logo-light.png"
-                  width={25}
-                  height={25}
-                  classNameLight="block dark:hidden"
-                  classNameDark="hidden dark:block"
-                />
+                <div className="bg-white border-2 border-black p-1 shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000]">
+                  <Image src="/img/logo.png" width={28} height={28} alt={""} />
+                </div>
               )}
-              <Typography
-                variant="h1"
-                className="font-bold text-2xl sm:text-3xl"
-              >
+              <h1 className="font-black text-2xl sm:text-4xl uppercase tracking-tighter">
                 {title}
-              </Typography>
+              </h1>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {actionButton}
             {showUserPhoto && (
               <Link href="/settings">
-                {userPhoto ? (
-                  <Image
-                    src={userPhoto}
-                    alt="Foto do usuário"
-                    width={40}
-                    height={40}
-                    className="object-cover cursor-pointer active:scale-95 transition shadow-[4px_4px_0_#7a6a4f] active:shadow-none"
-                  />
-                ) : (
-                  <Image
-                    src="/img/emoji-cool.png"
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="cursor-pointer active:scale-95 transition shadow-[4px_4px_0_#7a6a4f] active:shadow-none"
-                  />
-                )}
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-main opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+                  {userPhoto ? (
+                    <Image
+                      src={userPhoto}
+                      alt="User"
+                      width={44}
+                      height={44}
+                      className="relative w-[44px] h-[44px] object-cover cursor-pointer border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all rounded-full"
+                      unoptimized
+                    />
+                  ) : (
+                    <Image
+                      src="/img/emoji-cool.png"
+                      alt="User"
+                      width={44}
+                      height={44}
+                      className="relative w-[44px] h-[44px] cursor-pointer border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all rounded-full"
+                    />
+                  )}
+                </div>
               </Link>
             )}
           </div>
         </div>
       </div>
+      <div className="h-[80px] sm:h-[90px]" />
     </>
   );
 }

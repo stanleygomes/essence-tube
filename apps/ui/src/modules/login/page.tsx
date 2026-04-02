@@ -37,12 +37,10 @@ export default function Login() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fff5e1] dark:bg-[#121212] flex flex-col font-base selection:bg-main selection:text-main-foreground overflow-x-hidden relative">
-      {/* Texture Overlay - Lowered z-index to avoid blocking clicks */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[0] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+    <div className="min-h-screen flex flex-col font-base selection:bg-main selection:text-main-foreground overflow-x-hidden relative">
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[0] mix-blend-overlay" />
 
       <header className="relative z-10 pt-20 pb-16 px-6 flex flex-col items-center text-center overflow-hidden">
-        {/* Floating Decorators */}
         <div className="absolute top-10 left-[10%] -rotate-12 animate-bounce-slow hidden md:block">
           <Badge
             variant="default"
@@ -72,7 +70,7 @@ export default function Login() {
           </div>
         </div>
 
-        <h1 className="text-5xl md:text-6xl font-pixelify-sans leading-none mb-6 tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+        <h1 className="text-5xl md:text-6xl leading-none mb-6 tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
           EssenceTube
         </h1>
 
@@ -86,14 +84,12 @@ export default function Login() {
         </div>
 
         <div className="relative w-full max-w-lg mx-auto z-50 px-4 group">
-          {/* Blur background now with pointer-events-none */}
           <div className="absolute -inset-2 bg-main rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity animate-pulse pointer-events-none" />
 
           <a
             href={isMounted ? `${baseUrl}/login` : "#"}
             onClick={(e) => {
               handleLogin(e);
-              // Force navigation just in case
               if (baseUrl) {
                 window.location.href = `${baseUrl}/login`;
               }
@@ -153,7 +149,7 @@ export default function Login() {
                 <div className="bg-white border-4 border-black p-4 inline-block mb-6 shadow-[4px_4px_0px_#000]">
                   <Icon icon={feature.icon} className="w-10 h-10 text-black" />
                 </div>
-                <h3 className="text-2xl font-black font-pixelify-sans mb-4 uppercase tracking-tighter">
+                <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">
                   {feature.title}
                 </h3>
                 <p className="text-lg font-geist-mono font-bold leading-snug opacity-90">
