@@ -6,15 +6,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /** @type {import('next').NextConfig} */
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   output: "standalone",
   images: {
     unoptimized: true,
   },
   turbopack: {
     root: resolve(__dirname, "../../"),
+  },
+  experimental: {
+    turbopackUseSystemTlsCerts: true,
   },
 };
 
