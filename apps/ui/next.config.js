@@ -15,7 +15,6 @@ const nextConfig = {
   turbopack: {
     root: monorepoRoot,
   },
-  outputFileTracingRoot: monorepoRoot,
   experimental: {
     turbopackUseSystemTlsCerts: true,
   },
