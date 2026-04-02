@@ -22,6 +22,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+import { SerwistProvider } from "./serwist";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +43,6 @@ export default function RootLayout({
           name="google-site-verification"
           content="zjHzBow23XhNh-SYFW_B8prT0a_YIOodoR854XReZ34"
         />
-
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
@@ -52,7 +53,6 @@ export default function RootLayout({
           media="(prefers-color-scheme: dark)"
           content="#18181b"
         />
-
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
@@ -63,7 +63,9 @@ export default function RootLayout({
       <body
         className={`${pixelify.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div id="app-container">{children}</div>
+        <SerwistProvider swUrl="/serwist/sw.js">
+          <div id="app-container">{children}</div>
+        </SerwistProvider>
       </body>
     </html>
   );

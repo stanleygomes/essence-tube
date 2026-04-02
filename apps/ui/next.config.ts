@@ -1,10 +1,4 @@
-import withSerwistInit from "@serwist/next";
-
-const withSerwist = withSerwistInit({
-  swSrc: "src/sw.ts",
-  swDest: "public/sw.js",
-});
-
+import { withSerwist } from "@serwist/turbopack";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 

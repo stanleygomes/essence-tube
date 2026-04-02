@@ -1,5 +1,5 @@
 /// <reference lib="webworker" />
-import { defaultCache } from "@serwist/next/worker";
+import { defaultCache } from "@serwist/turbopack/worker";
 import { Serwist, type SerwistGlobalConfig } from "serwist";
 
 declare const self: ServiceWorkerGlobalScope & SerwistGlobalConfig;
