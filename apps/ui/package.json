@@ -14,27 +14,28 @@
   },
   "dependencies": {
     "@hackernoon/pixel-icon-library": "^1.0.6",
+    "@serwist/next": "^9.5.7",
+    "@serwist/turbopack": "^9.5.7",
     "axios": "^1.13.5",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "jwt-decode": "^4.0.0",
     "next": "16.1.6",
-    "next-pwa": "5.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "serwist": "^9.5.7"
   },
   "devDependencies": {
+    "@packages/eslint-config": "*",
+    "@packages/typescript-config": "*",
+    "@packages/ui": "*",
     "@tailwindcss/postcss": "^4",
-    "@types/next-pwa": "5.6.9",
-    "tailwindcss": "^4",
-    "@essence-tube/ui": "*",
-    "@essence-tube/eslint-config": "*",
-    "@essence-tube/typescript-config": "*",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.1",
+    "tailwindcss": "^4",
     "typescript": "5.9.2"
   }
 }

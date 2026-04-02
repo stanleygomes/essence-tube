@@ -45,3 +45,4 @@ certificates
 # firebase
 firebase-debug.log
 .firebase/*
+\n# Serwist\npublic/sw.js\npublic/sw.js.map\npublic/swe-worker-*.js

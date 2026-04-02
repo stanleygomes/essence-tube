@@ -1,20 +1,22 @@
 services:
-  postgres:
-    image: postgres:17-alpine
-    container_name: essence-tube-auth-postgres
+  mongo:
+    image: mongo:8.0.4
+    container_name: essence-tube-mongodb
     environment:
-      POSTGRES_USER: database_user
-      POSTGRES_PASSWORD: database_password
-      POSTGRES_DB: database_name
-    volumes:
-      - auth-api-postgres-data:/var/lib/postgresql/data
+      MONGO_INITDB_ROOT_USERNAME: jhon-the-baptist
+      MONGO_INITDB_ROOT_PASSWORD: ABC123
     ports:
-      - "5432:5432"
-    networks:
-      - essence-tube-network
+      - "27017:27017"
+    volumes:
+      - ./docker/mongo-data:/data/db
+    network_mode: host
 
-networks:
-  essence-tube-network:
-
-volumes:
-  auth-api-postgres-data:
+  redis:
+    image: redis:7.2.5
+    container_name: essence-tube-redis
+    command: ["redis-server", "--requirepass", "ABC123"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis-data:/data
+    network_mode: host

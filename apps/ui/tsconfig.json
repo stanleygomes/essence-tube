@@ -1,6 +1,7 @@
 {
-  "extends": "@essence-tube/typescript-config/nextjs.json",
+  "extends": "@packages/typescript-config/nextjs.json",
   "compilerOptions": {
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"

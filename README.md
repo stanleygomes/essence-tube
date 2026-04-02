@@ -77,7 +77,7 @@ POST /auth/token    { grant_type: "client_credentials", client_id, client_secret
 - **Framework**: Fastify 5
 - **Database**: SQLite with Drizzle ORM
 - **Email**: Resend
-- **JWT**: RS256 (RSA key pair) — shared logic via `@essence-tube/jwt`
+- **JWT**: RS256 (RSA key pair) — shared logic via `@packages/jwt`
 
 ### Setup
 
@@ -141,8 +141,8 @@ Este Turborepo inclui os seguintes apps e packages:
 
 ### Packages
 
-- `@essence-tube/eslint-config`: Configurações ESLint
-- `@essence-tube/typescript-config`: Configurações TypeScript
+- `@packages/eslint-config`: Configurações ESLint
+- `@packages/typescript-config`: Configurações TypeScript
 
 Cada app/package é 100% [TypeScript](https://www.typescriptlang.org/).
 

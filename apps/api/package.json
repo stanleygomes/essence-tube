@@ -3,17 +3,16 @@
   "type": "module",
   "version": "1.8.0",
   "scripts": {
-    "start": "npx vercel dev",
-    "start:fastify": "SERVER_PORT=5000 node --loader ts-node/esm src/infra/web/fastify/server.ts",
     "build": "echo 'No build step required'",
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx vercel dev --listen 5000 --debug",
+    "start": "npx vercel dev",
+    "dev": "tsx watch src/infra/web/fastify/server.ts",
+    "dev:vercel": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx vercel dev --listen 5000 --debug",
+    "start:fastify": "SERVER_PORT=5000 node --loader ts-node/esm src/infra/web/fastify/server.ts",
     "dev:fastify": "npm run start:fastify",
     "deploy": "npx vercel --prod",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
-    "check-types": "tsc --noEmit",
-    "containers:up": "docker-compose -f docker-compose.dev.yml up -d",
-    "containers:down": "docker-compose -f docker-compose.dev.yml down"
+    "check-types": "tsc --noEmit"
   },
   "_moduleAliases": {
     "@": "src"
@@ -36,8 +35,8 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@essence-tube/eslint-config": "*",
-    "@essence-tube/typescript-config": "*",
+    "@packages/eslint-config": "*",
+    "@packages/typescript-config": "*",
     "@types/axios": "^0.9.36",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",

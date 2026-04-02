@@ -11,23 +11,20 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "check": "npm run format:check && npm run lint && npm run check-types",
-    "fix": "npm run format && npm run lint:fix && npm run check-types",
-    "install:individual": "for dir in apps/* packages/*; do if [ -d \"$dir\" ] && [ -f \"$dir/package.json\" ]; then echo \"Installing in $dir\" && cd \"$dir\" && npm install && cd ../..; fi; done",
+    "check": "pnpm run format:check && pnpm run lint && pnpm run check-types",
+    "fix": "pnpm run format && pnpm run lint:fix && pnpm run check-types",
     "prepare": "husky"
   },
   "devDependencies": {
     "husky": "^9.1.7",
+    "minimatch": "^10.2.5",
     "prettier": "^3.7.4",
+    "tsx": "^4.21.0",
     "turbo": "^2.8.10",
     "typescript": "5.9.2"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
-  "packageManager": "npm@10.9.3",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "packageManager": "pnpm@10.31.0"
 }
