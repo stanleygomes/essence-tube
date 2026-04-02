@@ -24,7 +24,7 @@ export class RedisRepository<T> {
   async findOne(id: string): Promise<T | null> {
     const client = await this.getClient();
     const data = await client.get(this.getKey(id));
-    return data ? (JSON.parse(data) as T) : null;
+    return data ? (JSON.parse(data as string) as T) : null;
   }
 
   async create(id: string, value: T): Promise<void> {

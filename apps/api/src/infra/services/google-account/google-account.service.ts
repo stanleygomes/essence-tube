@@ -21,7 +21,7 @@ export class GoogleAccountService implements PartnerAccountService {
 
       return AuthInfoMapper.toEntity(res.data);
     } catch (error: any) {
-      this.logger.error("Google user info error", error);
+      this.logger.error(error, "Google user info error");
       throw new Error(error);
     }
   }
