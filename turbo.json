@@ -38,7 +38,7 @@
         "LOG_LEVEL",
         "LOG_TRANSPORT"
       ],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", "public/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]

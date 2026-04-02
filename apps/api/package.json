@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.8.0",
   "scripts": {
-    "build": "mkdir -p public",
+    "build": "mkdir -p public && touch public/.keep",
     "start": "npx vercel dev",
     "dev": "tsx watch src/infra/web/fastify/server.ts",
     "dev:vercel": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx vercel dev --listen 5000 --debug",

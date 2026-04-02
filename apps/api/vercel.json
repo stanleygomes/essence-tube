@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "mkdir -p public",
+  "buildCommand": "mkdir -p public && touch public/.keep",
   "outputDirectory": "public",
   "framework": null
 }
