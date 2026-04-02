@@ -5,6 +5,12 @@ const withSerwist = withSerwistInit({
   swDest: "public/sw.js",
 });
 
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 import type { NextConfig } from "next";
 
@@ -13,7 +19,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  turbopack: {},
+  turbopack: {
+    root: resolve(__dirname, "../../"),
+  },
 };
 
 export default withSerwist(nextConfig);
