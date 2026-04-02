@@ -23,6 +23,7 @@ export const viewport: Viewport = {
 };
 
 import { SerwistProvider } from "./serwist";
+import { ThemeProvider } from "./theme-provider";
 
 export default function RootLayout({
   children,
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/img/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
@@ -63,9 +64,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SerwistProvider swUrl="/serwist/sw.js">
-          <div id="app-container">{children}</div>
-        </SerwistProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SerwistProvider swUrl="/serwist/sw.js">
+            <div id="app-container">{children}</div>
+          </SerwistProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
