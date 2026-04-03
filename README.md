@@ -2,6 +2,8 @@
 
 Aplicativo para listar vídeos de canais do YouTube. Sem algoritmos, sem distrações. Apenas o essencial.
 
+![EssenceTube](assets/screenshot.png)
+
 ## 🌟 Sobre o Projeto
 
 O **EssenceTube** oferece uma experiência limpa e minimalista para consumir conteúdo do YouTube. Aqui, você vê apenas os vídeos dos canais que escolheu seguir, sem recomendações automáticas, distrações ou algoritmos.
