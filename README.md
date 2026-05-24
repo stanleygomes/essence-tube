@@ -264,5 +264,3 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para detalhes.
 - [Turborepo Docs](https://turborepo.dev/docs)
 - [Next.js Docs](https://nextjs.org/docs)
 - [Vercel](https://vercel.com)
-
-Made with 🔥 by Lumen HQ
