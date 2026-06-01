@@ -55,6 +55,15 @@ A arquitetura é dividida em camadas concêntricas, onde a regra principal é qu
 
 Essa abordagem nos permite, por exemplo, trocar o MongoDB por outro banco de dados alterando apenas a camada de `infrastructure`, sem impactar a lógica de negócio.
 
+### Regras globais de código
+
+- Escrever código conciso e objetivo; usar nomes claros e extração de métodos.
+- Aplicar SRP e OCP (SOLID): cada classe tem uma responsabilidade; estender via novas classes, não modificando as existentes.
+- Todo código, identificadores e rótulos de UI devem estar em Inglês.
+- Todo desenvolvimento de UI deve seguir o sistema de design Neobrutalism (neobrutalism.dev).
+- Componentes de UI compartilhados são gerenciados centralmente em packages/ui (@packages/ui). Use Shadcn com variantes Neobrutalism.
+- Prefira pacotes compartilhados existentes (@packages/\*) ao invés de duplicar lógica entre aplicações.
+
 ## 🔐 Auth API (`apps/auth-api`)
 
 Independent authentication service based on email OTP verification and OAuth 2.0 client credentials.
